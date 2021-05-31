@@ -6,19 +6,31 @@
     "deploy": "webpack --mode production",
     "watch": "webpack --mode development --watch"
   },
+  "resolutions": {
+    "react-leaflet/@react-leaflet/core": "1.0.2"
+  },
   "dependencies": {
+    "@react-leaflet/core": "1.0.2",
     "@tailwindcss/forms": "^0.2.1",
     "@tailwindcss/typography": "^0.4.0",
     "alpinejs": "^2.8.0",
+    "leaflet": "^1.7.1",
     "nprogress": "^0.2.0",
     "phoenix": "file:../deps/phoenix",
     "phoenix_html": "file:../deps/phoenix_html",
+    "phoenix_live_react": "file:../deps/phoenix_live_react",
     "phoenix_live_view": "file:../deps/phoenix_live_view",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-leaflet": "3.0.0",
     "tailwindcss": "^2.0.2"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
-    "@babel/preset-env": "^7.0.0",
+    "@babel/plugin-proposal-nullish-coalescing-operator": "^7.14.2",
+    "@babel/plugin-proposal-optional-chaining": "^7.14.2",
+    "@babel/preset-env": "^7.14.4",
+    "@babel/preset-react": "^7.13.13",
     "@tailwindcss/jit": "^0.1.5",
     "autoprefixer": "^10.2.3",
     "babel-loader": "^8.0.0",
