@@ -48,6 +48,22 @@ defmodule TripWeb do
         layout: {TripWeb.LayoutView, "live.html"}
 
       unquote(view_helpers())
+
+      def handle_event("burger", _params, socket) do
+        {:noreply, assign(socket, menu_expanded: !socket.assigns.menu_expanded)}
+      end
+
+      def assign_defaults(socket, session) do
+        current_user = if Map.has_key?(session, "user_token") do
+          Trip.Accounts.get_user_by_session_token(Map.get(session, "user_token"))
+        else
+          nil
+        end
+
+        socket
+        |> assign(current_user: current_user)
+        |> assign(menu_expanded: false)
+      end
     end
   end
 
@@ -86,6 +102,8 @@ defmodule TripWeb do
 
       # Import basic rendering functionality (render, render_layout, etc)
       import Phoenix.View
+
+      import PhoenixLiveReact
 
       import TripWeb.ErrorHelpers
       import TripWeb.Gettext

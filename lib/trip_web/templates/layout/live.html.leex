@@ -1,4 +1,4 @@
-<main role="main" class="container mx-auto max-w-4xl px-4 lg:px-0">
+<main role="main" class="h-full">
   <p class="alert alert-info" role="alert"
     phx-click="lv:clear-flash"
     phx-value-key="info"><%= live_flash(@flash, :info) %></p>
@@ -7,5 +7,19 @@
     phx-click="lv:clear-flash"
     phx-value-key="error"><%= live_flash(@flash, :error) %></p>
 
-  <%= @inner_content %>
+  <div>
+    <div class="h-[4.5rem] bg-t-blue flex shadow-lg justify-between px-8 items-center">
+      <h1 class="uppercase text-white text-3xl tracking-widest font-bold font-sans trip">Trip</h1>
+      <a class="text-4xl text-t-red burger flex items-center" href="#"
+        phx-click="burger">
+        <i class="fas fa-bars"></i>
+      </a>
+    </div>
+    <nav class="flex absolute w-full h-[calc(100%-4.5rem)] transition
+      <%= if @menu_expanded, do: "mt-0 opacity-1 z-10", else: "-mt-8 opacity-0 z-[-10]" %> bg-t-blue">
+    </nav>
+  </div>
+  <div class="flex w-full">
+    <%= @inner_content %>
+  </div>
 </main>
