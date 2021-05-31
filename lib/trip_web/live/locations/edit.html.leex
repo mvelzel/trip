@@ -1,0 +1,16 @@
+<div class="flex flex-col w-full p-10">
+  <h2 class="uppercase text-white text-2xl font-bold font-sans tracking-wider">
+    <%= gettext "New location" %>
+  </h2>
+  <%= f = form_for @changeset, "#", [phx_submit: :create, phx_change: :validate,
+    class: "flex flex-col space-y-8"] %>
+    <div class="flex flex-col space-y-3">
+      <%= label f, :name, gettext("Name"), class: "font-sans text-white font-medium" %>
+      <%= text_input f, :name, class: "t-input" %>
+    </div>
+    <div class="flex flex-col space-y-3">
+      <p class="font-sans text-white font-medium"><%= gettext "Location" %></p>
+			<%= live_react_component("Components.MapEditor", [className: "h-96"], id: "map-editor") %>
+    </div>
+  </form>
+</div>

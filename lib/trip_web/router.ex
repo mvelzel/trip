@@ -21,7 +21,13 @@ defmodule TripWeb.Router do
   scope "/", TripWeb do
     pipe_through :browser
 
-    live "/", PageLive, :index
+    live "/", IndexLive, :index
+
+    scope "/locations", LocationsLive do
+      live "/", Index, :index
+
+      live "/new", Edit, :edit
+    end
   end
 
   # Other scopes may use custom stacks.
