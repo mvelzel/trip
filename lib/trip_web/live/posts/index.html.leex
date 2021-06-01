@@ -3,7 +3,7 @@
     <%= gettext "Posts" %>
   </h2>
   <%= for post <- @posts do %>
-    <%= live_redirect to: Routes.locations_edit_path(@socket, :edit, post.id),
+    <%= live_redirect to: Routes.posts_edit_path(@socket, :edit, post.id),
       class: "rounded-2xl bg-t-green px-8 py-4 green-3d" do %>
       <h2 class="text-xl font-sans font-bold text-t-black space-x-3 flex items-center">
         <i class="fas fa-edit"></i>
