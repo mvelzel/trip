@@ -35,7 +35,9 @@ defmodule Trip.Posts do
       ** (Ecto.NoResultsError)
 
   """
-  def get_post!(id), do: Repo.get!(Post, id)
+  def get_post!(id), do:
+    Repo.get!(Post, id)
+    |> Repo.preload([locations: [:location]])
 
   @doc """
   Creates a post.

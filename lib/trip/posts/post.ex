@@ -18,6 +18,14 @@ defmodule Trip.Posts.Post do
   def changeset(post, attrs) do
     post
     |> cast(attrs, [:name, :number, :description])
+    |> validate_changeset()
+    |> cast_assoc(:locations)
+  end
+
+  def validate_changeset(changeset) do
+    changeset
+    |> Map.put(:errors, [])
+    |> Map.put(:valid?, true)
     |> validate_required([:name, :number, :description])
   end
 end

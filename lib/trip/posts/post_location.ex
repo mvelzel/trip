@@ -20,7 +20,6 @@ defmodule Trip.Posts.PostLocation do
   def changeset(post_location, attrs) do
     post_location
     |> cast(attrs, [:latitude, :longitude, :post_id, :location_id, :delete])
-    |> unique_constraint(:location_id, name: :postlocuniq)
     |> assoc_constraint(:post)
     |> validate_changeset()
   end
