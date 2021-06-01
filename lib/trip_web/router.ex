@@ -30,6 +30,12 @@ defmodule TripWeb.Router do
 
       live "/edit/:location", Edit, :edit
     end
+
+    scope "/posts", PostsLive do
+      live "/", Index, :index
+
+      live "/new", Edit, :new
+    end
   end
 
   # Other scopes may use custom stacks.

@@ -1,0 +1,21 @@
+<div class="flex flex-col space-y-6 w-full p-10">
+  <h2 class="uppercase text-white text-2xl font-bold font-sans tracking-wider">
+    <%= gettext "Posts" %>
+  </h2>
+  <%= for post <- @posts do %>
+    <%= live_redirect to: Routes.locations_edit_path(@socket, :edit, post.id),
+      class: "rounded-2xl bg-t-green px-8 py-4 green-3d" do %>
+      <h2 class="text-xl font-sans font-bold text-t-black space-x-3 flex items-center">
+        <i class="fas fa-edit"></i>
+        <span><%= post.name %></span>
+      </h2>
+    <% end %>
+  <% end %>
+  <%= live_redirect to: Routes.posts_edit_path(@socket, :new),
+    class: "rounded-2xl bg-t-green px-8 py-4 green-3d" do %>
+    <h2 class="text-xl font-sans font-bold text-t-black space-x-3 flex items-center">
+      <i class="fas fa-plus"></i>
+      <span><%= gettext "New post" %></span>
+    </h2>
+  <% end %>
+</div>
