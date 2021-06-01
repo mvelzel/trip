@@ -18,13 +18,15 @@ import NProgress from "nprogress";
 import { LiveSocket } from "phoenix_live_view";
 import LiveReact, { initLiveReact } from "phoenix_live_react";
 import MapEditor from "./react/embed/MapEditor";
+import Dropdown from "./react/embed/Dropdown";
 import "alpinejs";
 
 let Hooks = { LiveReact };
 // Hooks.Example = { mounted() { } }
 
 window.Components ={
-	MapEditor
+	MapEditor,
+  Dropdown
 }
 
 let csrfToken = document
