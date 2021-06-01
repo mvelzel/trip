@@ -1,4 +1,4 @@
-<main role="main" class="h-full">
+<main role="main" class="h-full w-full flex flex-col">
   <p class="alert alert-info" role="alert"
     phx-click="lv:clear-flash"
     phx-value-key="info"><%= live_flash(@flash, :info) %></p>
@@ -7,19 +7,29 @@
     phx-click="lv:clear-flash"
     phx-value-key="error"><%= live_flash(@flash, :error) %></p>
 
-  <div>
-    <div class="h-[4.5rem] bg-t-blue flex shadow-lg justify-between px-8 items-center">
-      <h1 class="uppercase text-white text-3xl tracking-widest font-bold font-sans trip">Trip</h1>
+  <div class="h-[4.5rem] w-full">
+    <div class="h-full bg-t-blue flex shadow-lg justify-between px-8 items-center">
+      <%= live_redirect to: Routes.index_path(@socket, :index),
+        class: "uppercase text-white text-3xl tracking-widest font-bold font-sans trip" do %>
+        <%= gettext "Trip" %>
+      <% end %>
       <a class="text-4xl text-t-red burger flex items-center" href="#"
         phx-click="burger">
         <i class="fas fa-bars"></i>
       </a>
     </div>
-    <nav class="flex absolute w-full h-[calc(100%-4.5rem)] transition
-      <%= if @menu_expanded, do: "mt-0 opacity-1 z-10", else: "-mt-8 opacity-0 z-[-10]" %> bg-t-blue">
+    <nav class="flex absolute flex-col w-full h-[calc(100%-4.5rem)]
+                transition-all duration-300 pl-12
+      <%= if @menu_expanded, do: "mt-0 opacity-1 z-[9999]", else: "-mt-8 opacity-0 z-[-10]" %> bg-t-blue">
+      <%= live_redirect to: Routes.locations_index_path(@socket, :index),
+        class: "py-4 font-sans text-white font-medium border-b-4 border-tr-green text-2xl
+                flex flex-row items-center space-x-3" do %>
+        <i class="fas fa-arrow-right"></i>
+        <span><%= gettext "Locations" %></span>
+      <% end %>
     </nav>
   </div>
-  <div class="flex w-full">
+  <div class="flex w-full overflow-y-scroll flex-1">
     <%= @inner_content %>
   </div>
 </main>
