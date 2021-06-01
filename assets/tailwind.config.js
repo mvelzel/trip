@@ -19,6 +19,8 @@ module.exports = {
         "t-darkBlue": "#0455BF",
         "t-darkerBlue": "#033E8C",
         "t-green": "#22F2A6",
+        "tr-green": "#22F2A6",
+        "t-darkGreen": "#05734C",
         "t-black": "#222222"
       }
     },

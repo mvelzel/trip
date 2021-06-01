@@ -15,11 +15,26 @@
   text-shadow: 0 1px 0 #ccc, 0 2px 0 #ccc, 0 3px 3px rgba(0, 0, 0, 0.5);
 }
 
-.transition {
-  transition-property: background-color, border-color, color, fill, stroke,
-    opacity, box-shadow, transform, filter, backdrop-filter, margin-top;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 300ms;
+.filler {
+  @apply space-y-6 transition pl-8 border-b-4;
+}
+
+.green-3d {
+  box-shadow: 0 1px 0 #05734c, 0 2px 0 #05734c,
+    0 3px 0 #05734c,
+    0 4px 0 #05734c,
+    0 5px 0 #05734c,
+    0 4px 3px rgba(0, 0, 0, 0.5);
+}
+
+.t-button {
+  @extend .green-3d;
+  @apply text-white bg-t-green font-sans rounded-2xl tracking-wider uppercase font-bold
+    py-4 px-10;
+
+  &:disabled {
+    @apply opacity-[0.7]
+  }
 }
 
 .t-input {
