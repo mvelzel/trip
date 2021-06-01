@@ -3,10 +3,10 @@ defmodule Trip.Locations.Location do
   import Ecto.Changeset
 
   schema "locations" do
-    field :latitude_bottomleft, :float
-    field :latitude_topright, :float
-    field :longitude_bottomleft, :float
-    field :longitude_topright, :float
+    field :lat0, :float
+    field :lon0, :float
+    field :lat1, :float
+    field :lon1, :float
     field :name, :string
 
     timestamps()
@@ -15,7 +15,14 @@ defmodule Trip.Locations.Location do
   @doc false
   def changeset(location, attrs) do
     location
-    |> cast(attrs, [:name, :longitude_bottomleft, :latitude_bottomleft, :longitude_topright, :latitude_topright])
-    |> validate_required([:name, :longitude_bottomleft, :latitude_bottomleft, :longitude_topright, :latitude_topright])
+    |> cast(attrs, [:name, :lat0, :lon0, :lat1, :lon1])
+    |> validate_changeset()
+  end
+
+  def validate_changeset(changeset) do
+    changeset
+    |> Map.put(:errors, [])
+    |> Map.put(:valid?, true)
+    |> validate_required([:name, :lat0, :lon0, :lat1, :lon1])
   end
 end
