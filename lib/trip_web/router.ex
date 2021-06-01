@@ -35,6 +35,8 @@ defmodule TripWeb.Router do
       live "/", Index, :index
 
       live "/new", Edit, :new
+
+      live "/edit/:post", Edit, :edit
     end
   end
 
