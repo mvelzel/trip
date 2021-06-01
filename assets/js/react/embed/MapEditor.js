@@ -12,10 +12,66 @@ function mapReducer(state, action) {
   switch (action.type) {
     case "set-bounds":
       return { ...state, bounds: action.bounds };
+    case "set-location":
+      return { ...state, location: action.location };
   }
 }
 
-export default function MapEditor({ bounds, className, pushEvent }) {
+export function MapLocationPicker({
+  bounds,
+  location,
+  className,
+  pushEvent,
+  cursor,
+}) {
+  const [mapState, dispatch] = useReducer(mapReducer, {
+    location: location || [],
+  });
+
+  useEffect(
+    () =>
+      pushEvent &&
+      pushEvent("set-location", {
+        location: mapState.location,
+        cursor: cursor,
+      }),
+    [mapState]
+  );
+
+  return (
+    <MapContainer
+      center={[52.1326, 5.2913]}
+      zoom={7}
+      zoomSnap={0.1}
+      doubleClickZoom={false}
+      className={className}
+    >
+      <TileLayer
+        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+      />
+      <SetBoundZoom bounds={bounds} />
+      <DoubleClickLocation
+        setLocation={(latlng) => {
+          if (mapState.location.length != 2) {
+            dispatch({ type: "set-location", location: latlng });
+          }
+        }}
+      />
+      <Rectangle bounds={bounds} color="white" />
+      {mapState.location.length == 2 && (
+        <DraggableMarker
+          position={mapState.location}
+          setPosition={(pos) => {
+            dispatch({ type: "set-location", location: pos });
+          }}
+        />
+      )}
+    </MapContainer>
+  );
+}
+
+export function MapBoundsPicker({ bounds, className, pushEvent }) {
   const [mapState, dispatch] = useReducer(mapReducer, { bounds: bounds || [] });
 
   useEffect(
@@ -27,6 +83,7 @@ export default function MapEditor({ bounds, className, pushEvent }) {
     <MapContainer
       center={[52.1326, 5.2913]}
       zoom={7}
+      zoomSnap={0.1}
       doubleClickZoom={false}
       className={className}
     >
@@ -35,8 +92,8 @@ export default function MapEditor({ bounds, className, pushEvent }) {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
       <SetBoundZoom bounds={bounds} />
-      <SetBoundCorner
-        setBounds={(latlng) => {
+      <DoubleClickLocation
+        setLocation={(latlng) => {
           let bounds = mapState.bounds;
           if (bounds.length == 0) {
             bounds = [latlng];
@@ -73,9 +130,9 @@ export default function MapEditor({ bounds, className, pushEvent }) {
   );
 }
 
-function SetBoundCorner({ setBounds }) {
+function DoubleClickLocation({ setLocation }) {
   useMapEvent("dblclick", (e) => {
-    setBounds([e.latlng.lat, e.latlng.lng]);
+    setLocation([e.latlng.lat, e.latlng.lng]);
   });
 
   return <span />;
@@ -85,7 +142,7 @@ function SetBoundZoom({ bounds }) {
   const map = useMap();
 
   useEffect(() => {
-    if (bounds.length == 2) map.fitBounds(bounds);
+    if (bounds.length == 2) map.fitBounds(bounds, { padding: [30, 30] });
   }, [bounds]);
 
   return <span />;

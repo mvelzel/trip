@@ -17,17 +17,18 @@ import { Socket } from "phoenix";
 import NProgress from "nprogress";
 import { LiveSocket } from "phoenix_live_view";
 import LiveReact, { initLiveReact } from "phoenix_live_react";
-import MapEditor from "./react/embed/MapEditor";
+import { MapBoundsPicker, MapLocationPicker } from "./react/embed/MapEditor";
 import Dropdown from "./react/embed/Dropdown";
 import "alpinejs";
 
 let Hooks = { LiveReact };
 // Hooks.Example = { mounted() { } }
 
-window.Components ={
-	MapEditor,
-  Dropdown
-}
+window.Components = {
+  MapBoundsPicker,
+  MapLocationPicker,
+  Dropdown,
+};
 
 let csrfToken = document
   .querySelector("meta[name='csrf-token']")
@@ -60,6 +61,6 @@ window.liveSocket = liveSocket;
 // Optionally render the React components on page load as
 // well to speed up the initial time to render.
 // The pushEvent, pushEventTo and handleEvent props will not be passed here.
-document.addEventListener("DOMContentLoaded", e => {
-  initLiveReact()
-})
+document.addEventListener("DOMContentLoaded", (e) => {
+  initLiveReact();
+});
