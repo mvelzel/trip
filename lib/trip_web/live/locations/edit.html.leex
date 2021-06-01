@@ -1,16 +1,28 @@
-<div class="flex flex-col w-full p-10">
+<div class="flex flex-col w-full px-10 pt-10">
   <h2 class="uppercase text-white text-2xl font-bold font-sans tracking-wider">
     <%= gettext "New location" %>
   </h2>
   <%= f = form_for @changeset, "#", [phx_submit: :create, phx_change: :validate,
-    class: "flex flex-col space-y-8"] %>
+    class: "flex flex-col space-y-6"] %>
     <div class="flex flex-col space-y-3">
       <%= label f, :name, gettext("Name"), class: "font-sans text-white font-medium" %>
       <%= text_input f, :name, class: "t-input" %>
     </div>
     <div class="flex flex-col space-y-3">
+      <%= hidden_input f, :lat0 %>
+      <%= hidden_input f, :lon0 %>
+      <%= hidden_input f, :lat1 %>
+      <%= hidden_input f, :lon1 %>
       <p class="font-sans text-white font-medium"><%= gettext "Location" %></p>
-			<%= live_react_component("Components.MapEditor", [className: "h-96"], id: "map-editor") %>
+      <p class="font-sans text-sm text-white"><%= gettext "Double tap to set boundaries" %></p>
+      <%= live_react_component("Components.MapEditor",
+        [bounds: generate_bounds(@changeset), className: "h-96"],
+        id: "map-editor") %>
+    </div>
+    <div class="flex flex-row justify-end items-center">
+    <%= submit gettext("Save"),
+      class: "t-button mb-10",
+      disabled: !@changeset.valid? %>
     </div>
   </form>
 </div>

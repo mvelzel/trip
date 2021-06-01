@@ -26,7 +26,9 @@ defmodule TripWeb.Router do
     scope "/locations", LocationsLive do
       live "/", Index, :index
 
-      live "/new", Edit, :edit
+      live "/new", Edit, :new
+
+      live "/edit/:location", Edit, :edit
     end
   end
 
