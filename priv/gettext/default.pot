@@ -1,0 +1,52 @@
+## This file is a PO Template file.
+##
+## "msgid"s here are often extracted from source code.
+## Add new translations manually only if they're dynamic
+## translations that can't be statically extracted.
+##
+## Run "mix gettext.extract" to bring this file up to
+## date. Leave "msgstr"s empty as changing them here as no
+## effect: edit them in PO (.po) files instead.
+msgid ""
+msgstr ""
+
+#, elixir-format
+#: lib/trip_web/live/locations/edit.html.leex:17
+msgid "Double tap to set boundaries"
+msgstr ""
+
+#, elixir-format
+#: lib/trip_web/live/locations/edit.html.leex:16
+msgid "Location"
+msgstr ""
+
+#, elixir-format
+#: lib/trip_web/templates/layout/live.html.leex:28
+msgid "Locations"
+msgstr ""
+
+#, elixir-format
+#: lib/trip_web/live/locations/edit.html.leex:8
+msgid "Name"
+msgstr ""
+
+#, elixir-format
+#: lib/trip_web/live/locations/edit.html.leex:3
+#: lib/trip_web/live/locations/index.html.leex:15
+msgid "New location"
+msgstr ""
+
+#, elixir-format
+#: lib/trip_web/live/locations/edit.html.leex:23
+msgid "Save"
+msgstr ""
+
+#, elixir-format
+#: lib/trip_web/templates/layout/live.html.leex:14
+msgid "Trip"
+msgstr ""
+
+#, elixir-format
+#: lib/trip_web/live/page_live.html.leex:2
+msgid "Welcome to %{name}!"
+msgstr ""

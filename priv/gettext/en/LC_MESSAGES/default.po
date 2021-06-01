@@ -1,0 +1,53 @@
+## "msgid"s in this file come from POT (.pot) files.
+##
+## Do not add, change, or remove "msgid"s manually here as
+## they're tied to the ones in the corresponding POT file
+## (with the same domain).
+##
+## Use "mix gettext.extract --merge" or "mix gettext.merge"
+## to merge POT files into PO files.
+msgid ""
+msgstr ""
+"Language: en\n"
+"Plural-Forms: nplurals=2\n"
+
+#, elixir-format
+#: lib/trip_web/live/locations/edit.html.leex:17
+msgid "Double tap to set boundaries"
+msgstr ""
+
+#, elixir-format
+#: lib/trip_web/live/locations/edit.html.leex:16
+msgid "Location"
+msgstr ""
+
+#, elixir-format
+#: lib/trip_web/templates/layout/live.html.leex:28
+msgid "Locations"
+msgstr ""
+
+#, elixir-format
+#: lib/trip_web/live/locations/edit.html.leex:8
+msgid "Name"
+msgstr ""
+
+#, elixir-format
+#: lib/trip_web/live/locations/edit.html.leex:3
+#: lib/trip_web/live/locations/index.html.leex:15
+msgid "New location"
+msgstr ""
+
+#, elixir-format
+#: lib/trip_web/live/locations/edit.html.leex:23
+msgid "Save"
+msgstr ""
+
+#, elixir-format
+#: lib/trip_web/templates/layout/live.html.leex:14
+msgid "Trip"
+msgstr ""
+
+#, elixir-format
+#: lib/trip_web/live/page_live.html.leex:2
+msgid "Welcome to %{name}!"
+msgstr ""
