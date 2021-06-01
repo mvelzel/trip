@@ -40,6 +40,7 @@ msgstr ""
 
 #, elixir-format
 #: lib/trip_web/live/locations/edit.html.leex:23
+#: lib/trip_web/live/posts/edit.html.leex:44
 msgid "Save"
 msgstr ""
 
@@ -83,4 +84,9 @@ msgstr ""
 #, elixir-format
 #: lib/trip_web/live/posts/edit.html.leex:23
 msgid "Select a location"
+msgstr ""
+
+#, elixir-format
+#: lib/trip_web/live/posts/edit.html.leex:33
+msgid "Double tap to set location"
 msgstr ""
