@@ -4,6 +4,7 @@ module.exports = {
     "../lib/**/*.eex",
     "../lib/**/*.leex",
     "../lib/**/*_view.ex",
+    "../assets/**/*.js",
     "../lib/**/views/*.ex"
   ],
   plugins: [
@@ -14,7 +15,9 @@ module.exports = {
     extend: {
       colors: {
         "t-red": "#F23054",
+        "tr-red": "#F23054",
         "t-darkRed": "#BF263A",
+        "tr-darkRed": "#BF263A",
         "t-blue": "#056CF2",
         "t-darkBlue": "#0455BF",
         "t-darkerBlue": "#033E8C",
