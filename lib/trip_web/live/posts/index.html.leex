@@ -3,13 +3,25 @@
     <%= gettext "Posts" %>
   </h2>
   <%= for post <- @posts do %>
-    <%= live_redirect to: Routes.posts_edit_path(@socket, :edit, post.id),
-      class: "rounded-2xl bg-t-green px-8 py-4 green-3d" do %>
-      <h2 class="text-xl font-sans font-bold text-t-black space-x-3 flex items-center">
-        <i class="fas fa-edit"></i>
-        <span><%= post.name %></span>
-      </h2>
-    <% end %>
+    <div class="flex flex-row items-center space-x-3">
+      <%= live_redirect to: Routes.posts_edit_path(@socket, :edit, post.id),
+        class: "rounded-2xl flex-1 bg-t-green px-8 py-4 green-3d" do %>
+        <h2 class="text-xl font-sans font-bold text-t-black space-x-3 flex items-center">
+          <i class="fas fa-edit"></i>
+          <span><%= post.name %></span>
+        </h2>
+      <% end %>
+      <%= live_redirect to: Routes.posts_results_new_path(@socket, :new, post.id),
+        class: "rounded-2xl flex-shrink bg-t-green px-6 py-4 green-3d" do %>
+        <h2 class="text-xl font-sans font-bold text-t-black space-x-3 flex items-center">
+          <%= if post.score_type == :points do %>
+          +km
+          <% else %>
+          +<i class="far fa-clock"></i>
+          <% end %>
+        </h2>
+      <% end %>
+    </div>
   <% end %>
   <%= live_redirect to: Routes.posts_edit_path(@socket, :new),
     class: "rounded-2xl bg-t-green px-8 py-4 green-3d" do %>

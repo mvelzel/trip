@@ -107,11 +107,21 @@ defmodule TripWeb.PostsLive.Edit do
     {:noreply, socket}
   end
 
-  def handle_event("type-selected", %{"value" => type}, socket) do
+  def handle_event("score-type-selected", %{"value" => type}, socket) do
     changeset = 
       socket.assigns.changeset
       |> Ecto.Changeset.put_change(:score_type, type)
+      |> Post.validate_changeset()
 
+    {:noreply, assign(socket, changeset: changeset)}
+  end
+
+  def handle_event("type-selected", %{"value" => type}, socket) do
+    changeset = 
+      socket.assigns.changeset
+      |> Ecto.Changeset.put_change(:result_type, type)
+
+    IO.inspect(type)
     changeset = if type == "high_score" do
       count =
         changeset
@@ -128,6 +138,7 @@ defmodule TripWeb.PostsLive.Edit do
     else
       changeset
       |> Ecto.Changeset.put_embed(:score_divisions, [])
+      |> Ecto.Changeset.put_change(:score_type, :points)
       |> Post.validate_changeset()
     end
 

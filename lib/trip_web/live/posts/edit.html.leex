@@ -1,31 +1,45 @@
 <div class="flex flex-col w-full px-10 pt-10">
   <h2 class="uppercase text-white text-2xl font-bold font-sans tracking-wider">
-    <%= gettext "New post" %>
+    <%= gettext "Edit post" %>
   </h2>
   <%= f = form_for @changeset, "#", [phx_submit: :create, phx_change: :validate,
     class: "flex flex-col space-y-6"] %>
     <div class="flex flex-col space-y-3">
       <%= label f, :name, gettext("Name"), class: "font-sans text-white font-medium" %>
-      <%= text_input f, :name, class: "t-input" %>
+      <%= text_input f, :name, class: "t-input", placeholder: gettext("Input name") %>
     </div>
     <div class="flex flex-col space-y-3">
       <%= label f, :number, gettext("Post number"), class: "font-sans text-white font-medium" %>
-      <%= number_input f, :number, class: "t-input", step: 1 %>
+      <%= number_input f, :number, class: "t-input", step: 1,
+        placeholder: gettext("Input number") %>
     </div>
     <div class="flex flex-col space-y-3">
-      <%= label f, :description, gettext("Description"), class: "font-sans text-white font-medium" %>
-      <%= textarea f, :description, class: "t-input", rows: 6 %>
+      <%= label f, :description, gettext("Description"),
+        class: "font-sans text-white font-medium" %>
+      <%= textarea f, :description, class: "t-input", rows: 6,
+        placeholder: gettext("Input description") %>
     </div>
     <div class="flex flex-col space-y-3">
-      <%= label f, :score_type, gettext("Score type"), class: "font-sans text-white font-medium" %>
+      <%= label f, :result_type, gettext("Ranking type"),
+        class: "font-sans text-white font-medium" %>
+      <%= hidden_input f, :result_type %>
       <%= hidden_input f, :score_type %>
-      <% selected = if is_nil(input_value(f, :score_type)), do: "", else: input_value(f, :score_type) %>
       <%= live_react_component("Components.Dropdown",
-        [selected: selected, values: Enum.map(Post.score_types, &[score_type_label(&1), &1]),
+        [selected: input_value(f, :result_type) || "",
+        values: Enum.map(Post.result_types, &[result_type_label(&1), &1]),
         placeholder: gettext("Select a type"), phx_event: "type-selected"],
-        id: "score-type-dropdown") %>
+        id: "result-type-dropdown") %>
     </div>
-    <%= if to_string(input_value(f, :score_type)) == "high_score" do %>
+    <%= if to_string(input_value(f, :result_type)) == "high_score" do %>
+      <div class="flex flex-col space-y-3">
+        <%= label f, :score_type, gettext("Score type"),
+          class: "font-sans text-white font-medium" %>
+        <%= live_react_component("Components.Dropdown",
+          [selected: input_value(f, :score_type) || "",
+          values: Enum.map(Post.score_types, &[score_type_label(&1), &1]),
+          placeholder: gettext("Select a type"), phx_event: "score-type-selected"],
+          id: "score-type-dropdown") %>
+      </div>
       <div class="flex flex-col space-y-3">
         <p class="font-sans text-white font-medium"><%= gettext "Score divisions" %></p>
         <%= inputs_for f, :score_divisions, fn fd -> %>
@@ -33,7 +47,8 @@
             <p class="font-sans text-lg text-t-green font-medium">
               #<%= fd.index + 1 %>
             </p>
-            <%= number_input fd, :points, class: "t-input w-full" %>
+            <%= number_input fd, :points, class: "t-input w-full", step: 1,
+              placeholder: gettext("Input points") %>
           </div>
         <% end %>
         <div class="flex flex-row justify-end">
@@ -52,9 +67,6 @@
         id: "location-dropdown") %>
     </div>
     <%= inputs_for f, :locations, fn fl -> %>
-      <%= hidden_input fl, :location_id %>
-      <%= hidden_input fl, :longitude %>
-      <%= hidden_input fl, :latitude %>
       <%= inputs_for fl, :location, fn fll -> %>
         <div class="flex flex-col space-y-3">
           <p class="font-sans text-white font-medium"><%= input_value fll, :name %></p>
@@ -68,6 +80,9 @@
             id: "map-editor-#{fl.index}") %>
         </div>
       <% end %>
+      <%= hidden_input fl, :location_id %>
+      <%= hidden_input fl, :longitude %>
+      <%= hidden_input fl, :latitude %>
     <% end %>
     <div class="flex flex-row justify-end items-center">
       <%= submit gettext("Save"),
