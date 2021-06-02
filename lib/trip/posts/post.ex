@@ -5,17 +5,19 @@ defmodule Trip.Posts.Post do
   alias Trip.Posts.PostLocation
   alias Trip.Posts.ScoreDivision
 
-  @score_types [:points, :high_score]
+  @result_types [:points, :high_score]
+  @score_types [:points, :time]
 
   schema "posts" do
     field :description, :string
     field :name, :string
     field :number, :integer
-    field :score_type, Ecto.Enum, values: @score_types
+    field :result_type, Ecto.Enum, values: @result_types
+    field :score_type, Ecto.Enum, values: @score_types, default: :points
 
     has_many :locations, PostLocation
 
-    embeds_many :score_divisions, ScoreDivision
+    embeds_many :score_divisions, ScoreDivision, on_replace: :delete
 
     timestamps()
   end
@@ -23,7 +25,7 @@ defmodule Trip.Posts.Post do
   @doc false
   def changeset(post, attrs) do
     post
-    |> cast(attrs, [:name, :number, :description, :score_type])
+    |> cast(attrs, [:name, :number, :description, :result_type, :score_type])
     |> validate_changeset()
     |> cast_assoc(:locations)
     |> cast_embed(:score_divisions)
@@ -33,8 +35,9 @@ defmodule Trip.Posts.Post do
     changeset
     |> Map.put(:errors, [])
     |> Map.put(:valid?, true)
-    |> validate_required([:name, :number, :description, :score_type])
+    |> validate_required([:name, :number, :description, :result_type, :score_type])
   end
 
+  def result_types, do: @result_types
   def score_types, do: @score_types
 end

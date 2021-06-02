@@ -110,8 +110,10 @@ defmodule TripWeb do
       import TripWeb.Gettext
       alias TripWeb.Router.Helpers, as: Routes
 
+      def result_type_label(:points), do: gettext("Points")
+      def result_type_label(:high_score), do: gettext("Highscore")
       def score_type_label(:points), do: gettext("Points")
-      def score_type_label(:high_score), do: gettext("Highscore")
+      def score_type_label(:time), do: gettext("Time")
     end
   end
 

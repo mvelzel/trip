@@ -18,7 +18,16 @@ defmodule Trip.Groups do
 
   """
   def list_groups do
-    Repo.all(Group)
+    Group
+    |> order_by(:number)
+    |> Repo.all()
+  end
+  
+  def list_groups(location_id) do
+    Group
+    |> where(location_id: ^location_id)
+    |> order_by(:number)
+    |> Repo.all()
   end
 
   @doc """

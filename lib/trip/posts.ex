@@ -6,7 +6,7 @@ defmodule Trip.Posts do
   import Ecto.Query, warn: false
   alias Trip.Repo
 
-  alias Trip.Posts.Post
+  alias Trip.Posts.{Post, PostResult}
 
   @doc """
   Returns the list of posts.
@@ -18,7 +18,9 @@ defmodule Trip.Posts do
 
   """
   def list_posts do
-    Repo.all(Post)
+    Post
+    |> order_by(:number)
+    |> Repo.all()
   end
 
   @doc """
@@ -54,6 +56,12 @@ defmodule Trip.Posts do
   def create_post(attrs \\ %{}) do
     %Post{}
     |> Post.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  def create_post_result(attrs, score_type) do
+    %PostResult{}
+    |> PostResult.changeset(attrs, score_type)
     |> Repo.insert()
   end
 
