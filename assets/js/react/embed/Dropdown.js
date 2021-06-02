@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 
-export default function Dropdown({ selected, values, pushEvent, placeholder }) {
+export default function Dropdown({ selected, values, pushEvent, placeholder, phx_event }) {
   const [expanded, setExpanded] = useState(false);
   const [useTop, setUseTop] = useState(false);
 
@@ -55,7 +55,7 @@ export default function Dropdown({ selected, values, pushEvent, placeholder }) {
             <div
               key={id}
               className="py-2 hover:font-medium"
-              onClick={() => pushEvent("dropdown-selected", { value: id })}
+              onClick={() => pushEvent(phx_event, { value: id })}
             >
               {val}
             </div>
