@@ -114,6 +114,9 @@ defmodule TripWeb do
       def result_type_label(:high_score), do: gettext("Highscore")
       def score_type_label(:points), do: gettext("Points")
       def score_type_label(:time), do: gettext("Time")
+
+      def role_label(:admin), do: gettext("Admin")
+      def role_label(:player), do: gettext("Player")
     end
   end
 
