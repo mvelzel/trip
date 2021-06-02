@@ -2,12 +2,19 @@ defmodule Trip.Accounts.User do
   use Ecto.Schema
   import Ecto.Changeset
 
+  alias Trip.Groups.Group
+
+  @roles [:admin, :player]
+
   @derive {Inspect, except: [:password]}
   schema "users" do
-    field :email, :string
+    field :role, Ecto.Enum, values: @roles ++ [:superuser]
+    field :username, :string
     field :password, :string, virtual: true
     field :hashed_password, :string
     field :confirmed_at, :naive_datetime
+
+    belongs_to :group, Group, on_replace: :delete
 
     timestamps()
   end
@@ -29,10 +36,27 @@ defmodule Trip.Accounts.User do
       validations on a LiveView form), this option can be set to `false`.
       Defaults to `true`.
   """
+  def edit_changeset(user, attrs) do
+    user
+    |> cast(attrs, [:username, :role, :group_id])
+    |> validate_changeset()
+  end
+
+  def validate_changeset(changeset) do
+    changeset
+    |> Map.put(:errors, [])
+    |> Map.put(:valid?, true)
+    |> validate_required([:username, :role, :group_id])
+  end
+
   def registration_changeset(user, attrs, opts \\ []) do
     user
-    |> cast(attrs, [:email, :password])
-    |> validate_email()
+    |> cast(attrs, [:username, :password, :role, :group_id])
+    |> put_change(:confirmed_at, 
+      NaiveDateTime.utc_now()
+      |> NaiveDateTime.truncate(:second)
+    )
+    |> validate_changeset()
     |> validate_password(opts)
   end
 
@@ -48,7 +72,7 @@ defmodule Trip.Accounts.User do
   defp validate_password(changeset, opts) do
     changeset
     |> validate_required([:password])
-    |> validate_length(:password, min: 12, max: 80)
+    |> validate_length(:password, min: 6, max: 80)
     # |> validate_format(:password, ~r/[a-z]/, message: "at least one lower case character")
     # |> validate_format(:password, ~r/[A-Z]/, message: "at least one upper case character")
     # |> validate_format(:password, ~r/[!?@#$%^&*_0-9]/, message: "at least one digit or punctuation character")
@@ -62,7 +86,6 @@ defmodule Trip.Accounts.User do
     if hash_password? && password && changeset.valid? do
       changeset
       |> put_change(:hashed_password, Bcrypt.hash_pwd_salt(password))
-      |> delete_change(:password)
     else
       changeset
     end
@@ -136,4 +159,6 @@ defmodule Trip.Accounts.User do
       add_error(changeset, :current_password, "is not valid")
     end
   end
+
+  def roles, do: @roles
 end

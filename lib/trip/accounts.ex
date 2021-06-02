@@ -21,9 +21,15 @@ defmodule Trip.Accounts do
       nil
 
   """
-  def get_user_by_email(email) when is_binary(email) do
-    Repo.get_by(User, email: email)
+  def get_user_by_email(username) when is_binary(username) do
+    Repo.get_by(User, username: username)
   end
+
+  def get_user!(id), do: 
+    Repo.get!(User, id)
+    |> Repo.preload([group: [:location]])
+
+  def list_users(), do: Repo.all(User)
 
   @doc """
   Gets a user by email and password.
@@ -37,9 +43,9 @@ defmodule Trip.Accounts do
       nil
 
   """
-  def get_user_by_email_and_password(email, password)
-      when is_binary(email) and is_binary(password) do
-    user = Repo.get_by(User, email: email)
+  def get_user_by_email_and_password(username, password)
+      when is_binary(username) and is_binary(password) do
+    user = Repo.get_by(User, username: username)
     if User.valid_password?(user, password), do: user
   end
 
@@ -143,6 +149,12 @@ defmodule Trip.Accounts do
     else
       _ -> :error
     end
+  end
+
+  def update_user(%User{} = user, attrs) do
+    user
+    |> User.edit_changeset(attrs)
+    |> Repo.update()
   end
 
   defp user_email_multi(user, email, context) do

@@ -55,7 +55,7 @@ defmodule Trip.Accounts.UserToken do
   their email.
   """
   def build_email_token(user, context) do
-    build_hashed_token(user, context, user.email)
+    build_hashed_token(user, context, user.username)
   end
 
   defp build_hashed_token(user, context, sent_to) do
@@ -85,7 +85,7 @@ defmodule Trip.Accounts.UserToken do
         query =
           from token in token_and_context_query(hashed_token, context),
             join: user in assoc(token, :user),
-            where: token.inserted_at > ago(^days, "day") and token.sent_to == user.email,
+            where: token.inserted_at > ago(^days, "day") and token.sent_to == user.username,
             select: user
 
         {:ok, query}
