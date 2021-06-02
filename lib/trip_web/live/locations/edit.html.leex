@@ -1,19 +1,19 @@
 <div class="flex flex-col w-full px-10 pt-10">
   <h2 class="uppercase text-white text-2xl font-bold font-sans tracking-wider">
-    <%= gettext "New location" %>
+    <%= gettext "Edit location" %>
   </h2>
   <%= f = form_for @changeset, "#", [phx_submit: :create, phx_change: :validate,
     class: "flex flex-col space-y-6"] %>
     <div class="flex flex-col space-y-3">
       <%= label f, :name, gettext("Name"), class: "font-sans text-white font-medium" %>
-      <%= text_input f, :name, class: "t-input" %>
+      <%= text_input f, :name, class: "t-input", placeholder: gettext("Input name") %>
     </div>
     <div class="flex flex-col space-y-3">
+      <p class="font-sans text-white font-medium"><%= gettext "Location" %></p>
       <%= hidden_input f, :lat0 %>
       <%= hidden_input f, :lon0 %>
       <%= hidden_input f, :lat1 %>
       <%= hidden_input f, :lon1 %>
-      <p class="font-sans text-white font-medium"><%= gettext "Location" %></p>
       <p class="font-sans text-sm text-white"><%= gettext "Double tap to set boundaries" %></p>
       <%= live_react_component("Components.MapBoundsPicker",
         [bounds: generate_bounds(@changeset), className: "h-96"],

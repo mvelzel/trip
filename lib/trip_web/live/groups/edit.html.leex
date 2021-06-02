@@ -1,16 +1,17 @@
 <div class="flex flex-col w-full px-10 pt-10">
   <h2 class="uppercase text-white text-2xl font-bold font-sans tracking-wider">
-    <%= gettext "New post" %>
+    <%= gettext "Edit group" %>
   </h2>
   <%= f = form_for @changeset, "#", [phx_submit: :create, phx_change: :validate,
     class: "flex flex-col space-y-6"] %>
     <div class="flex flex-col space-y-3">
       <%= label f, :name, gettext("Name"), class: "font-sans text-white font-medium" %>
-      <%= text_input f, :name, class: "t-input" %>
+      <%= text_input f, :name, class: "t-input", placeholder: gettext("Input name") %>
     </div>
     <div class="flex flex-col space-y-3">
       <%= label f, :number, gettext("Group number"), class: "font-sans text-white font-medium" %>
-      <%= number_input f, :number, class: "t-input", step: 1 %>
+      <%= number_input f, :number, class: "t-input", step: 1,
+        placeholder: gettext("Input number") %>
     </div>
     <div class="flex flex-row justify-between items-center">
       <p class="font-sans text-white font-medium"><%= gettext "Boys group" %></p>
@@ -20,9 +21,9 @@
     <div class="flex flex-col space-y-3">
       <p class="font-sans text-white font-medium"><%= gettext "Set location" %></p>
       <%= hidden_input f, :location_id %>
-      <% selected = if is_nil(input_value(f, :location_id)), do: "", else: input_value(f, :location_id) %>
       <%= live_react_component("Components.Dropdown",
-        [selected: selected, values: Enum.map(@locations, &[&1.name, &1.id]),
+        [selected: input_value(f, :location_id) || "",
+        values: Enum.map(@locations, &[&1.name, &1.id]),
         placeholder: gettext("Select a location"), phx_event: "dropdown-selected"],
         id: "location-dropdown") %>
     </div>
