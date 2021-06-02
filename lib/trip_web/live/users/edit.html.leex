@@ -27,21 +27,41 @@
         placeholder: gettext("Select a role"), phx_event: "role-selected"],
         id: "role-dropdown") %>
     </div>
-    <div class="flex flex-col space-y-3">
-      <%= label f, :group_id, gettext("Select group"), class: "font-sans text-white font-medium" %>
-      <%= hidden_input f, :group_id %>
-      <%= live_react_component("Components.Dropdown",
-        [selected: @selected_location, values: Enum.map(@locations, &[&1.name, &1.id]),
-        placeholder: gettext("Select a location"), phx_event: "location-selected"],
-        id: "location-dropdown") %>
-      <%= if @selected_location != "" do %>
+    <%= if to_string(input_value(f, :role)) == "player" do %>
+      <div class="flex flex-col space-y-3">
+        <%= label f, :group_id, gettext("Select group"), class: "font-sans text-white font-medium" %>
+        <%= hidden_input f, :group_id %>
         <%= live_react_component("Components.Dropdown",
-          [selected: input_value(f, :group_id) || "",
-          values: Enum.map(@groups, &["##{&1.number} #{&1.name}", &1.id]),
-          placeholder: gettext("Select a group"), phx_event: "group-selected"],
-          id: "group-dropdown") %>
-      <% end %>
-    </div>
+          [selected: @selected_location, values: Enum.map(@locations, &[&1.name, &1.id]),
+          placeholder: gettext("Select a location"), phx_event: "location-selected"],
+          id: "location-dropdown") %>
+        <%= if @selected_location != "" do %>
+          <%= live_react_component("Components.Dropdown",
+            [selected: input_value(f, :group_id) || "",
+            values: Enum.map(@groups, &["##{&1.number} #{&1.name}", &1.id]),
+            placeholder: gettext("Select a group"), phx_event: "group-selected"],
+            id: "group-dropdown") %>
+        <% end %>
+      </div>
+    <% end %>
+    <%= if to_string(input_value(f, :role)) == "postleader" do %>
+      <div class="flex flex-col space-y-3">
+        <p class="font-sans text-white font-medium"><%= gettext "Assign posts" %></p>
+        <%= live_react_component("Components.Dropdown",
+          [selected: "",
+          values: Enum.map(@posts, &["##{&1.number} #{&1.name}", &1.id]),
+          placeholder: gettext("Select a post"), phx_event: "post-selected"],
+          id: "assign-post") %>
+        <%= inputs_for f, :posts, fn fd -> %>
+          <% id = String.to_integer(to_string(input_value(fd, :post_id))) %>
+          <% post = Posts.get_post!(id) %>
+          <p class="t-input w-full">
+            #<%= post.number %> <%= post.name %>
+          </p>
+          <%= hidden_input fd, :post_id %>
+        <% end %>
+      </div>
+    <% end %>
     <div class="flex flex-row justify-end items-center">
       <%= submit gettext("Save"),
         class: "t-button mb-10",
