@@ -20,7 +20,7 @@
       <p class="font-sans text-white font-medium"><%= gettext "Add to location" %></p>
       <%= live_react_component("Components.Dropdown",
         [selected: "", values: Enum.map(@locations, &[&1.name, &1.id]),
-        placeholder: gettext("Select a location")],
+        placeholder: gettext("Select a location"), phx_event: "dropdown-selected"],
         id: "location-dropdown") %>
     </div>
     <%= inputs_for f, :locations, fn fl -> %>
