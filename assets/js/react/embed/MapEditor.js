@@ -23,6 +23,7 @@ export function MapLocationPicker({
   className,
   pushEvent,
   cursor,
+  enableClick
 }) {
   const [mapState, dispatch] = useReducer(mapReducer, {
     location: location || [],
@@ -30,7 +31,7 @@ export function MapLocationPicker({
 
   useEffect(
     () =>
-      pushEvent &&
+      enableClick && pushEvent &&
       pushEvent("set-location", {
         location: mapState.location,
         cursor: cursor,
@@ -51,15 +52,16 @@ export function MapLocationPicker({
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
       <SetBoundZoom bounds={bounds} />
-      <DoubleClickLocation
-        setLocation={(latlng) => {
-          if (mapState.location.length != 2) {
-            dispatch({ type: "set-location", location: latlng });
-          }
-        }}
-      />
+      {enableClick &&  
+        <DoubleClickLocation
+          setLocation={(latlng) => {
+            if (mapState.location.length != 2) {
+              dispatch({ type: "set-location", location: latlng });
+            }
+          }}
+      />}
       <Rectangle bounds={bounds} color="white" />
-      {mapState.location.length == 2 && (
+      {mapState.location && mapState.location.length == 2 && (
         <DraggableMarker
           position={mapState.location}
           setPosition={(pos) => {
