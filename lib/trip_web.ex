@@ -109,6 +109,9 @@ defmodule TripWeb do
       import TripWeb.ErrorHelpers
       import TripWeb.Gettext
       alias TripWeb.Router.Helpers, as: Routes
+
+      def score_type_label(:points), do: gettext("Points")
+      def score_type_label(:high_score), do: gettext("Highscore")
     end
   end
 
