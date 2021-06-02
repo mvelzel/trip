@@ -67,19 +67,19 @@
         id: "location-dropdown") %>
     </div>
     <%= inputs_for f, :locations, fn fl -> %>
-      <%= inputs_for fl, :location, fn fll -> %>
-        <div class="flex flex-col space-y-3">
-          <p class="font-sans text-white font-medium"><%= input_value fll, :name %></p>
-          <p class="font-sans text-sm text-white"><%= gettext "Double tap to set location" %></p>
-          <%= live_react_component("Components.MapLocationPicker",
-            [bounds: [[fll.data.lat0, fll.data.lon0],[fll.data.lat1, fll.data.lon1]],
-            location: (if !is_nil(fl.data.id), do: [fl.data.latitude, fl.data.longitude],
-              else: []),
-            enableClick: true,
-            className: "h-96", cursor: cursor_for(fl)],
-            id: "map-editor-#{fl.index}") %>
-        </div>
-      <% end %>
+      <% id = String.to_integer(to_string(input_value(fl, :location_id))) %>
+      <% location = Locations.get_location!(id) %>
+      <div class="flex flex-col space-y-3">
+        <p class="font-sans text-white font-medium"><%= location.name %></p>
+        <p class="font-sans text-sm text-white"><%= gettext "Double tap to set location" %></p>
+        <%= live_react_component("Components.MapLocationPicker",
+          [bounds: [[location.lat0, location.lon0],[location.lat1, location.lon1]],
+          location: (if !is_nil(fl.data.id), do: [fl.data.latitude, fl.data.longitude],
+            else: []),
+          enableClick: true,
+          className: "h-96", cursor: cursor_for(fl)],
+          id: "map-editor-#{fl.index}") %>
+      </div>
       <%= hidden_input fl, :location_id %>
       <%= hidden_input fl, :longitude %>
       <%= hidden_input fl, :latitude %>

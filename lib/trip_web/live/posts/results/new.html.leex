@@ -7,6 +7,7 @@
     <div class="flex flex-col space-y-3">
       <%= label f, :group_id, gettext("Select group"), class: "font-sans text-white font-medium" %>
       <%= hidden_input f, :group_id %>
+      <%= hidden_input f, :post_id %>
       <%= live_react_component("Components.Dropdown",
         [selected: @selected_location, values: Enum.map(@locations, &[&1.name, &1.id]),
         placeholder: gettext("Select a location"), phx_event: "location-selected"],
