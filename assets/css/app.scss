@@ -41,13 +41,14 @@
 }
 
 .log-top {
-  filter: drop-shadow(0px -1px #056CF2)
-          drop-shadow(0px -2px #056CF2)
-          drop-shadow(0px -3px #056CF2)
-          drop-shadow(0px -4px #056CF2)
-          drop-shadow(0px -5px #056CF2)
-          drop-shadow(0px -6px #056CF2)
-          drop-shadow(0px -7px 8px rgba(0, 0, 0, 0.5));
+  filter: drop-shadow(0px -1px #033E8C)
+          drop-shadow(0px -2px #033E8C)
+          drop-shadow(0px -3px #033E8C)
+          drop-shadow(0px -4px #033E8C);
+}
+
+.back-top {
+  filter: drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.5));
 }
 
 .trip {
@@ -62,7 +63,7 @@
 
 .filler {
   @apply space-y-6 transition pl-8 border-b-4 border-tr-red border-b-2
-    bg-t-red;
+    bg-t-red space-y-5 left-14 top-6;
 }
 
 .green-3d {

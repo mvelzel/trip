@@ -11,8 +11,11 @@
     <script defer phx-track-static type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
   </head>
   <body class="h-full flex w-full bg-t-darkerBlue">
-    <div class="fixed top-8 left-8">
-      <h2 class="uppercase text-white text-3xl tracking-widest font-bold font-sans trip"> 
+    <svg class="w-full z-[-1000] fixed top-0 left-0 back-top" viewBox="0 0 185 100">
+      <polygon points="0,0 0,45 185,100 185,0" fill="#056CF2" />
+    </svg>
+    <div class="fixed top-6 left-14">
+      <h2 class="uppercase text-white text-4xl tracking-widest font-bold font-sans trip"> 
         <%= gettext "Trip" %>
       </h2>
     </div>
