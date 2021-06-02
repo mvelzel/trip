@@ -1,0 +1,54 @@
+<div class="flex flex-col w-full px-10 pt-10">
+  <h2 class="uppercase text-white text-2xl font-bold font-sans tracking-wider">
+    <%= gettext "Submit result" %>
+  </h2>
+  <%= f = form_for @changeset, "#", [phx_submit: :create, phx_change: :validate,
+    class: "flex flex-col space-y-6"] %>
+    <div class="flex flex-col space-y-3">
+      <%= label f, :group_id, gettext("Select group"), class: "font-sans text-white font-medium" %>
+      <%= hidden_input f, :group_id %>
+      <%= hidden_input f, :post_id %>
+      <%= live_react_component("Components.Dropdown",
+        [selected: @selected_location, values: Enum.map(@locations, &[&1.name, &1.id]),
+        placeholder: gettext("Select a location"), phx_event: "location-selected"],
+        id: "location-dropdown") %>
+      <%= if @selected_location != "" do %>
+        <%= live_react_component("Components.Dropdown",
+          [selected: input_value(f, :group_id) || "",
+          values: Enum.map(@groups, &["##{&1.number} #{&1.name}", &1.id]),
+          placeholder: gettext("Select a group"), phx_event: "group-selected"],
+          id: "group-dropdown") %>
+      <% end %>
+    </div>
+    <!--<div class="flex flex-col space-y-3">
+      <%= label f, :post_id, gettext("Select post"), class: "font-sans text-white font-medium" %>
+      <%= hidden_input f, :post_id %>
+      <%= live_react_component("Components.Dropdown",
+        [selected: input_value(f, :post_id) || "",
+        values: Enum.map(@posts, &["##{&1.number} #{&1.name}", &1.id]),
+        placeholder: gettext("Select a post"), phx_event: "post-selected"],
+        id: "post-dropdown") %>
+    </div>--!>
+    <div class="flex flex-col space-y-3">
+      <%= label f, :score, gettext("Score"), class: "font-sans text-white font-medium" %>
+      <%= if @post.score_type == :points do %>
+      <%= number_input f, :score, class: "t-input w-full", step: 1,
+        placeholder: gettext("Input score") %>
+      <% else %>
+        <div class="flex flex-row space-x-3 items-center">
+          <%= number_input f, :minutes, class: "t-input w-full", step: 1,
+            placeholder: gettext("Minutes"), min: 0 %>
+          <p class="text-t-green font-sans">m</p>
+          <%= number_input f, :seconds, class: "t-input w-full", step: 1,
+            placeholder: gettext("Seconds"), min: 0, max: 60 %>
+          <p class="text-t-green font-sans">s</p>
+        </div>
+      <% end %>
+    </div>
+    <div class="flex flex-row justify-end items-center">
+      <%= submit gettext("Save"),
+        class: "t-button mb-10",
+        disabled: !@changeset.valid? %>
+    </div>
+  </form>
+</div>
