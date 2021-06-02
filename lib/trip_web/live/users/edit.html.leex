@@ -1,0 +1,51 @@
+<div class="flex flex-col w-full px-10 pt-10">
+  <h2 class="uppercase text-white text-2xl font-bold font-sans tracking-wider">
+    <%= gettext "Edit user" %>
+  </h2>
+  <%= f = form_for @changeset, "#", [phx_submit: :create, phx_change: :validate,
+    class: "flex flex-col space-y-6"] %>
+    <div class="flex flex-col space-y-3">
+      <%= label f, :username, gettext("Username"), class: "font-sans text-white font-medium" %>
+      <%= text_input f, :username, class: "t-input w-full",
+        placeholder: gettext("Input username") %>
+    </div>
+    <%= if @live_action == :new do %>
+      <div class="flex flex-col space-y-3">
+        <%= label f, :password, gettext("Password"), class: "font-sans text-white font-medium" %>
+        <%= password_input f, :password, class: "t-input w-full",
+          placeholder: gettext("Input password"), value: input_value(f, :password) %>
+      </div>
+    <% end %>
+    <div class="flex flex-col space-y-3">
+      <%= label f, :role, gettext("Select role"), class: "font-sans text-white font-medium" %>
+      <%= hidden_input f, :role %>
+      <% selected = input_value(f, :role) || "" %>
+      <% selected = if to_string(selected) == "superuser", do: "admin", else: selected %>
+      <%= live_react_component("Components.Dropdown",
+        [selected: selected,
+        values: Enum.map(User.roles, &[role_label(&1), &1]),
+        placeholder: gettext("Select a role"), phx_event: "role-selected"],
+        id: "role-dropdown") %>
+    </div>
+    <div class="flex flex-col space-y-3">
+      <%= label f, :group_id, gettext("Select group"), class: "font-sans text-white font-medium" %>
+      <%= hidden_input f, :group_id %>
+      <%= live_react_component("Components.Dropdown",
+        [selected: @selected_location, values: Enum.map(@locations, &[&1.name, &1.id]),
+        placeholder: gettext("Select a location"), phx_event: "location-selected"],
+        id: "location-dropdown") %>
+      <%= if @selected_location != "" do %>
+        <%= live_react_component("Components.Dropdown",
+          [selected: input_value(f, :group_id) || "",
+          values: Enum.map(@groups, &["##{&1.number} #{&1.name}", &1.id]),
+          placeholder: gettext("Select a group"), phx_event: "group-selected"],
+          id: "group-dropdown") %>
+      <% end %>
+    </div>
+    <div class="flex flex-row justify-end items-center">
+      <%= submit gettext("Save"),
+        class: "t-button mb-10",
+        disabled: !@changeset.valid? %>
+    </div>
+  </form>
+</div>
