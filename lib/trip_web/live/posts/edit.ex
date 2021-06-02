@@ -121,7 +121,6 @@ defmodule TripWeb.PostsLive.Edit do
       socket.assigns.changeset
       |> Ecto.Changeset.put_change(:result_type, type)
 
-    IO.inspect(type)
     changeset = if type == "high_score" do
       count =
         changeset
