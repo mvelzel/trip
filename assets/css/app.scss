@@ -7,6 +7,21 @@
   display: none;
 }
 
+.t-checkbox {
+  @apply h-6 w-12 bg-white appearance-none rounded-full focus:outline-none relative transition-all;
+
+  &::after {
+    @apply bg-t-red w-[1.125rem] h-[1.125rem] rounded-full transition-all;
+    content: "";
+    margin-top: 0.1875rem;
+    margin-left: 0.1875rem;
+    position: absolute;
+  }
+  &:checked::after {
+    margin-left: 1.6875rem;
+  }
+}
+
 .burger {
   text-shadow: 2px 2px #0455bf;
 }
