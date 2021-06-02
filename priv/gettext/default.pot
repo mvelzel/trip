@@ -16,7 +16,7 @@ msgid "Double tap to set boundaries"
 msgstr ""
 
 #, elixir-format
-#: lib/trip_web/live/locations/edit.html.leex:16
+#: lib/trip_web/live/locations/edit.html.leex:12
 msgid "Location"
 msgstr ""
 
@@ -33,14 +33,14 @@ msgid "Name"
 msgstr ""
 
 #, elixir-format
-#: lib/trip_web/live/locations/edit.html.leex:3
 #: lib/trip_web/live/locations/index.html.leex:18
 msgid "New location"
 msgstr ""
 
 #, elixir-format
-#: lib/trip_web/live/groups/edit.html.leex:40
-#: lib/trip_web/live/locations/edit.html.leex:23 lib/trip_web/live/posts/edit.html.leex:73
+#: lib/trip_web/live/groups/edit.html.leex:41
+#: lib/trip_web/live/locations/edit.html.leex:23 lib/trip_web/live/posts/edit.html.leex:88
+#: lib/trip_web/live/posts/results/new.html.leex:49
 msgid "Save"
 msgstr ""
 
@@ -55,18 +55,17 @@ msgid "Welcome to %{name}!"
 msgstr ""
 
 #, elixir-format
-#: lib/trip_web/live/posts/edit.html.leex:48
+#: lib/trip_web/live/posts/edit.html.leex:63
 msgid "Add to location"
 msgstr ""
 
 #, elixir-format
-#: lib/trip_web/live/posts/edit.html.leex:16
+#: lib/trip_web/live/posts/edit.html.leex:17
 msgid "Description"
 msgstr ""
 
 #, elixir-format
-#: lib/trip_web/live/groups/edit.html.leex:3
-#: lib/trip_web/live/posts/edit.html.leex:3 lib/trip_web/live/posts/index.html.leex:18
+#: lib/trip_web/live/posts/index.html.leex:30
 msgid "New post"
 msgstr ""
 
@@ -82,23 +81,23 @@ msgid "Posts"
 msgstr ""
 
 #, elixir-format
-#: lib/trip_web/live/groups/edit.html.leex:26
-#: lib/trip_web/live/posts/edit.html.leex:51
+#: lib/trip_web/live/groups/edit.html.leex:27
+#: lib/trip_web/live/posts/edit.html.leex:66 lib/trip_web/live/posts/results/new.html.leex:13
 msgid "Select a location"
 msgstr ""
 
 #, elixir-format
-#: lib/trip_web/live/posts/edit.html.leex:61
+#: lib/trip_web/live/posts/edit.html.leex:73
 msgid "Double tap to set location"
 msgstr ""
 
 #, elixir-format
-#: lib/trip_web/live/groups/edit.html.leex:16
+#: lib/trip_web/live/groups/edit.html.leex:17
 msgid "Boys group"
 msgstr ""
 
 #, elixir-format
-#: lib/trip_web/live/groups/edit.html.leex:18
+#: lib/trip_web/live/groups/edit.html.leex:19
 msgid "Girls group"
 msgstr ""
 
@@ -119,12 +118,12 @@ msgid "New group"
 msgstr ""
 
 #, elixir-format
-#: lib/trip_web/live/groups/edit.html.leex:21
+#: lib/trip_web/live/groups/edit.html.leex:22
 msgid "Set location"
 msgstr ""
 
 #, elixir-format
-#: lib/trip_web/live/posts/edit.html.leex:42
+#: lib/trip_web/live/posts/edit.html.leex:57
 msgid "Add rank"
 msgstr ""
 
@@ -132,7 +131,7 @@ msgstr ""
 #: lib/trip_web/live/groups/edit.ex:2 lib/trip_web/live/groups/index.ex:2
 #: lib/trip_web/live/index_live.ex:2 lib/trip_web/live/locations/edit.ex:2 lib/trip_web/live/locations/index.ex:2
 #: lib/trip_web/live/page_live.ex:2 lib/trip_web/live/posts/edit.ex:2 lib/trip_web/live/posts/index.ex:2
-#: lib/trip_web/views/error_view.ex:2 lib/trip_web/views/layout_view.ex:2
+#: lib/trip_web/live/posts/results/new.ex:2 lib/trip_web/views/error_view.ex:2 lib/trip_web/views/layout_view.ex:2
 #: lib/trip_web/views/user_confirmation_view.ex:2 lib/trip_web/views/user_registration_view.ex:2
 #: lib/trip_web/views/user_reset_password_view.ex:2 lib/trip_web/views/user_session_view.ex:2
 #: lib/trip_web/views/user_settings_view.ex:2
@@ -140,27 +139,132 @@ msgid "Highscore"
 msgstr ""
 
 #, elixir-format
-#: lib/trip_web/live/groups/edit.ex:2 lib/trip_web/live/groups/index.ex:2
-#: lib/trip_web/live/index_live.ex:2 lib/trip_web/live/locations/edit.ex:2 lib/trip_web/live/locations/index.ex:2
-#: lib/trip_web/live/page_live.ex:2 lib/trip_web/live/posts/edit.ex:2 lib/trip_web/live/posts/index.ex:2
-#: lib/trip_web/views/error_view.ex:2 lib/trip_web/views/layout_view.ex:2
-#: lib/trip_web/views/user_confirmation_view.ex:2 lib/trip_web/views/user_registration_view.ex:2
-#: lib/trip_web/views/user_reset_password_view.ex:2 lib/trip_web/views/user_session_view.ex:2
-#: lib/trip_web/views/user_settings_view.ex:2
+#: lib/trip_web/live/groups/edit.ex:2 lib/trip_web/live/groups/edit.ex:2
+#: lib/trip_web/live/groups/index.ex:2 lib/trip_web/live/groups/index.ex:2 lib/trip_web/live/index_live.ex:2
+#: lib/trip_web/live/index_live.ex:2 lib/trip_web/live/locations/edit.ex:2 lib/trip_web/live/locations/edit.ex:2
+#: lib/trip_web/live/locations/index.ex:2 lib/trip_web/live/locations/index.ex:2 lib/trip_web/live/page_live.ex:2
+#: lib/trip_web/live/page_live.ex:2 lib/trip_web/live/posts/edit.ex:2 lib/trip_web/live/posts/edit.ex:2
+#: lib/trip_web/live/posts/index.ex:2 lib/trip_web/live/posts/index.ex:2 lib/trip_web/live/posts/results/new.ex:2
+#: lib/trip_web/live/posts/results/new.ex:2 lib/trip_web/views/error_view.ex:2 lib/trip_web/views/error_view.ex:2
+#: lib/trip_web/views/layout_view.ex:2 lib/trip_web/views/layout_view.ex:2
+#: lib/trip_web/views/user_confirmation_view.ex:2 lib/trip_web/views/user_confirmation_view.ex:2
+#: lib/trip_web/views/user_registration_view.ex:2 lib/trip_web/views/user_registration_view.ex:2
+#: lib/trip_web/views/user_reset_password_view.ex:2 lib/trip_web/views/user_reset_password_view.ex:2
+#: lib/trip_web/views/user_session_view.ex:2 lib/trip_web/views/user_session_view.ex:2
+#: lib/trip_web/views/user_settings_view.ex:2 lib/trip_web/views/user_settings_view.ex:2
 msgid "Points"
 msgstr ""
 
 #, elixir-format
-#: lib/trip_web/live/posts/edit.html.leex:30
+#: lib/trip_web/live/posts/edit.html.leex:44
 msgid "Score divisions"
 msgstr ""
 
 #, elixir-format
-#: lib/trip_web/live/posts/edit.html.leex:20
+#: lib/trip_web/live/posts/edit.html.leex:35
 msgid "Score type"
 msgstr ""
 
 #, elixir-format
-#: lib/trip_web/live/posts/edit.html.leex:25
+#: lib/trip_web/live/posts/edit.html.leex:30
+#: lib/trip_web/live/posts/edit.html.leex:40
 msgid "Select a type"
+msgstr ""
+
+#, elixir-format
+#: lib/trip_web/live/groups/edit.html.leex:3
+msgid "Edit group"
+msgstr ""
+
+#, elixir-format
+#: lib/trip_web/live/locations/edit.html.leex:3
+msgid "Edit location"
+msgstr ""
+
+#, elixir-format
+#: lib/trip_web/live/posts/edit.html.leex:3
+msgid "Edit post"
+msgstr ""
+
+#, elixir-format
+#: lib/trip_web/live/posts/edit.html.leex:20
+msgid "Input description"
+msgstr ""
+
+#, elixir-format
+#: lib/trip_web/live/groups/edit.html.leex:9
+#: lib/trip_web/live/locations/edit.html.leex:9 lib/trip_web/live/posts/edit.html.leex:9
+msgid "Input name"
+msgstr ""
+
+#, elixir-format
+#: lib/trip_web/live/groups/edit.html.leex:14
+#: lib/trip_web/live/posts/edit.html.leex:14
+msgid "Input number"
+msgstr ""
+
+#, elixir-format
+#: lib/trip_web/live/posts/edit.html.leex:51
+msgid "Input points"
+msgstr ""
+
+#, elixir-format
+#: lib/trip_web/live/posts/results/new.html.leex:36
+msgid "Input score"
+msgstr ""
+
+#, elixir-format
+#: lib/trip_web/live/posts/edit.html.leex:23
+msgid "Ranking type"
+msgstr ""
+
+#, elixir-format
+#: lib/trip_web/live/posts/results/new.html.leex:33
+msgid "Score"
+msgstr ""
+
+#, elixir-format
+#: lib/trip_web/live/posts/results/new.html.leex:19
+msgid "Select a group"
+msgstr ""
+
+#, elixir-format
+#: lib/trip_web/live/posts/results/new.html.leex:29
+msgid "Select a post"
+msgstr ""
+
+#, elixir-format
+#: lib/trip_web/live/posts/results/new.html.leex:8
+msgid "Select group"
+msgstr ""
+
+#, elixir-format
+#: lib/trip_web/live/posts/results/new.html.leex:24
+msgid "Select post"
+msgstr ""
+
+#, elixir-format
+#: lib/trip_web/live/posts/results/new.html.leex:3
+msgid "Submit result"
+msgstr ""
+
+#, elixir-format
+#: lib/trip_web/live/groups/edit.ex:2 lib/trip_web/live/groups/index.ex:2
+#: lib/trip_web/live/index_live.ex:2 lib/trip_web/live/locations/edit.ex:2 lib/trip_web/live/locations/index.ex:2
+#: lib/trip_web/live/page_live.ex:2 lib/trip_web/live/posts/edit.ex:2 lib/trip_web/live/posts/index.ex:2
+#: lib/trip_web/live/posts/results/new.ex:2 lib/trip_web/views/error_view.ex:2 lib/trip_web/views/layout_view.ex:2
+#: lib/trip_web/views/user_confirmation_view.ex:2 lib/trip_web/views/user_registration_view.ex:2
+#: lib/trip_web/views/user_reset_password_view.ex:2 lib/trip_web/views/user_session_view.ex:2
+#: lib/trip_web/views/user_settings_view.ex:2
+msgid "Time"
+msgstr ""
+
+#, elixir-format
+#: lib/trip_web/live/posts/results/new.html.leex:40
+msgid "Minutes"
+msgstr ""
+
+#, elixir-format
+#: lib/trip_web/live/posts/results/new.html.leex:43
+msgid "Seconds"
 msgstr ""
