@@ -3,7 +3,7 @@ defmodule TripWeb.PostsLive.Edit do
   import Trip.ChangesetHelpers
   import TripWeb.NestedFormHelpers
 
-  alias Trip.Posts.{Post, PostLocation}
+  alias Trip.Posts.{Post, PostLocation, ScoreDivision}
   alias Trip.{Locations, Posts}
 
   @impl true
@@ -105,5 +105,45 @@ defmodule TripWeb.PostsLive.Edit do
 
   def handle_event("set-location", _params, socket) do
     {:noreply, socket}
+  end
+
+  def handle_event("type-selected", %{"value" => type}, socket) do
+    changeset = 
+      socket.assigns.changeset
+      |> Ecto.Changeset.put_change(:score_type, type)
+
+    changeset = if type == "high_score" do
+      count =
+        changeset
+        |> Ecto.Changeset.get_field(:score_divisions)
+        |> Enum.count()
+      if count == 0 do
+        changeset
+        |> Ecto.Changeset.put_embed(:score_divisions, [
+          ScoreDivision.changeset(%ScoreDivision{}, %{})
+        ])
+      else
+        changeset
+      end
+    else
+      changeset
+      |> Ecto.Changeset.put_embed(:score_divisions, [])
+      |> Post.validate_changeset()
+    end
+
+    {:noreply, assign(socket, changeset: changeset)}
+  end
+
+  def handle_event("add-rank", _params, socket) do
+    changeset =
+      socket.assigns.changeset
+      |> put_nested([:score_divisions], fn chs ->
+        chs
+        |> Enum.concat([
+          ScoreDivision.changeset(%ScoreDivision{}, %{})
+        ])
+      end)
+
+    {:noreply, assign(socket, changeset: changeset)}
   end
 end

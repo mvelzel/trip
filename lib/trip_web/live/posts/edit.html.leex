@@ -17,6 +17,34 @@
       <%= textarea f, :description, class: "t-input", rows: 6 %>
     </div>
     <div class="flex flex-col space-y-3">
+      <%= label f, :score_type, gettext("Score type"), class: "font-sans text-white font-medium" %>
+      <%= hidden_input f, :score_type %>
+      <% selected = if is_nil(input_value(f, :score_type)), do: "", else: input_value(f, :score_type) %>
+      <%= live_react_component("Components.Dropdown",
+        [selected: selected, values: Enum.map(Post.score_types, &[score_type_label(&1), &1]),
+        placeholder: gettext("Select a type"), phx_event: "type-selected"],
+        id: "score-type-dropdown") %>
+    </div>
+    <%= if to_string(input_value(f, :score_type)) == "high_score" do %>
+      <div class="flex flex-col space-y-3">
+        <p class="font-sans text-white font-medium"><%= gettext "Score divisions" %></p>
+        <%= inputs_for f, :score_divisions, fn fd -> %>
+          <div class="flex flex-row space-x-3 items-center w-full">
+            <p class="font-sans text-lg text-t-green font-medium">
+              #<%= fd.index + 1 %>
+            </p>
+            <%= number_input fd, :points, class: "t-input w-full" %>
+          </div>
+        <% end %>
+        <div class="flex flex-row justify-end">
+          <a href="#" phx-click="add-rank"
+            class="font-sans text-lg text-red-3d text-t-red font-bold">
+            <%= gettext "Add rank" %>
+          </a>
+        </div>
+      </div>
+    <% end %>
+    <div class="flex flex-col space-y-3">
       <p class="font-sans text-white font-medium"><%= gettext "Add to location" %></p>
       <%= live_react_component("Components.Dropdown",
         [selected: "", values: Enum.map(@locations, &[&1.name, &1.id]),
@@ -35,6 +63,7 @@
             [bounds: [[fll.data.lat0, fll.data.lon0],[fll.data.lat1, fll.data.lon1]],
             location: (if !is_nil(fl.data.id), do: [fl.data.latitude, fl.data.longitude],
               else: []),
+            enableClick: true,
             className: "h-96", cursor: cursor_for(fl)],
             id: "map-editor-#{fl.index}") %>
         </div>
