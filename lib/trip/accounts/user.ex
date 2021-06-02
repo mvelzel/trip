@@ -3,8 +3,9 @@ defmodule Trip.Accounts.User do
   import Ecto.Changeset
 
   alias Trip.Groups.Group
+  alias Trip.Accounts.UserPost
 
-  @roles [:admin, :player]
+  @roles [:admin, :player, :postleader]
 
   @derive {Inspect, except: [:password]}
   schema "users" do
@@ -15,6 +16,7 @@ defmodule Trip.Accounts.User do
     field :confirmed_at, :naive_datetime
 
     belongs_to :group, Group, on_replace: :delete
+    has_many :posts, UserPost, on_replace: :delete
 
     timestamps()
   end
@@ -46,7 +48,30 @@ defmodule Trip.Accounts.User do
     changeset
     |> Map.put(:errors, [])
     |> Map.put(:valid?, true)
-    |> validate_required([:username, :role, :group_id])
+    |> validate_required([:username, :role])
+    |> validate_group()
+    |> validate_post()
+  end
+
+  def validate_group(changeset) do
+    role = changeset |> get_field(:role)
+    if to_string(role) == "player" do
+      changeset
+      |> validate_required([:group_id])
+    else
+      changeset
+    end
+  end
+
+  def validate_post(changeset) do
+    role = changeset |> get_field(:role)
+    if to_string(role) == "postleader" do
+      changeset
+      |> cast_assoc(:posts, required: true)
+      |> validate_length(:posts, min: 1)
+    else
+      changeset
+    end
   end
 
   def registration_changeset(user, attrs, opts \\ []) do

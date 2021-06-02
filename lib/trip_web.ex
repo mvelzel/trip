@@ -117,6 +117,7 @@ defmodule TripWeb do
 
       def role_label(:admin), do: gettext("Admin")
       def role_label(:player), do: gettext("Player")
+      def role_label(:postleader), do: gettext("Postleader")
     end
   end
 
