@@ -8,7 +8,6 @@ module.exports = {
     "../lib/**/views/*.ex"
   ],
   plugins: [
-    require('@tailwindcss/forms'),
     require('@tailwindcss/typography')
   ],
   theme: {
