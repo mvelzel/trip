@@ -4,8 +4,11 @@ defmodule Trip.Posts do
   """
 
   import Ecto.Query, warn: false
+  import Ecto.Changeset
   alias Trip.Repo
 
+  alias Trip.Groups.Group
+  alias Trip.Groups
   alias Trip.Posts.{Post, PostResult}
 
   @doc """
@@ -23,6 +26,39 @@ defmodule Trip.Posts do
     |> Repo.all()
   end
 
+  def list_post_results(post_id) do
+    type = get_post!(post_id).score_type
+
+    filtered_posts =
+      from r in PostResult,
+        where: r.post_id == ^post_id
+
+    query = case type do
+      :points ->
+        (from r in PostResult,
+          where: r.post_id == ^post_id,
+          left_join: p in ^filtered_posts,
+          on: r.group_id == p.group_id and r.score < p.score,
+          where: is_nil(p.id),
+          select: r
+        )
+        |> order_by([desc: :score])
+      :time ->
+        (from r in PostResult,
+          where: r.post_id == ^post_id,
+          left_join: p in ^filtered_posts,
+          on: r.group_id == p.group_id and r.score > p.score,
+          where: is_nil(p.id),
+          select: r
+        )
+        |> order_by([asc: :score])
+    end
+
+    query
+    |> Repo.all()
+    |> Repo.preload([:group, :post])
+  end
+
   @doc """
   Gets a single post.
 
@@ -37,9 +73,10 @@ defmodule Trip.Posts do
       ** (Ecto.NoResultsError)
 
   """
-  def get_post!(id), do:
-    Repo.get!(Post, id)
-    |> Repo.preload([locations: [:location]])
+  def get_post!(id),
+    do:
+      Repo.get!(Post, id)
+      |> Repo.preload(locations: [:location])
 
   @doc """
   Creates a post.
@@ -59,9 +96,25 @@ defmodule Trip.Posts do
     |> Repo.insert()
   end
 
-  def create_post_result(attrs, score_type) do
-    %PostResult{}
-    |> PostResult.changeset(attrs, score_type)
+  def create_post_result(attrs, score_type, result_type) do
+    res =
+      %PostResult{}
+      |> PostResult.changeset(attrs, score_type)
+      |> apply_changes()
+
+    case result_type do
+      :points ->
+        loaded = Repo.preload(res, :group)
+        new_score = (loaded.group.score || 0) + loaded.score
+
+        loaded.group
+        |> Groups.update_group(%{"score" => to_string(new_score)})
+
+      :high_score ->
+        {:ok}
+    end
+
+    res
     |> Repo.insert()
   end
 

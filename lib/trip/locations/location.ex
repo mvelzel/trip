@@ -2,6 +2,7 @@ defmodule Trip.Locations.Location do
   use Ecto.Schema
   import Ecto.Changeset
 
+  @derive {Jason.Encoder, only: [:lat0, :lon0, :lat1, :lon1, :name, :id]}
   schema "locations" do
     field :lat0, :float
     field :lon0, :float

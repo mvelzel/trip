@@ -5,6 +5,7 @@ defmodule Trip.Posts.PostResult do
   alias Trip.Groups.Group
   alias Trip.Posts.Post
 
+  @derive {Jason.Encoder, only: [:score, :group, :post, :id]}
   schema "post_results" do
     field :score, :integer
     field :minutes, :integer, virtual: true

@@ -4,10 +4,12 @@ defmodule Trip.Groups.Group do
 
   alias Trip.Locations.Location
 
+  @derive {Jason.Encoder, only: [:girls_only, :name, :number, :score, :id]}
   schema "groups" do
     field :girls_only, :boolean, default: false
     field :name, :string
     field :number, :integer
+    field :score, :integer, default: 0
 
     belongs_to :location, Location, on_replace: :delete
 
@@ -17,7 +19,7 @@ defmodule Trip.Groups.Group do
   @doc false
   def changeset(group, attrs) do
     group
-    |> cast(attrs, [:name, :number, :girls_only, :location_id])
+    |> cast(attrs, [:name, :number, :girls_only, :location_id, :score])
     |> validate_changeset()
     |> cast_assoc(:location)
   end
