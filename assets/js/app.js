@@ -18,6 +18,7 @@ import NProgress from "nprogress";
 import { LiveSocket } from "phoenix_live_view";
 import LiveReact, { initLiveReact } from "phoenix_live_react";
 import { MapBoundsPicker, MapLocationPicker } from "./react/embed/MapEditor";
+import MapOverview from "./react/embed/MapOverview"
 import Leaderboards from "./react/embed/Leaderboards";
 import Dropdown from "./react/embed/Dropdown";
 import "alpinejs";
@@ -29,7 +30,8 @@ window.Components = {
   MapBoundsPicker,
   MapLocationPicker,
   Dropdown,
-  Leaderboards
+  Leaderboards,
+  MapOverview
 };
 
 let csrfToken = document

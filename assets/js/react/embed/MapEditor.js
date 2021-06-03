@@ -140,7 +140,7 @@ function DoubleClickLocation({ setLocation }) {
   return <span />;
 }
 
-function SetBoundZoom({ bounds }) {
+export function SetBoundZoom({ bounds }) {
   const map = useMap();
 
   useEffect(() => {
