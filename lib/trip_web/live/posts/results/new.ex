@@ -8,9 +8,11 @@ defmodule TripWeb.PostsLive.Results.New do
   def mount(%{"post" => id}, session, socket) do
     posts = Posts.list_posts()
     post = Posts.get_post!(id)
+
     locations =
       post.locations
       |> Enum.map(&Map.get(&1, :location))
+      |> Enum.uniq_by(&(&1.id))
 
     changeset =
       %PostResult{post_id: id}
@@ -36,7 +38,12 @@ defmodule TripWeb.PostsLive.Results.New do
   end
 
   def handle_event("create", %{"post_result" => post_result_params}, socket) do
-    {:ok, _} = Posts.create_post_result(post_result_params, socket.assigns.post.score_type)
+    {:ok, _} =
+      Posts.create_post_result(
+        post_result_params,
+        socket.assigns.post.score_type,
+        socket.assigns.post.result_type
+      )
 
     {:noreply, push_redirect(socket, to: Routes.posts_index_path(socket, :index))}
   end
@@ -64,9 +71,9 @@ defmodule TripWeb.PostsLive.Results.New do
   def handle_event("location-selected", %{"value" => id}, socket) do
     groups = Groups.list_groups(id)
 
-    {:noreply, 
-      socket
-      |> assign(selected_location: id)
-      |> assign(groups: groups)}
+    {:noreply,
+     socket
+     |> assign(selected_location: id)
+     |> assign(groups: groups)}
   end
 end
