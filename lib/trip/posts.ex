@@ -7,9 +7,8 @@ defmodule Trip.Posts do
   import Ecto.Changeset
   alias Trip.Repo
 
-  alias Trip.Groups.Group
   alias Trip.Groups
-  alias Trip.Posts.{Post, PostResult}
+  alias Trip.Posts.{Post, PostResult, PostLocation}
 
   @doc """
   Returns the list of posts.
@@ -24,6 +23,13 @@ defmodule Trip.Posts do
     Post
     |> order_by(:number)
     |> Repo.all()
+  end
+
+  def list_posts_locations(location_id) do
+    PostLocation
+    |> where(location_id: ^location_id)
+    |> Repo.all()
+    |> Repo.preload(:post)
   end
 
   def list_post_results(post_id) do

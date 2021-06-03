@@ -1,0 +1,9 @@
+<div class="flex flex-col space-y-6 w-full p-10">
+  <h2 class="uppercase text-white text-2xl font-bold font-sans tracking-wider">
+    <%= gettext "Home" %>
+  </h2>
+  <%= live_react_component("Components.MapOverview",
+    [bounds: [[@location.lat0, @location.lon0],[@location.lat1, @location.lon1]],
+    className: "h-96", postLocations: @post_locations],
+    id: "map-overview") %>
+</div>

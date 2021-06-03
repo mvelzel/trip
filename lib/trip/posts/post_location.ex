@@ -5,6 +5,7 @@ defmodule Trip.Posts.PostLocation do
   alias Trip.Posts.Post
   alias Trip.Locations.Location
 
+  @derive {Jason.Encoder, only: [:latitude, :longitude, :post, :id]}
   schema "post_locations" do
     field :latitude, :float
     field :longitude, :float
