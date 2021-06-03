@@ -1,0 +1,26 @@
+<div class="flex flex-col w-full py-5 space-y-4">
+  <div class="flex w-full justify-around items-center">
+    <div class="flex space-x-3 items-center">
+      <%= live_patch "",
+        to: Routes.leaderboards_index_path(@socket, :index),
+        class: "w-2 h-2 rounded-full bg-white
+          #{if @page != :total, do: "opacity-50"}"%>
+      <%= live_patch "",
+        to: Routes.leaderboards_index_path(@socket, :index, location: @default_location),
+        class: "w-2 h-2 rounded-full bg-white
+          #{if @page != :location, do: "opacity-50"}"%>
+      <%= live_patch "",
+        to: Routes.leaderboards_index_path(@socket, :index, post: @default_post),
+        class: "w-2 h-2 rounded-full bg-white
+          #{if @page != :post, do: "opacity-50"}"%>
+    </div>
+  </div>
+  <div class="flex flex-col flex-1">
+    <%= live_react_component "Components.Leaderboards", [
+      groups: @groups, locationGroups: @location_groups, locations: @locations,
+      selectedLocation: @selected_location, defaultLocation: @default_location,
+      postResults: @post_results, defaultPost: @default_post, posts: @posts,
+      page: @page, selectedPost: @selected_post
+    ], id: "leaderboards-react", container: [class: "h-full"] %>
+  </div>
+</div>

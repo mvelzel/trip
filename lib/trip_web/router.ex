@@ -58,6 +58,10 @@ defmodule TripWeb.Router do
 
       live "/edit/:user", Edit, :edit
     end
+
+    scope "/leaderboards", LeaderboardsLive do
+      live "/", Index, :index
+    end
   end
 
   # Other scopes may use custom stacks.
