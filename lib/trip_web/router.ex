@@ -37,6 +37,8 @@ defmodule TripWeb.Router do
       live "/new", Edit, :new
 
       live "/edit/:post", Edit, :edit
+      
+      live "/:post", Show, :show
 
       scope "/:post/results", Results do
         live "/new", New, :new

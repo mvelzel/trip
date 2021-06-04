@@ -1,0 +1,15 @@
+<div class="flex flex-col w-full px-10 pt-10 space-y-4">
+  <h2 class="uppercase text-white text-2xl font-bold font-sans tracking-wider">
+    <%= @post.name %>
+  </h2>
+  <p class="text-white text-xl font-medium font-bold font-sans">
+    <%= @post.description %>
+  </p>
+  <%= live_react_component "Components.Dropdown",
+    [selected: @location.id, values: Enum.map(@locations, &[&1.name, &1.id]),
+    phx_event: "location-selected"], id: "location-dropdown" %>
+  <%= live_react_component("Components.MapOverview",
+    [bounds: [[@location.lat0, @location.lon0],[@location.lat1, @location.lon1]],
+      className: "h-96", postLocations: @post_locations],
+    id: "map-overview") %>
+</div>

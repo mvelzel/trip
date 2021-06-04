@@ -108,7 +108,7 @@ defmodule TripWeb.PostsLive.Edit do
   end
 
   def handle_event("score-type-selected", %{"value" => type}, socket) do
-    changeset = 
+    changeset =
       socket.assigns.changeset
       |> Ecto.Changeset.put_change(:score_type, type)
       |> Post.validate_changeset()
@@ -117,29 +117,31 @@ defmodule TripWeb.PostsLive.Edit do
   end
 
   def handle_event("type-selected", %{"value" => type}, socket) do
-    changeset = 
+    changeset =
       socket.assigns.changeset
       |> Ecto.Changeset.put_change(:result_type, type)
 
-    changeset = if type == "high_score" do
-      count =
-        changeset
-        |> Ecto.Changeset.get_field(:score_divisions)
-        |> Enum.count()
-      if count == 0 do
-        changeset
-        |> Ecto.Changeset.put_embed(:score_divisions, [
-          ScoreDivision.changeset(%ScoreDivision{}, %{})
-        ])
+    changeset =
+      if type == "high_score" do
+        count =
+          changeset
+          |> Ecto.Changeset.get_field(:score_divisions)
+          |> Enum.count()
+
+        if count == 0 do
+          changeset
+          |> Ecto.Changeset.put_embed(:score_divisions, [
+            ScoreDivision.changeset(%ScoreDivision{}, %{})
+          ])
+        else
+          changeset
+        end
       else
         changeset
+        |> Ecto.Changeset.put_embed(:score_divisions, [])
+        |> Ecto.Changeset.put_change(:score_type, :points)
+        |> Post.validate_changeset()
       end
-    else
-      changeset
-      |> Ecto.Changeset.put_embed(:score_divisions, [])
-      |> Ecto.Changeset.put_change(:score_type, :points)
-      |> Post.validate_changeset()
-    end
 
     {:noreply, assign(socket, changeset: changeset)}
   end
@@ -155,5 +157,11 @@ defmodule TripWeb.PostsLive.Edit do
       end)
 
     {:noreply, assign(socket, changeset: changeset)}
+  end
+
+  def handle_event("remove-post", _params, %{assigns: %{live_action: :edit}} = socket) do
+    {:ok, _} = Posts.delete_post(socket.assigns.post)
+
+    {:noreply, push_redirect(socket, to: Routes.posts_index_path(socket, :index))}
   end
 end

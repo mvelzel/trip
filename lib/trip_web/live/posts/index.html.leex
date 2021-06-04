@@ -4,15 +4,22 @@
   </h2>
   <%= for post <- @posts do %>
     <div class="flex flex-row items-center space-x-3">
-      <%= live_redirect to: Routes.posts_edit_path(@socket, :edit, post.id),
-        class: "rounded-2xl flex-1 bg-t-green px-8 py-4 green-3d" do %>
+      <%= live_redirect to: Routes.posts_show_path(@socket, :show, post.id),
+        class: "rounded-2xl flex-1 bg-t-green justify-around flex flex-col px-8 h-14 green-3d" do %>
         <h2 class="text-xl font-sans font-bold text-t-black space-x-3 flex items-center">
-          <i class="fas fa-edit"></i>
           <span><%= post.name %></span>
         </h2>
       <% end %>
+      <%= live_redirect to: Routes.posts_edit_path(@socket, :edit, post.id),
+        class: "rounded-2xl bg-t-green flex flex-col items-center justify-around
+          min-w-[4rem] w-16 h-14 green-3d" do %>
+        <h2 class="text-xl font-sans font-bold text-t-black space-x-3 flex items-center">
+          <i class="far fa-edit"></i>
+        </h2>
+      <% end %>
       <%= live_redirect to: Routes.posts_results_new_path(@socket, :new, post.id),
-        class: "rounded-2xl bg-t-green flex flex-col items-center min-w-[4rem] w-16 py-4 green-3d" do %>
+        class: "rounded-2xl bg-t-green flex flex-col justify-around items-center
+          min-w-[4rem] w-16 h-14 green-3d" do %>
         <h2 class="text-xl font-sans font-bold text-t-black space-x-3 flex items-center">
           <%= if post.score_type == :points do %>
           +km
@@ -30,4 +37,5 @@
       <span><%= gettext "New post" %></span>
     </h2>
   <% end %>
+  <div class="pb-10"></div>
 </div>
