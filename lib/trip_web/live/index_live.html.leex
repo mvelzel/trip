@@ -1,9 +1,16 @@
-<div class="flex flex-col space-y-6 w-full p-10">
-  <h2 class="uppercase text-white text-2xl font-bold font-sans tracking-wider">
+<div class="flex flex-col space-y-6 w-full pt-10">
+  <h2 class="uppercase text-white text-2xl font-bold font-sans tracking-wider ml-10">
     <%= gettext "Home" %>
   </h2>
+  <div class="w-full px-10">
+    <%= live_react_component "Components.Dropdown",
+      [selected: @location.id, values: Enum.map(@locations, &[&1.name, &1.id]),
+      phx_event: "location-selected"], id: "location-dropdown" %>
+  </div>
+  <div class="flex-1">
   <%= live_react_component("Components.MapOverview",
     [bounds: [[@location.lat0, @location.lon0],[@location.lat1, @location.lon1]],
-    className: "h-96", postLocations: @post_locations],
-    id: "map-overview") %>
+      className: "flex-1", postLocations: @post_locations],
+    container: [class: "h-full flex flex-col"], id: "map-overview") %>
+  </div>
 </div>
