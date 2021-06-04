@@ -36,4 +36,8 @@ defmodule TripWeb.PostsLive.Show do
      |> assign(post_locations: post_locations)
      |> assign(location: location)}
   end
+
+  def handle_event("show-post", %{"post" => id}, socket) do
+    {:noreply, push_redirect(socket, to: Routes.posts_show_path(socket, :show, id))}
+  end
 end

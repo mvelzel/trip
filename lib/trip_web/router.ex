@@ -18,52 +18,83 @@ defmodule TripWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/", TripWeb do
-    pipe_through [:browser, :require_authenticated_user]
+  pipeline :post_permission do
+    plug :allow_roles, [:postleader, :admin, :superuser]
+  end
 
-    live "/", IndexLive, :index
+  pipeline :admin_permission do
+    plug :allow_roles, [:admin, :superuser]
+  end
+
+  pipeline :player_permission do
+    plug :allow_roles, [:player, :admin, :superuser]
+  end
+
+  scope "/", TripWeb do
+    pipe_through [:browser]
+
+    scope "/leaderboards", LeaderboardsLive do
+      live "/", Index, :index
+    end
+  end
+
+  scope "/", TripWeb do
+    pipe_through [:browser, :require_authenticated_user, :post_permission]
+
+    scope "/posts", PostsLive do
+      scope "/:post/results", Results do
+        live "/new", New, :new
+      end
+    end
+  end
+
+  scope "/", TripWeb do
+    pipe_through [:browser, :require_authenticated_user, :player_permission]
+    
+    live "groups/new", GroupsLive.Edit, :new
+  end
+
+  scope "/", TripWeb do
+    pipe_through [:browser, :require_authenticated_user, :admin_permission]
 
     scope "/locations", LocationsLive do
-      live "/", Index, :index
-
       live "/new", Edit, :new
 
       live "/edit/:location", Edit, :edit
     end
 
     scope "/posts", PostsLive do
-      live "/", Index, :index
-
       live "/new", Edit, :new
 
       live "/edit/:post", Edit, :edit
-      
-      live "/:post", Show, :show
-
-      scope "/:post/results", Results do
-        live "/new", New, :new
-      end
-    end
-
-    scope "/groups", GroupsLive do
-      live "/", Index, :index
-
-      live "/new", Edit, :new
-
-      live "/edit/:group", Edit, :edit
     end
 
     scope "/users", UsersLive do
       live "/", Index, :index
 
       live "/new", Edit, :new
-
-      live "/edit/:user", Edit, :edit
     end
 
-    scope "/leaderboards", LeaderboardsLive do
+    live "/groups/edit/:group", GroupsLive.Edit, :edit
+  end
+
+  scope "/", TripWeb do
+    pipe_through [:browser, :require_authenticated_user]
+
+    live "/", IndexLive, :index
+
+    live "/locations", LocationsLive.Index, :index
+
+    scope "/posts", PostsLive do
       live "/", Index, :index
+      
+      live "/:post", Show, :show
     end
+
+    live "/groups", GroupsLive.Index, :index
+
+    live "/users/edit/:user", UsersLive.Edit, :edit
+
   end
 
   # Other scopes may use custom stacks.

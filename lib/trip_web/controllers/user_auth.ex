@@ -135,6 +135,19 @@ defmodule TripWeb.UserAuth do
     end
   end
 
+  def allow_roles(conn, opts) do
+    role = conn.assigns.current_user.role
+    if role in opts do
+      conn
+    else
+      conn
+      |> put_flash(:error, "You do not have access to this page.")
+      |> maybe_store_return_to()
+      |> redirect(to: Routes.index_path(conn, :index))
+      |> halt()
+    end
+  end
+
   defp maybe_store_return_to(%{method: "GET"} = conn) do
     put_session(conn, :user_return_to, current_path(conn))
   end
