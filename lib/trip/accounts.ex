@@ -140,6 +140,10 @@ defmodule Trip.Accounts do
     |> Ecto.Changeset.apply_action(:update)
   end
 
+  def delete_user(%User{} = user) do
+    Repo.delete(user)
+  end
+
   @doc """
   Updates the user email using the given token.
 

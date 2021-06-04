@@ -67,8 +67,6 @@ defmodule TripWeb.UsersLive.Edit do
       |> User.registration_changeset(user_params)
       |> Map.put(:action, :insert)
 
-    IO.inspect(changeset)
-
     {:noreply, assign(socket, changeset: changeset)}
   end
 
@@ -151,5 +149,11 @@ defmodule TripWeb.UsersLive.Edit do
       |> User.validate_changeset()
     
     {:noreply, assign(socket, changeset: changeset)}
+  end
+
+  def handle_event("remove-user", _params, %{assigns: %{live_action: :edit}} = socket) do
+    {:ok, _} = Accounts.delete_user(socket.assigns.user)
+
+    {:noreply, push_redirect(socket, to: Routes.users_index_path(socket, :index))}
   end
 end
