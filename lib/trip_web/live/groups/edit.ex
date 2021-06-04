@@ -82,4 +82,10 @@ defmodule TripWeb.GroupsLive.Edit do
 
     {:noreply, assign(socket, changeset: changeset)}
   end
+
+  def handle_event("remove-group", _params, %{assigns: %{live_action: :edit}} = socket) do
+    {:ok, _} = Groups.delete_group(socket.assigns.group)
+
+    {:noreply, push_redirect(socket, to: Routes.groups_index_path(socket, :index))}
+  end
 end

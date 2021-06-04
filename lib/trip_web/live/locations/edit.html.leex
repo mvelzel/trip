@@ -19,9 +19,17 @@
         [bounds: generate_bounds(@changeset), className: "h-96"],
         id: "map-editor") %>
     </div>
-    <div class="flex flex-row justify-end items-center">
+    <div class="flex flex-row justify-between items-center pb-10">
+      <%= if @live_action == :edit do %>
+        <a href="#" phx-click="remove-location",
+                    class="t-button !bg-t-red red-3d !px-6">
+          <i class="fas fa-trash"></i>
+        </a>
+      <% else %>
+        <div></div>
+      <% end %>
       <%= submit gettext("Save"),
-        class: "t-button mb-10",
+        class: "t-button",
         disabled: !@changeset.valid? %>
     </div>
   </form>

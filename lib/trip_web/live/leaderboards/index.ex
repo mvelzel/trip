@@ -14,22 +14,31 @@ defmodule TripWeb.LeaderboardsLive.Index do
       socket.assigns.current_user
       |> Trip.Repo.preload(group: [:location])
 
-    default_location =
-      case user.role do
-        :player ->
-          user.group.location.id
+    {default_location, location_groups} =
+      if Enum.count(locations) > 0 do
+        locid =
+          case user.role do
+            :player ->
+              user.group.location.id
 
-        _ ->
-          Enum.at(locations, 0).id
+            _ ->
+              Enum.at(locations, 0).id
+          end
+
+        {locid,
+         Groups.list_groups(locid)
+         |> Enum.sort_by(& &1.score, :desc)}
+      else
+        {"", []}
       end
 
-    location_groups =
-      Groups.list_groups(default_location)
-      |> Enum.sort_by(& &1.score, :desc)
-
-    default_post = Enum.at(posts, 0).id
-
-    post_results = Posts.list_post_results(default_post)
+    {default_post, post_results} =
+      if Enum.count(posts) > 0 do
+        defa = Enum.at(posts, 0).id
+        {defa, Posts.list_post_results(defa)}
+      else
+        {"", []}
+      end
 
     groups =
       Groups.list_groups()

@@ -88,6 +88,12 @@ defmodule TripWeb.LocationsLive.Edit do
     {:noreply, push_redirect(socket, to: Routes.locations_index_path(socket, :index))}
   end
 
+  def handle_event("remove-location", _params, %{assigns: %{live_action: :edit}} = socket) do
+    {:ok, _} = Locations.delete_location(socket.assigns.location)
+
+    {:noreply, push_redirect(socket, to: Routes.locations_index_path(socket, :index))}
+  end
+
   defp generate_bounds(changeset) do
     lat0 = changeset |> Ecto.Changeset.get_field(:lat0)
     lon0 = changeset |> Ecto.Changeset.get_field(:lon0)
