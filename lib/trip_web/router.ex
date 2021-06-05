@@ -42,9 +42,9 @@ defmodule TripWeb.Router do
     pipe_through [:browser, :require_authenticated_user, :post_permission]
 
     scope "/posts", PostsLive do
-      scope "/:post/results", Results do
-        live "/new", New, :new
-      end
+      live "/results", Results.Index, :index
+
+      live "/:post/results/new", Results.New, :new
     end
   end
 

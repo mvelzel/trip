@@ -5,7 +5,7 @@ defmodule Trip.Accounts do
 
   import Ecto.Query, warn: false
   alias Trip.Repo
-  alias Trip.Locations
+  alias Trip.{Locations, Posts}
   alias Trip.Accounts.{User, UserToken, UserNotifier}
 
   ## Database getters
@@ -33,6 +33,12 @@ defmodule Trip.Accounts do
     end
   end
 
+  def get_user_posts(%User{} = user) do
+    case user.role do
+      :postleader -> user.posts
+      _ -> Posts.list_posts()
+    end
+  end
 
   @doc """
   Gets a single user.

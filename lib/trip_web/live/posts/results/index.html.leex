@@ -1,0 +1,46 @@
+<div class="flex flex-col space-y-6 w-full pt-10 py-10">
+  <h2 class="uppercase text-white text-2xl font-bold font-sans tracking-wider ml-10">
+    <%= gettext "Post results" %>
+  </h2>
+  <div class="flex flex-row px-10 items-center space-x-3">
+    <div class="flex-1">
+      <%= live_react_component("Components.Dropdown",
+        [selected: @post.id,
+        values: Enum.map(@posts, &["##{&1.number} #{&1.name}", &1.id]),
+        placeholder: gettext("Select a post"), phx_event: "post-selected"],
+        id: "post-dropdown") %>
+    </div>
+    <div>
+      <%= live_redirect to: Routes.posts_results_new_path(@socket, :new, @post.id),
+        class: "font-sans text-t-black green-3d px-4 py-3 bg-t-green rounded-2xl
+          tracking-wider font-bold" do %>
+        <%= if @post.score_type == :points do %>
+        +km
+        <% else %>
+        +<i class="far fa-clock"></i>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="flex flex-col space-y-6">
+    <%= for {post_result, index} <- Enum.with_index(@post_results) do %>
+      <div class="flex flex-row items-center space-x-6 bg-t-red lead-bot py-4 px-8 w-full">
+        <a href="#" phx-click="delete-result" phx-value-index="<%= index %>"
+          class="font-sans t-button !px-3 !py-2">
+          <i class="fas fa-undo"></i>
+        </a>
+        <p class="font-sans font-medium text-white text-lg"><%= post_result.group.name %></p>
+        <p class="justify-self-end flex-1 text-right text-lg font-medium text-t-green">
+          <%= if @post.score_type == :points do %>
+            <%= post_result.score %>km
+          <% else %>
+            <% minutes = div(post_result.score, 60) %>
+            <% seconds = post_result.score - minutes * 60 %>
+            <%= minutes %>m <%= seconds %>s
+          <% end %>
+        </p>
+      </div>
+    <% end %>
+  </div>
+</div>

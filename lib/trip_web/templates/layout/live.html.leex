@@ -19,7 +19,7 @@
       </a>
     </div>
     <nav class="flex absolute flex-col w-full h-[calc(100%-4.5rem)]
-                transition-all duration-300 pl-12 space-y-2
+                transition-all duration-300 pl-12 space-y-2 overflow-y-scroll
       <%= if @menu_expanded, do: "mt-0 opacity-1 z-[9999]", else: "-mt-8 opacity-0 z-[-10]" %> bg-t-blue">
       <%= live_redirect to: Routes.locations_index_path(@socket, :index),
         class: "py-4 font-sans text-white font-medium border-b-4 border-tr-green text-2xl
@@ -51,12 +51,19 @@
         <i class="fas fa-arrow-right"></i>
         <span><%= gettext "Leaderboards" %></span>
       <% end %>
+      <%= live_redirect to: Routes.posts_results_index_path(@socket, :index),
+        class: "py-4 font-sans text-white font-medium border-b-4 border-tr-green text-2xl
+                flex flex-row items-center space-x-3 sep" do %>
+        <i class="fas fa-arrow-right"></i>
+        <span><%= gettext "Post results" %></span>
+      <% end %>
       <%= link to: Routes.user_session_path(@socket, :delete), method: :delete,
         class: "py-4 font-sans text-white font-medium border-b-4 border-tr-green text-2xl
                 flex flex-row items-center space-x-3 sep" do %>
         <i class="fas fa-arrow-right"></i>
         <span><%= gettext "Log out" %></span>
       <% end %>
+      <div class="pb-10"></div>
     </nav>
   </div>
   <div class="flex w-full overflow-y-scroll flex-1">

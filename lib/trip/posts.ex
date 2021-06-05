@@ -32,6 +32,13 @@ defmodule Trip.Posts do
     |> Repo.preload(:post)
   end
 
+  def list_all_post_results(post_id) do
+    PostResult
+    |> where(post_id: ^post_id)
+    |> Repo.all()
+    |> Repo.preload(:group)
+  end
+
   def list_post_results(post_id) do
     type = get_post!(post_id).score_type
 
@@ -39,26 +46,28 @@ defmodule Trip.Posts do
       from r in PostResult,
         where: r.post_id == ^post_id
 
-    query = case type do
-      :points ->
-        (from r in PostResult,
-          where: r.post_id == ^post_id,
-          left_join: p in ^filtered_posts,
-          on: r.group_id == p.group_id and r.score < p.score,
-          where: is_nil(p.id),
-          select: r
-        )
-        |> order_by([desc: :score])
-      :time ->
-        (from r in PostResult,
-          where: r.post_id == ^post_id,
-          left_join: p in ^filtered_posts,
-          on: r.group_id == p.group_id and r.score > p.score,
-          where: is_nil(p.id),
-          select: r
-        )
-        |> order_by([asc: :score])
-    end
+    query =
+      case type do
+        :points ->
+          from(r in PostResult,
+            where: r.post_id == ^post_id,
+            left_join: p in ^filtered_posts,
+            on: r.group_id == p.group_id and r.score < p.score,
+            where: is_nil(p.id),
+            select: r
+          )
+          |> order_by(desc: :score)
+
+        :time ->
+          from(r in PostResult,
+            where: r.post_id == ^post_id,
+            left_join: p in ^filtered_posts,
+            on: r.group_id == p.group_id and r.score > p.score,
+            where: is_nil(p.id),
+            select: r
+          )
+          |> order_by(asc: :score)
+      end
 
     query
     |> Repo.all()
@@ -122,6 +131,24 @@ defmodule Trip.Posts do
 
     res
     |> Repo.insert()
+  end
+
+  def delete_post_result(%PostResult{} = post_result) do
+    post_result = Repo.preload(post_result, :post)
+
+    case post_result.post.result_type do
+      :points ->
+        post_result = Repo.preload(post_result, :group)
+        new_score = post_result.group.score - post_result.score
+
+        post_result.group
+        |> Groups.update_group(%{"score" => to_string(new_score)})
+
+      :high_score ->
+        {:ok}
+    end
+
+    Repo.delete(post_result)
   end
 
   @doc """
