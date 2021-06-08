@@ -1,0 +1,55 @@
+<div class="flex flex-col w-full px-10 pt-10">
+  <h2 class="uppercase text-white text-2xl font-bold font-sans tracking-wider">
+    <%= gettext "Edit challenge" %>
+  </h2>
+  <%= f = form_for @changeset, "#", [phx_submit: :create, phx_change: :validate,
+    class: "flex flex-col space-y-6"] %>
+    <div class="flex flex-col space-y-3">
+      <%= label f, :name, gettext("Name"), class: "font-sans text-white font-medium" %>
+      <%= text_input f, :name, class: "t-input", placeholder: gettext("Input name") %>
+    </div>
+    <div class="flex flex-col space-y-3">
+      <%= label f, :description, gettext("Description"),
+        class: "font-sans text-white font-medium" %>
+      <%= textarea f, :description, class: "t-input", rows: 6,
+        placeholder: gettext("Input description") %>
+    </div>
+    <div class="flex flex-col space-y-3">
+      <%= label f, :max_score, gettext("Max score"), class: "font-sans text-white font-medium" %>
+      <%= number_input f, :max_score, class: "t-input",
+        placeholder: gettext("Input max score"), step: 1 %>
+    </div>
+    <div class="flex flex-row space-x-3 items-center">
+      <p class="font-sans text-white font-medium"><%= gettext "Available by default" %></p>
+      <%= checkbox f, :available, class: "t-checkbox" %>
+    </div>
+    <div class="flex flex-col space-y-3">
+      <%= label f, :submission_type, gettext("Submission type"),
+        class: "font-sans text-white font-medium" %>
+      <%= hidden_input f, :submission_type %>
+      <%= live_react_component("Components.Dropdown",
+        [selected: input_value(f, :submission_type) || "",
+        values: Enum.map(Challenge.submission_types, &[submission_type_label(&1), &1]),
+        placeholder: gettext("Select a type"), phx_event: "type-selected"],
+        id: "submission-type-dropdown") %>
+    </div>
+    <div class="flex flex-row justify-between items-center">
+      <p class="font-sans text-white font-medium"><%= gettext "Subjective score" %></p>
+      <%= checkbox f, :pass_or_fail, class: "t-checkbox" %>
+      <p class="font-sans text-white font-medium"><%= gettext "Pass or fail" %></p>
+    </div>
+    <div class="flex flex-row justify-between items-center pb-10">
+      <%= if @live_action == :edit do %>
+        <a href="#" phx-click="remove-challenge",
+                    class="t-button !bg-t-red red-3d !px-6">
+          <i class="fas fa-trash"></i>
+        </a>
+      <% else %>
+        <div></div>
+      <% end %>
+      <%= submit gettext("Save"),
+        class: "t-button",
+        disabled: !@changeset.valid? %>
+    </div>
+  </form>
+</div>

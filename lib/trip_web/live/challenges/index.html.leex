@@ -1,0 +1,30 @@
+<div class="flex flex-col space-y-6 w-full p-10">
+  <h2 class="uppercase text-white text-2xl font-bold font-sans tracking-wider">
+    <%= gettext "Challenges" %>
+  </h2>
+  <%= for challenge <- @challenges do %>
+    <div class="flex flex-row items-center space-x-3">
+      <%= live_redirect to: Routes.challenges_show_path(@socket, :show, challenge.id),
+        class: "rounded-2xl flex-1 bg-t-green justify-around flex flex-col px-8 h-14 green-3d" do %>
+        <h2 class="text-xl font-sans font-bold text-t-black space-x-3 flex items-center">
+          <span><%= challenge.name %></span>
+        </h2>
+      <% end %>
+      <%= live_redirect to: Routes.challenges_edit_path(@socket, :edit, challenge.id),
+        class: "rounded-2xl bg-t-green flex flex-col items-center justify-around
+          min-w-[4rem] w-16 h-14 green-3d" do %>
+        <h2 class="text-xl font-sans font-bold text-t-black space-x-3 flex items-center">
+          <i class="far fa-edit"></i>
+        </h2>
+      <% end %>
+    </div>
+  <% end %>
+  <%= live_redirect to: Routes.challenges_edit_path(@socket, :new),
+    class: "rounded-2xl bg-t-green px-8 py-4 green-3d" do %>
+    <h2 class="text-xl font-sans font-bold text-t-black space-x-3 flex items-center">
+      <i class="fas fa-plus"></i>
+      <span><%= gettext "New challenge" %></span>
+    </h2>
+  <% end %>
+  <div class="pb-10"></div>
+</div>

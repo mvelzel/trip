@@ -1,15 +1,17 @@
 defmodule TripWeb.PostsLive.Index do
   use TripWeb, :live_view
+  import TripWeb.UserAuth
 
-  alias Trip.Posts
+  alias Trip.Accounts
 
   @impl true
   def mount(_params, session, socket) do
-    posts = Posts.list_posts()
+    socket = assign_defaults(socket, session)
+
+    posts = Accounts.get_user_posts(socket.assigns.current_user)
 
     {:ok,
       socket
-      |> assign_defaults(session)
       |> assign(posts: posts)}
   end
 end

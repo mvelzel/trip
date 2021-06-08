@@ -51,7 +51,7 @@ defmodule TripWeb.Router do
   scope "/", TripWeb do
     pipe_through [:browser, :require_authenticated_user, :player_permission]
     
-    live "groups/new", GroupsLive.Edit, :new
+    live "/groups/edit/:group", GroupsLive.Edit, :edit
   end
 
   scope "/", TripWeb do
@@ -59,6 +59,8 @@ defmodule TripWeb.Router do
 
     scope "/locations", LocationsLive do
       live "/new", Edit, :new
+
+      live "/", Index, :index
 
       live "/edit/:location", Edit, :edit
     end
@@ -69,13 +71,29 @@ defmodule TripWeb.Router do
       live "/edit/:post", Edit, :edit
     end
 
+    scope "/challenges", ChallengesLive do
+      live "/submission", Submissions.Index, :index
+
+      live "/:challenge/submissions/new", Submissions.New, :new
+
+      live "/new", Edit, :new
+
+      live "/edit/:challenge", Edit, :edit
+
+      live "/", Index, :index
+      
+      live "/:challenge", Show, :show
+    end
+
     scope "/users", UsersLive do
       live "/", Index, :index
 
       live "/new", Edit, :new
     end
 
-    live "/groups/edit/:group", GroupsLive.Edit, :edit
+    live "groups/new", GroupsLive.Edit, :new
+
+    live "/groups", GroupsLive.Index, :index
   end
 
   scope "/", TripWeb do
@@ -83,15 +101,11 @@ defmodule TripWeb.Router do
 
     live "/", IndexLive, :index
 
-    live "/locations", LocationsLive.Index, :index
-
     scope "/posts", PostsLive do
       live "/", Index, :index
       
       live "/:post", Show, :show
     end
-
-    live "/groups", GroupsLive.Index, :index
 
     live "/users/edit/:user", UsersLive.Edit, :edit
 

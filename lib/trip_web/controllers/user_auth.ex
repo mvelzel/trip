@@ -135,6 +135,10 @@ defmodule TripWeb.UserAuth do
     end
   end
 
+  def role_allowed(%Accounts.User{role: role}, opts) do
+    role in opts
+  end
+
   def allow_roles(conn, opts) do
     role = conn.assigns.current_user.role
     if role in opts do

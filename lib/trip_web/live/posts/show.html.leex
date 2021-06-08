@@ -5,6 +5,11 @@
   <p class="text-white text-xl font-medium font-bold font-sans">
     <%= @post.description %>
   </p>
+  <p class="text-white text-xl font-base font-sans">
+    <span class="text-t-green text-green-3d font-medium">
+      <%= gettext "Type of result:" %>
+    </span> <%= result_type_label(@post.result_type) %>
+  </p>
   <%= live_react_component "Components.Dropdown",
     [selected: @location.id, values: Enum.map(@locations, &[&1.name, &1.id]),
     phx_event: "location-selected"], id: "location-dropdown" %>

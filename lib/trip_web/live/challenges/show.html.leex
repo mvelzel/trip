@@ -1,0 +1,22 @@
+<div class="flex flex-col w-full px-10 pt-10 space-y-4">
+  <h2 class="uppercase text-white text-2xl font-bold font-sans tracking-wider">
+    <%= @challenge.name %>
+  </h2>
+  <p class="text-white text-xl font-medium font-sans">
+    <%= @challenge.description %>
+  </p>
+  <p class="text-white text-xl font-base font-sans">
+    <span class="text-t-green text-green-3d font-medium">
+      <%= gettext "Type of submission:" %>
+    </span> <%= submission_type_label(@challenge.submission_type) %>
+  </p>
+  <p class="text-white text-xl font-base font-sans">
+    <span class="text-t-green text-green-3d font-medium">
+      <%= if @challenge.pass_or_fail do %>
+        <%= gettext "Points:" %>
+      <% else %>
+        <%= gettext "Max Points:" %>
+      <% end %>
+    </span> <%= @challenge.max_score %>km
+  </p>
+</div>

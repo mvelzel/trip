@@ -2,9 +2,6 @@
   <h2 class="uppercase text-white text-2xl font-bold font-sans tracking-wider">
     <%= gettext "Submit result" %>
   </h2>
-  <p class="text-white text-lg font-medium font-sans tracking-wide">
-    <%= gettext "Post" %> <%= @post.number %>: <%= @post.name %>
-  </p>
   <%= f = form_for @changeset, "#", [phx_submit: :create, phx_change: :validate,
     class: "flex flex-col space-y-6"] %>
     <div class="flex flex-col space-y-3">

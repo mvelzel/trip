@@ -48,6 +48,7 @@ defmodule TripWeb do
         container: {:div, class: "h-full w-full flex"},
         layout: {TripWeb.LayoutView, "live.html"}
 
+
       unquote(view_helpers())
 
       def handle_event("burger", _params, socket) do
@@ -55,11 +56,12 @@ defmodule TripWeb do
       end
 
       def assign_defaults(socket, session) do
-        current_user = if Map.has_key?(session, "user_token") do
-          Trip.Accounts.get_user_by_session_token(Map.get(session, "user_token"))
-        else
-          nil
-        end
+        current_user =
+          if Map.has_key?(session, "user_token") do
+            Trip.Accounts.get_user_by_session_token(Map.get(session, "user_token"))
+          else
+            nil
+          end
 
         socket
         |> assign(current_user: current_user)
@@ -105,6 +107,7 @@ defmodule TripWeb do
       import Phoenix.View
 
       import PhoenixLiveReact
+      import TripWeb.UserAuth
 
       import TripWeb.ErrorHelpers
       import TripWeb.Gettext
@@ -118,6 +121,12 @@ defmodule TripWeb do
       def role_label(:admin), do: gettext("Admin")
       def role_label(:player), do: gettext("Player")
       def role_label(:postleader), do: gettext("Postleader")
+
+      def submission_status_label(:pending), do: gettext("Pending")
+      def submission_status_label(:passed), do: gettext("Passed")
+      def submission_status_label(:failed), do: gettext("Failed")
+      def submission_type_label(:text), do: gettext("Text")
+      def submission_type_label(:image), do: gettext("Image")
     end
   end
 
