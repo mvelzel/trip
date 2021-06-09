@@ -23,13 +23,14 @@ msgstr "Locatie"
 
 #, elixir-format
 #: lib/trip_web/live/locations/index.html.leex:3
-#: lib/trip_web/templates/layout/live.html.leex:28
+#: lib/trip_web/templates/layout/live.html.leex:71
 msgid "Locations"
 msgstr "Locaties"
 
 #, elixir-format
-#: lib/trip_web/live/groups/edit.html.leex:8
-#: lib/trip_web/live/locations/edit.html.leex:8 lib/trip_web/live/posts/edit.html.leex:8
+#: lib/trip_web/live/challenges/edit.html.leex:8
+#: lib/trip_web/live/groups/edit.html.leex:8 lib/trip_web/live/locations/edit.html.leex:8
+#: lib/trip_web/live/posts/edit.html.leex:8
 msgid "Name"
 msgstr "Naam"
 
@@ -39,9 +40,10 @@ msgid "New location"
 msgstr "Nieuwe locatie"
 
 #, elixir-format
-#: lib/trip_web/live/groups/edit.html.leex:49
-#: lib/trip_web/live/locations/edit.html.leex:31 lib/trip_web/live/posts/edit.html.leex:96
-#: lib/trip_web/live/posts/results/new.html.leex:49 lib/trip_web/live/users/edit.html.leex:74
+#: lib/trip_web/live/challenges/edit.html.leex:50
+#: lib/trip_web/live/groups/edit.html.leex:49 lib/trip_web/live/locations/edit.html.leex:31
+#: lib/trip_web/live/posts/edit.html.leex:96 lib/trip_web/live/posts/results/new.html.leex:52
+#: lib/trip_web/live/users/edit.html.leex:74
 msgid "Save"
 msgstr "Opslaan"
 
@@ -62,12 +64,13 @@ msgid "Add to location"
 msgstr "Toevoegen aan locatie"
 
 #, elixir-format
+#: lib/trip_web/live/challenges/edit.html.leex:12
 #: lib/trip_web/live/posts/edit.html.leex:17
 msgid "Description"
 msgstr "Beschrijving"
 
 #, elixir-format
-#: lib/trip_web/live/posts/index.html.leex:37
+#: lib/trip_web/live/posts/index.html.leex:42
 msgid "New post"
 msgstr "Nieuwe post"
 
@@ -84,7 +87,7 @@ msgstr "Posten"
 
 #, elixir-format
 #: lib/trip_web/live/groups/edit.html.leex:27
-#: lib/trip_web/live/posts/edit.html.leex:66 lib/trip_web/live/posts/results/new.html.leex:13
+#: lib/trip_web/live/posts/edit.html.leex:66 lib/trip_web/live/posts/results/new.html.leex:16
 #: lib/trip_web/live/users/edit.html.leex:36
 msgid "Select a location"
 msgstr "Selecteer een locatie"
@@ -111,7 +114,7 @@ msgstr "Groepsnummer"
 
 #, elixir-format
 #: lib/trip_web/live/groups/index.html.leex:3
-#: lib/trip_web/templates/layout/live.html.leex:40
+#: lib/trip_web/templates/layout/live.html.leex:77
 msgid "Groups"
 msgstr "Groepen"
 
@@ -131,26 +134,33 @@ msgid "Add rank"
 msgstr "Rang toevoegen"
 
 #, elixir-format
-#: lib/trip_web/live/groups/edit.ex:2 lib/trip_web/live/groups/index.ex:2
-#: lib/trip_web/live/index_live.ex:2 lib/trip_web/live/leaderboards/index.ex:2
-#: lib/trip_web/live/locations/edit.ex:2 lib/trip_web/live/locations/index.ex:2 lib/trip_web/live/page_live.ex:2
-#: lib/trip_web/live/posts/edit.ex:2 lib/trip_web/live/posts/index.ex:2 lib/trip_web/live/posts/results/index.ex:2
-#: lib/trip_web/live/posts/results/new.ex:2 lib/trip_web/live/posts/show.ex:2 lib/trip_web/live/users/edit.ex:2
-#: lib/trip_web/live/users/index.ex:2 lib/trip_web/views/error_view.ex:2 lib/trip_web/views/layout_view.ex:2
-#: lib/trip_web/views/user_confirmation_view.ex:2 lib/trip_web/views/user_registration_view.ex:2
-#: lib/trip_web/views/user_reset_password_view.ex:2 lib/trip_web/views/user_session_view.ex:2
-#: lib/trip_web/views/user_settings_view.ex:2
+#: lib/trip_web/live/challenges/edit.ex:2
+#: lib/trip_web/live/challenges/index.ex:2 lib/trip_web/live/challenges/player_index.ex:2
+#: lib/trip_web/live/challenges/show.ex:2 lib/trip_web/live/challenges/submissions/index.ex:2
+#: lib/trip_web/live/groups/edit.ex:2 lib/trip_web/live/groups/index.ex:2 lib/trip_web/live/index_live.ex:2
+#: lib/trip_web/live/leaderboards/index.ex:2 lib/trip_web/live/locations/edit.ex:2 lib/trip_web/live/locations/index.ex:2
+#: lib/trip_web/live/page_live.ex:2 lib/trip_web/live/posts/edit.ex:2 lib/trip_web/live/posts/index.ex:2
+#: lib/trip_web/live/posts/results/index.ex:2 lib/trip_web/live/posts/results/new.ex:2 lib/trip_web/live/posts/show.ex:2
+#: lib/trip_web/live/users/edit.ex:2 lib/trip_web/live/users/index.ex:2 lib/trip_web/views/error_view.ex:2
+#: lib/trip_web/views/layout_view.ex:2 lib/trip_web/views/user_confirmation_view.ex:2
+#: lib/trip_web/views/user_registration_view.ex:2 lib/trip_web/views/user_reset_password_view.ex:2
+#: lib/trip_web/views/user_session_view.ex:2 lib/trip_web/views/user_settings_view.ex:2
 msgid "Highscore"
 msgstr ""
 
 #, elixir-format
-#: lib/trip_web/live/groups/edit.ex:2 lib/trip_web/live/groups/edit.ex:2
-#: lib/trip_web/live/groups/index.ex:2 lib/trip_web/live/groups/index.ex:2 lib/trip_web/live/index_live.ex:2
-#: lib/trip_web/live/index_live.ex:2 lib/trip_web/live/leaderboards/index.ex:2
-#: lib/trip_web/live/leaderboards/index.ex:2 lib/trip_web/live/locations/edit.ex:2 lib/trip_web/live/locations/edit.ex:2
-#: lib/trip_web/live/locations/index.ex:2 lib/trip_web/live/locations/index.ex:2 lib/trip_web/live/page_live.ex:2
-#: lib/trip_web/live/page_live.ex:2 lib/trip_web/live/posts/edit.ex:2 lib/trip_web/live/posts/edit.ex:2
-#: lib/trip_web/live/posts/index.ex:2 lib/trip_web/live/posts/index.ex:2 lib/trip_web/live/posts/results/index.ex:2
+#: lib/trip_web/live/challenges/edit.ex:2 lib/trip_web/live/challenges/edit.ex:2
+#: lib/trip_web/live/challenges/index.ex:2 lib/trip_web/live/challenges/index.ex:2
+#: lib/trip_web/live/challenges/player_index.ex:2 lib/trip_web/live/challenges/player_index.ex:2
+#: lib/trip_web/live/challenges/show.ex:2 lib/trip_web/live/challenges/show.ex:2
+#: lib/trip_web/live/challenges/submissions/index.ex:2 lib/trip_web/live/challenges/submissions/index.ex:2
+#: lib/trip_web/live/groups/edit.ex:2 lib/trip_web/live/groups/edit.ex:2 lib/trip_web/live/groups/index.ex:2
+#: lib/trip_web/live/groups/index.ex:2 lib/trip_web/live/index_live.ex:2 lib/trip_web/live/index_live.ex:2
+#: lib/trip_web/live/leaderboards/index.ex:2 lib/trip_web/live/leaderboards/index.ex:2
+#: lib/trip_web/live/locations/edit.ex:2 lib/trip_web/live/locations/edit.ex:2 lib/trip_web/live/locations/index.ex:2
+#: lib/trip_web/live/locations/index.ex:2 lib/trip_web/live/page_live.ex:2 lib/trip_web/live/page_live.ex:2
+#: lib/trip_web/live/posts/edit.ex:2 lib/trip_web/live/posts/edit.ex:2 lib/trip_web/live/posts/index.ex:2
+#: lib/trip_web/live/posts/index.ex:2 lib/trip_web/live/posts/results/index.ex:2
 #: lib/trip_web/live/posts/results/index.ex:2 lib/trip_web/live/posts/results/new.ex:2
 #: lib/trip_web/live/posts/results/new.ex:2 lib/trip_web/live/posts/show.ex:2 lib/trip_web/live/posts/show.ex:2
 #: lib/trip_web/live/users/edit.ex:2 lib/trip_web/live/users/edit.ex:2 lib/trip_web/live/users/index.ex:2
@@ -175,8 +185,8 @@ msgid "Score type"
 msgstr ""
 
 #, elixir-format
-#: lib/trip_web/live/posts/edit.html.leex:30
-#: lib/trip_web/live/posts/edit.html.leex:40
+#: lib/trip_web/live/challenges/edit.html.leex:33
+#: lib/trip_web/live/posts/edit.html.leex:30 lib/trip_web/live/posts/edit.html.leex:40
 msgid "Select a type"
 msgstr "Selecteer een type"
 
@@ -196,13 +206,15 @@ msgid "Edit post"
 msgstr "Post aanpassen"
 
 #, elixir-format
+#: lib/trip_web/live/challenges/edit.html.leex:15
 #: lib/trip_web/live/posts/edit.html.leex:20
 msgid "Input description"
 msgstr "Voer beschrijving in"
 
 #, elixir-format
-#: lib/trip_web/live/groups/edit.html.leex:9
-#: lib/trip_web/live/locations/edit.html.leex:9 lib/trip_web/live/posts/edit.html.leex:9
+#: lib/trip_web/live/challenges/edit.html.leex:9
+#: lib/trip_web/live/groups/edit.html.leex:9 lib/trip_web/live/locations/edit.html.leex:9
+#: lib/trip_web/live/posts/edit.html.leex:9
 msgid "Input name"
 msgstr "Voer naam in"
 
@@ -218,7 +230,7 @@ msgid "Input points"
 msgstr "Voer punten in"
 
 #, elixir-format
-#: lib/trip_web/live/posts/results/new.html.leex:36
+#: lib/trip_web/live/posts/results/new.html.leex:39
 msgid "Input score"
 msgstr "Voer score in"
 
@@ -228,30 +240,31 @@ msgid "Ranking type"
 msgstr "Type rangschikking"
 
 #, elixir-format
-#: lib/trip_web/live/posts/results/new.html.leex:33
+#: lib/trip_web/live/challenges/show.html.leex:97
+#: lib/trip_web/live/posts/results/new.html.leex:36
 msgid "Score"
 msgstr ""
 
 #, elixir-format
-#: lib/trip_web/live/posts/results/new.html.leex:19
+#: lib/trip_web/live/posts/results/new.html.leex:22
 #: lib/trip_web/live/users/edit.html.leex:42
 msgid "Select a group"
 msgstr "Selecteer een groep"
 
 #, elixir-format
 #: lib/trip_web/live/posts/results/index.html.leex:10
-#: lib/trip_web/live/posts/results/new.html.leex:29 lib/trip_web/live/users/edit.html.leex:53
+#: lib/trip_web/live/posts/results/new.html.leex:32 lib/trip_web/live/users/edit.html.leex:53
 msgid "Select a post"
 msgstr "Selecteer een post"
 
 #, elixir-format
-#: lib/trip_web/live/posts/results/new.html.leex:8
+#: lib/trip_web/live/posts/results/new.html.leex:11
 #: lib/trip_web/live/users/edit.html.leex:32
 msgid "Select group"
 msgstr "Selecteer groep"
 
 #, elixir-format
-#: lib/trip_web/live/posts/results/new.html.leex:24
+#: lib/trip_web/live/posts/results/new.html.leex:27
 msgid "Select post"
 msgstr "Selecteer post"
 
@@ -261,38 +274,42 @@ msgid "Submit result"
 msgstr "Stuur resultaat in"
 
 #, elixir-format
-#: lib/trip_web/live/groups/edit.ex:2 lib/trip_web/live/groups/index.ex:2
-#: lib/trip_web/live/index_live.ex:2 lib/trip_web/live/leaderboards/index.ex:2
-#: lib/trip_web/live/locations/edit.ex:2 lib/trip_web/live/locations/index.ex:2 lib/trip_web/live/page_live.ex:2
-#: lib/trip_web/live/posts/edit.ex:2 lib/trip_web/live/posts/index.ex:2 lib/trip_web/live/posts/results/index.ex:2
-#: lib/trip_web/live/posts/results/new.ex:2 lib/trip_web/live/posts/show.ex:2 lib/trip_web/live/users/edit.ex:2
-#: lib/trip_web/live/users/index.ex:2 lib/trip_web/views/error_view.ex:2 lib/trip_web/views/layout_view.ex:2
-#: lib/trip_web/views/user_confirmation_view.ex:2 lib/trip_web/views/user_registration_view.ex:2
-#: lib/trip_web/views/user_reset_password_view.ex:2 lib/trip_web/views/user_session_view.ex:2
-#: lib/trip_web/views/user_settings_view.ex:2
+#: lib/trip_web/live/challenges/edit.ex:2
+#: lib/trip_web/live/challenges/index.ex:2 lib/trip_web/live/challenges/player_index.ex:2
+#: lib/trip_web/live/challenges/show.ex:2 lib/trip_web/live/challenges/submissions/index.ex:2
+#: lib/trip_web/live/groups/edit.ex:2 lib/trip_web/live/groups/index.ex:2 lib/trip_web/live/index_live.ex:2
+#: lib/trip_web/live/leaderboards/index.ex:2 lib/trip_web/live/locations/edit.ex:2 lib/trip_web/live/locations/index.ex:2
+#: lib/trip_web/live/page_live.ex:2 lib/trip_web/live/posts/edit.ex:2 lib/trip_web/live/posts/index.ex:2
+#: lib/trip_web/live/posts/results/index.ex:2 lib/trip_web/live/posts/results/new.ex:2 lib/trip_web/live/posts/show.ex:2
+#: lib/trip_web/live/users/edit.ex:2 lib/trip_web/live/users/index.ex:2 lib/trip_web/views/error_view.ex:2
+#: lib/trip_web/views/layout_view.ex:2 lib/trip_web/views/user_confirmation_view.ex:2
+#: lib/trip_web/views/user_registration_view.ex:2 lib/trip_web/views/user_reset_password_view.ex:2
+#: lib/trip_web/views/user_session_view.ex:2 lib/trip_web/views/user_settings_view.ex:2
 msgid "Time"
 msgstr "Tijd"
 
 #, elixir-format
-#: lib/trip_web/live/posts/results/new.html.leex:40
+#: lib/trip_web/live/posts/results/new.html.leex:43
 msgid "Minutes"
 msgstr "Minuten"
 
 #, elixir-format
-#: lib/trip_web/live/posts/results/new.html.leex:43
+#: lib/trip_web/live/posts/results/new.html.leex:46
 msgid "Seconds"
 msgstr "Seconden"
 
 #, elixir-format
-#: lib/trip_web/live/groups/edit.ex:2 lib/trip_web/live/groups/index.ex:2
-#: lib/trip_web/live/index_live.ex:2 lib/trip_web/live/leaderboards/index.ex:2
-#: lib/trip_web/live/locations/edit.ex:2 lib/trip_web/live/locations/index.ex:2 lib/trip_web/live/page_live.ex:2
-#: lib/trip_web/live/posts/edit.ex:2 lib/trip_web/live/posts/index.ex:2 lib/trip_web/live/posts/results/index.ex:2
-#: lib/trip_web/live/posts/results/new.ex:2 lib/trip_web/live/posts/show.ex:2 lib/trip_web/live/users/edit.ex:2
-#: lib/trip_web/live/users/index.ex:2 lib/trip_web/views/error_view.ex:2 lib/trip_web/views/layout_view.ex:2
-#: lib/trip_web/views/user_confirmation_view.ex:2 lib/trip_web/views/user_registration_view.ex:2
-#: lib/trip_web/views/user_reset_password_view.ex:2 lib/trip_web/views/user_session_view.ex:2
-#: lib/trip_web/views/user_settings_view.ex:2
+#: lib/trip_web/live/challenges/edit.ex:2
+#: lib/trip_web/live/challenges/index.ex:2 lib/trip_web/live/challenges/player_index.ex:2
+#: lib/trip_web/live/challenges/show.ex:2 lib/trip_web/live/challenges/submissions/index.ex:2
+#: lib/trip_web/live/groups/edit.ex:2 lib/trip_web/live/groups/index.ex:2 lib/trip_web/live/index_live.ex:2
+#: lib/trip_web/live/leaderboards/index.ex:2 lib/trip_web/live/locations/edit.ex:2 lib/trip_web/live/locations/index.ex:2
+#: lib/trip_web/live/page_live.ex:2 lib/trip_web/live/posts/edit.ex:2 lib/trip_web/live/posts/index.ex:2
+#: lib/trip_web/live/posts/results/index.ex:2 lib/trip_web/live/posts/results/new.ex:2 lib/trip_web/live/posts/show.ex:2
+#: lib/trip_web/live/users/edit.ex:2 lib/trip_web/live/users/index.ex:2 lib/trip_web/views/error_view.ex:2
+#: lib/trip_web/views/layout_view.ex:2 lib/trip_web/views/user_confirmation_view.ex:2
+#: lib/trip_web/views/user_registration_view.ex:2 lib/trip_web/views/user_reset_password_view.ex:2
+#: lib/trip_web/views/user_session_view.ex:2 lib/trip_web/views/user_settings_view.ex:2
 msgid "Admin"
 msgstr ""
 
@@ -319,7 +336,7 @@ msgid "Log in"
 msgstr "Inloggen"
 
 #, elixir-format
-#: lib/trip_web/templates/layout/live.html.leex:64
+#: lib/trip_web/templates/layout/live.html.leex:90
 msgid "Log out"
 msgstr "Uitloggen"
 
@@ -335,15 +352,17 @@ msgid "Password"
 msgstr "Wachtwoord"
 
 #, elixir-format
-#: lib/trip_web/live/groups/edit.ex:2 lib/trip_web/live/groups/index.ex:2
-#: lib/trip_web/live/index_live.ex:2 lib/trip_web/live/leaderboards/index.ex:2
-#: lib/trip_web/live/locations/edit.ex:2 lib/trip_web/live/locations/index.ex:2 lib/trip_web/live/page_live.ex:2
-#: lib/trip_web/live/posts/edit.ex:2 lib/trip_web/live/posts/index.ex:2 lib/trip_web/live/posts/results/index.ex:2
-#: lib/trip_web/live/posts/results/new.ex:2 lib/trip_web/live/posts/show.ex:2 lib/trip_web/live/users/edit.ex:2
-#: lib/trip_web/live/users/index.ex:2 lib/trip_web/views/error_view.ex:2 lib/trip_web/views/layout_view.ex:2
-#: lib/trip_web/views/user_confirmation_view.ex:2 lib/trip_web/views/user_registration_view.ex:2
-#: lib/trip_web/views/user_reset_password_view.ex:2 lib/trip_web/views/user_session_view.ex:2
-#: lib/trip_web/views/user_settings_view.ex:2
+#: lib/trip_web/live/challenges/edit.ex:2
+#: lib/trip_web/live/challenges/index.ex:2 lib/trip_web/live/challenges/player_index.ex:2
+#: lib/trip_web/live/challenges/show.ex:2 lib/trip_web/live/challenges/submissions/index.ex:2
+#: lib/trip_web/live/groups/edit.ex:2 lib/trip_web/live/groups/index.ex:2 lib/trip_web/live/index_live.ex:2
+#: lib/trip_web/live/leaderboards/index.ex:2 lib/trip_web/live/locations/edit.ex:2 lib/trip_web/live/locations/index.ex:2
+#: lib/trip_web/live/page_live.ex:2 lib/trip_web/live/posts/edit.ex:2 lib/trip_web/live/posts/index.ex:2
+#: lib/trip_web/live/posts/results/index.ex:2 lib/trip_web/live/posts/results/new.ex:2 lib/trip_web/live/posts/show.ex:2
+#: lib/trip_web/live/users/edit.ex:2 lib/trip_web/live/users/index.ex:2 lib/trip_web/views/error_view.ex:2
+#: lib/trip_web/views/layout_view.ex:2 lib/trip_web/views/user_confirmation_view.ex:2
+#: lib/trip_web/views/user_registration_view.ex:2 lib/trip_web/views/user_reset_password_view.ex:2
+#: lib/trip_web/views/user_session_view.ex:2 lib/trip_web/views/user_settings_view.ex:2
 msgid "Player"
 msgstr "Speler"
 
@@ -365,7 +384,7 @@ msgstr "Gebruikersnaam"
 
 #, elixir-format
 #: lib/trip_web/live/users/index.html.leex:3
-#: lib/trip_web/templates/layout/live.html.leex:46
+#: lib/trip_web/templates/layout/live.html.leex:83
 msgid "Users"
 msgstr "Gebruikers"
 
@@ -375,20 +394,22 @@ msgid "Assign posts"
 msgstr "Posten toewijzen"
 
 #, elixir-format
-#: lib/trip_web/live/groups/edit.ex:2 lib/trip_web/live/groups/index.ex:2
-#: lib/trip_web/live/index_live.ex:2 lib/trip_web/live/leaderboards/index.ex:2
-#: lib/trip_web/live/locations/edit.ex:2 lib/trip_web/live/locations/index.ex:2 lib/trip_web/live/page_live.ex:2
-#: lib/trip_web/live/posts/edit.ex:2 lib/trip_web/live/posts/index.ex:2 lib/trip_web/live/posts/results/index.ex:2
-#: lib/trip_web/live/posts/results/new.ex:2 lib/trip_web/live/posts/show.ex:2 lib/trip_web/live/users/edit.ex:2
-#: lib/trip_web/live/users/index.ex:2 lib/trip_web/views/error_view.ex:2 lib/trip_web/views/layout_view.ex:2
-#: lib/trip_web/views/user_confirmation_view.ex:2 lib/trip_web/views/user_registration_view.ex:2
-#: lib/trip_web/views/user_reset_password_view.ex:2 lib/trip_web/views/user_session_view.ex:2
-#: lib/trip_web/views/user_settings_view.ex:2
+#: lib/trip_web/live/challenges/edit.ex:2
+#: lib/trip_web/live/challenges/index.ex:2 lib/trip_web/live/challenges/player_index.ex:2
+#: lib/trip_web/live/challenges/show.ex:2 lib/trip_web/live/challenges/submissions/index.ex:2
+#: lib/trip_web/live/groups/edit.ex:2 lib/trip_web/live/groups/index.ex:2 lib/trip_web/live/index_live.ex:2
+#: lib/trip_web/live/leaderboards/index.ex:2 lib/trip_web/live/locations/edit.ex:2 lib/trip_web/live/locations/index.ex:2
+#: lib/trip_web/live/page_live.ex:2 lib/trip_web/live/posts/edit.ex:2 lib/trip_web/live/posts/index.ex:2
+#: lib/trip_web/live/posts/results/index.ex:2 lib/trip_web/live/posts/results/new.ex:2 lib/trip_web/live/posts/show.ex:2
+#: lib/trip_web/live/users/edit.ex:2 lib/trip_web/live/users/index.ex:2 lib/trip_web/views/error_view.ex:2
+#: lib/trip_web/views/layout_view.ex:2 lib/trip_web/views/user_confirmation_view.ex:2
+#: lib/trip_web/views/user_registration_view.ex:2 lib/trip_web/views/user_reset_password_view.ex:2
+#: lib/trip_web/views/user_session_view.ex:2 lib/trip_web/views/user_settings_view.ex:2
 msgid "Postleader"
 msgstr "Postleider"
 
 #, elixir-format
-#: lib/trip_web/templates/layout/live.html.leex:52
+#: lib/trip_web/templates/layout/live.html.leex:28
 msgid "Leaderboards"
 msgstr "Ranglijsten"
 
@@ -397,8 +418,249 @@ msgstr "Ranglijsten"
 msgid "Home"
 msgstr "Overzicht"
 
-#, elixir-format, fuzzy
+#, elixir-format
 #: lib/trip_web/live/posts/results/index.html.leex:3
-#: lib/trip_web/templates/layout/live.html.leex:58
+#: lib/trip_web/templates/layout/live.html.leex:63
 msgid "Post results"
 msgstr "Post resultaten"
+
+#, elixir-format
+#: lib/trip_web/live/challenges/show.html.leex:92
+msgid "Approve"
+msgstr "Keur goed"
+
+#, elixir-format
+#: lib/trip_web/live/challenges/edit.html.leex:23
+msgid "Available by default"
+msgstr "Standaard beschikbaar"
+
+#, elixir-format
+#: lib/trip_web/live/challenges/submissions/index.html.leex:3
+#: lib/trip_web/templates/layout/live.html.leex:55
+msgid "Challenge submissions"
+msgstr "Opdracht inzendingen"
+
+#, elixir-format
+#: lib/trip_web/live/challenges/index.html.leex:3
+#: lib/trip_web/live/challenges/player_index.html.leex:3 lib/trip_web/templates/layout/live.html.leex:41
+#: lib/trip_web/templates/layout/live.html.leex:49
+msgid "Challenges"
+msgstr "Opdrachten"
+
+#, elixir-format
+#: lib/trip_web/live/challenges/show.html.leex:88
+msgid "Deny"
+msgstr "Keur af"
+
+#, elixir-format
+#: lib/trip_web/live/challenges/edit.html.leex:3
+msgid "Edit challenge"
+msgstr "Opdracht aanpassen"
+
+#, elixir-format
+#: lib/trip_web/live/challenges/edit.ex:2
+#: lib/trip_web/live/challenges/index.ex:2 lib/trip_web/live/challenges/player_index.ex:2
+#: lib/trip_web/live/challenges/show.ex:2 lib/trip_web/live/challenges/submissions/index.ex:2
+#: lib/trip_web/live/groups/edit.ex:2 lib/trip_web/live/groups/index.ex:2 lib/trip_web/live/index_live.ex:2
+#: lib/trip_web/live/leaderboards/index.ex:2 lib/trip_web/live/locations/edit.ex:2 lib/trip_web/live/locations/index.ex:2
+#: lib/trip_web/live/page_live.ex:2 lib/trip_web/live/posts/edit.ex:2 lib/trip_web/live/posts/index.ex:2
+#: lib/trip_web/live/posts/results/index.ex:2 lib/trip_web/live/posts/results/new.ex:2 lib/trip_web/live/posts/show.ex:2
+#: lib/trip_web/live/users/edit.ex:2 lib/trip_web/live/users/index.ex:2 lib/trip_web/views/error_view.ex:2
+#: lib/trip_web/views/layout_view.ex:2 lib/trip_web/views/user_confirmation_view.ex:2
+#: lib/trip_web/views/user_registration_view.ex:2 lib/trip_web/views/user_reset_password_view.ex:2
+#: lib/trip_web/views/user_session_view.ex:2 lib/trip_web/views/user_settings_view.ex:2
+msgid "Failed"
+msgstr "Afgekeurd"
+
+#, elixir-format
+#: lib/trip_web/live/challenges/show.html.leex:99
+msgid "Give score"
+msgstr "Geef score"
+
+#, elixir-format, fuzzy
+#: lib/trip_web/live/challenges/show.html.leex:68
+#: lib/trip_web/live/challenges/submissions/index.html.leex:24
+msgid "Group"
+msgstr "Groep"
+
+#, elixir-format
+#: lib/trip_web/live/challenges/edit.ex:2
+#: lib/trip_web/live/challenges/index.ex:2 lib/trip_web/live/challenges/player_index.ex:2
+#: lib/trip_web/live/challenges/show.ex:2 lib/trip_web/live/challenges/submissions/index.ex:2
+#: lib/trip_web/live/groups/edit.ex:2 lib/trip_web/live/groups/index.ex:2 lib/trip_web/live/index_live.ex:2
+#: lib/trip_web/live/leaderboards/index.ex:2 lib/trip_web/live/locations/edit.ex:2 lib/trip_web/live/locations/index.ex:2
+#: lib/trip_web/live/page_live.ex:2 lib/trip_web/live/posts/edit.ex:2 lib/trip_web/live/posts/index.ex:2
+#: lib/trip_web/live/posts/results/index.ex:2 lib/trip_web/live/posts/results/new.ex:2 lib/trip_web/live/posts/show.ex:2
+#: lib/trip_web/live/users/edit.ex:2 lib/trip_web/live/users/index.ex:2 lib/trip_web/views/error_view.ex:2
+#: lib/trip_web/views/layout_view.ex:2 lib/trip_web/views/user_confirmation_view.ex:2
+#: lib/trip_web/views/user_registration_view.ex:2 lib/trip_web/views/user_reset_password_view.ex:2
+#: lib/trip_web/views/user_session_view.ex:2 lib/trip_web/views/user_settings_view.ex:2
+msgid "Image"
+msgstr "Afbeelding"
+
+#, elixir-format, fuzzy
+#: lib/trip_web/live/challenges/edit.html.leex:20
+msgid "Input max score"
+msgstr "Voer max score in"
+
+#, elixir-format
+#: lib/trip_web/live/challenges/show.html.leex:34
+msgid "Input submission"
+msgstr "Voer antwoord in"
+
+#, elixir-format
+#: lib/trip_web/live/challenges/edit.ex:2
+#: lib/trip_web/live/challenges/index.ex:2 lib/trip_web/live/challenges/player_index.ex:2
+#: lib/trip_web/live/challenges/show.ex:2 lib/trip_web/live/challenges/submissions/index.ex:2
+#: lib/trip_web/live/groups/edit.ex:2 lib/trip_web/live/groups/index.ex:2 lib/trip_web/live/index_live.ex:2
+#: lib/trip_web/live/leaderboards/index.ex:2 lib/trip_web/live/locations/edit.ex:2 lib/trip_web/live/locations/index.ex:2
+#: lib/trip_web/live/page_live.ex:2 lib/trip_web/live/posts/edit.ex:2 lib/trip_web/live/posts/index.ex:2
+#: lib/trip_web/live/posts/results/index.ex:2 lib/trip_web/live/posts/results/new.ex:2 lib/trip_web/live/posts/show.ex:2
+#: lib/trip_web/live/users/edit.ex:2 lib/trip_web/live/users/index.ex:2 lib/trip_web/views/error_view.ex:2
+#: lib/trip_web/views/layout_view.ex:2 lib/trip_web/views/user_confirmation_view.ex:2
+#: lib/trip_web/views/user_registration_view.ex:2 lib/trip_web/views/user_reset_password_view.ex:2
+#: lib/trip_web/views/user_session_view.ex:2 lib/trip_web/views/user_settings_view.ex:2
+msgid "Judge"
+msgstr "Jury"
+
+#, elixir-format, fuzzy
+#: lib/trip_web/live/challenges/show.html.leex:18
+msgid "Max Points:"
+msgstr "Max punten:"
+
+#, elixir-format
+#: lib/trip_web/live/challenges/edit.html.leex:18
+msgid "Max score"
+msgstr ""
+
+#, elixir-format
+#: lib/trip_web/live/challenges/player_index.html.leex:27
+msgid "Max:"
+msgstr ""
+
+#, elixir-format
+#: lib/trip_web/live/challenges/index.html.leex:29
+msgid "New challenge"
+msgstr "Nieuwe opdracht"
+
+#, elixir-format
+#: lib/trip_web/live/challenges/edit.ex:2
+#: lib/trip_web/live/challenges/index.ex:2 lib/trip_web/live/challenges/player_index.ex:2
+#: lib/trip_web/live/challenges/show.ex:2 lib/trip_web/live/challenges/submissions/index.ex:2
+#: lib/trip_web/live/groups/edit.ex:2 lib/trip_web/live/groups/index.ex:2 lib/trip_web/live/index_live.ex:2
+#: lib/trip_web/live/leaderboards/index.ex:2 lib/trip_web/live/locations/edit.ex:2 lib/trip_web/live/locations/index.ex:2
+#: lib/trip_web/live/page_live.ex:2 lib/trip_web/live/posts/edit.ex:2 lib/trip_web/live/posts/index.ex:2
+#: lib/trip_web/live/posts/results/index.ex:2 lib/trip_web/live/posts/results/new.ex:2 lib/trip_web/live/posts/show.ex:2
+#: lib/trip_web/live/users/edit.ex:2 lib/trip_web/live/users/index.ex:2 lib/trip_web/views/error_view.ex:2
+#: lib/trip_web/views/layout_view.ex:2 lib/trip_web/views/user_confirmation_view.ex:2
+#: lib/trip_web/views/user_registration_view.ex:2 lib/trip_web/views/user_reset_password_view.ex:2
+#: lib/trip_web/views/user_session_view.ex:2 lib/trip_web/views/user_settings_view.ex:2
+msgid "Not submitted"
+msgstr "Niet ingestuurd"
+
+#, elixir-format
+#: lib/trip_web/live/challenges/show.html.leex:74
+msgid "Nothing submitted"
+msgstr "Niets ingestuurd"
+
+#, elixir-format
+#: lib/trip_web/live/challenges/edit.html.leex:39
+msgid "Pass or fail"
+msgstr "Halen of falen"
+
+#, elixir-format, fuzzy
+#: lib/trip_web/live/challenges/edit.ex:2
+#: lib/trip_web/live/challenges/index.ex:2 lib/trip_web/live/challenges/player_index.ex:2
+#: lib/trip_web/live/challenges/show.ex:2 lib/trip_web/live/challenges/submissions/index.ex:2
+#: lib/trip_web/live/groups/edit.ex:2 lib/trip_web/live/groups/index.ex:2 lib/trip_web/live/index_live.ex:2
+#: lib/trip_web/live/leaderboards/index.ex:2 lib/trip_web/live/locations/edit.ex:2 lib/trip_web/live/locations/index.ex:2
+#: lib/trip_web/live/page_live.ex:2 lib/trip_web/live/posts/edit.ex:2 lib/trip_web/live/posts/index.ex:2
+#: lib/trip_web/live/posts/results/index.ex:2 lib/trip_web/live/posts/results/new.ex:2 lib/trip_web/live/posts/show.ex:2
+#: lib/trip_web/live/users/edit.ex:2 lib/trip_web/live/users/index.ex:2 lib/trip_web/views/error_view.ex:2
+#: lib/trip_web/views/layout_view.ex:2 lib/trip_web/views/user_confirmation_view.ex:2
+#: lib/trip_web/views/user_registration_view.ex:2 lib/trip_web/views/user_reset_password_view.ex:2
+#: lib/trip_web/views/user_session_view.ex:2 lib/trip_web/views/user_settings_view.ex:2
+msgid "Passed"
+msgstr "Goedgekeurd"
+
+#, elixir-format
+#: lib/trip_web/live/challenges/edit.ex:2
+#: lib/trip_web/live/challenges/index.ex:2 lib/trip_web/live/challenges/player_index.ex:2
+#: lib/trip_web/live/challenges/show.ex:2 lib/trip_web/live/challenges/submissions/index.ex:2
+#: lib/trip_web/live/groups/edit.ex:2 lib/trip_web/live/groups/index.ex:2 lib/trip_web/live/index_live.ex:2
+#: lib/trip_web/live/leaderboards/index.ex:2 lib/trip_web/live/locations/edit.ex:2 lib/trip_web/live/locations/index.ex:2
+#: lib/trip_web/live/page_live.ex:2 lib/trip_web/live/posts/edit.ex:2 lib/trip_web/live/posts/index.ex:2
+#: lib/trip_web/live/posts/results/index.ex:2 lib/trip_web/live/posts/results/new.ex:2 lib/trip_web/live/posts/show.ex:2
+#: lib/trip_web/live/users/edit.ex:2 lib/trip_web/live/users/index.ex:2 lib/trip_web/views/error_view.ex:2
+#: lib/trip_web/views/layout_view.ex:2 lib/trip_web/views/user_confirmation_view.ex:2
+#: lib/trip_web/views/user_registration_view.ex:2 lib/trip_web/views/user_reset_password_view.ex:2
+#: lib/trip_web/views/user_session_view.ex:2 lib/trip_web/views/user_settings_view.ex:2
+msgid "Pending"
+msgstr "In behandeling"
+
+#, elixir-format, fuzzy
+#: lib/trip_web/live/challenges/show.html.leex:16
+msgid "Points:"
+msgstr "Punten:"
+
+#, elixir-format, fuzzy
+#: lib/trip_web/live/posts/results/new.html.leex:6
+msgid "Post"
+msgstr ""
+
+#, elixir-format, fuzzy
+#: lib/trip_web/live/challenges/submissions/index.html.leex:10
+msgid "Select a status"
+msgstr "Selecteer een status"
+
+#, elixir-format
+#: lib/trip_web/live/challenges/edit.html.leex:37
+msgid "Subjective score"
+msgstr "Beoordeelde score"
+
+#, elixir-format
+#: lib/trip_web/live/challenges/show.html.leex:26
+#: lib/trip_web/live/challenges/show.html.leex:64
+msgid "Submission"
+msgstr "Inzending"
+
+#, elixir-format
+#: lib/trip_web/live/challenges/edit.html.leex:27
+msgid "Submission type"
+msgstr "Inzending type"
+
+#, elixir-format, fuzzy
+#: lib/trip_web/live/challenges/show.html.leex:52
+#: lib/trip_web/live/challenges/show.html.leex:102
+msgid "Submit"
+msgstr "Stuur in"
+
+#, elixir-format
+#: lib/trip_web/live/challenges/edit.ex:2
+#: lib/trip_web/live/challenges/index.ex:2 lib/trip_web/live/challenges/player_index.ex:2
+#: lib/trip_web/live/challenges/show.ex:2 lib/trip_web/live/challenges/submissions/index.ex:2
+#: lib/trip_web/live/groups/edit.ex:2 lib/trip_web/live/groups/index.ex:2 lib/trip_web/live/index_live.ex:2
+#: lib/trip_web/live/leaderboards/index.ex:2 lib/trip_web/live/locations/edit.ex:2 lib/trip_web/live/locations/index.ex:2
+#: lib/trip_web/live/page_live.ex:2 lib/trip_web/live/posts/edit.ex:2 lib/trip_web/live/posts/index.ex:2
+#: lib/trip_web/live/posts/results/index.ex:2 lib/trip_web/live/posts/results/new.ex:2 lib/trip_web/live/posts/show.ex:2
+#: lib/trip_web/live/users/edit.ex:2 lib/trip_web/live/users/index.ex:2 lib/trip_web/views/error_view.ex:2
+#: lib/trip_web/views/layout_view.ex:2 lib/trip_web/views/user_confirmation_view.ex:2
+#: lib/trip_web/views/user_registration_view.ex:2 lib/trip_web/views/user_reset_password_view.ex:2
+#: lib/trip_web/views/user_session_view.ex:2 lib/trip_web/views/user_settings_view.ex:2
+msgid "Text"
+msgstr ""
+
+#, elixir-format
+#: lib/trip_web/live/posts/show.html.leex:10
+msgid "Type of result:"
+msgstr "Type puntentelling"
+
+#, elixir-format
+#: lib/trip_web/live/challenges/show.html.leex:10
+msgid "Type of submission:"
+msgstr "Type inzending:"
+
+#, elixir-format
+#: lib/trip_web/live/challenges/show.html.leex:40
+msgid "Upload image"
+msgstr "Afbeelding uploaden"
