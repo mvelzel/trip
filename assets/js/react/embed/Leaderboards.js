@@ -26,6 +26,7 @@ export default function Leaderboards({
   }, [page]);
 
   return (
+    <>
     <SwipeableViews
       index={pageIndex}
       className="h-full"
@@ -130,6 +131,8 @@ export default function Leaderboards({
         </div>
       </div>
     </SwipeableViews>
+    <div className="pb-10"></div>
+    </>
   );
 }
 
