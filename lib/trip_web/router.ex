@@ -26,8 +26,16 @@ defmodule TripWeb.Router do
     plug :allow_roles, [:admin, :superuser]
   end
 
+  pipeline :judge_permission do
+    plug :allow_roles, [:admin, :superuser, :judge]
+  end
+
   pipeline :player_permission do
     plug :allow_roles, [:player, :admin, :superuser]
+  end
+
+  pipeline :player_judge_permission do
+    plug :allow_roles, [:player, :judge, :admin, :superuser]
   end
 
   scope "/", TripWeb do
@@ -52,6 +60,26 @@ defmodule TripWeb.Router do
     pipe_through [:browser, :require_authenticated_user, :player_permission]
     
     live "/groups/edit/:group", GroupsLive.Edit, :edit
+
+    live "/challenges/player", ChallengesLive.PlayerIndex, :index
+  end
+
+  scope "/", TripWeb do
+    pipe_through [:browser, :require_authenticated_user, :judge_permission]
+
+    scope "/challenges", ChallengesLive do
+      live "/submissions", Submissions.Index, :index
+      
+      live "/submissions/:submission", Show, :approve
+
+      live "/", Index, :index
+    end
+  end
+
+  scope "/", TripWeb do
+    pipe_through [:browser, :require_authenticated_user, :player_judge_permission]
+
+    live "/challenges/:challenge", ChallengesLive.Show, :show
   end
 
   scope "/", TripWeb do
@@ -72,15 +100,9 @@ defmodule TripWeb.Router do
     end
 
     scope "/challenges", ChallengesLive do
-      live "/submission", Submissions.Index, :index
-
-      live "/:challenge/submissions/new", Submissions.New, :new
-
       live "/new", Edit, :new
 
       live "/edit/:challenge", Edit, :edit
-
-      live "/", Index, :index
       
       live "/:challenge", Show, :show
     end

@@ -17,7 +17,7 @@
     <div class="flex flex-col space-y-3">
       <%= label f, :max_score, gettext("Max score"), class: "font-sans text-white font-medium" %>
       <%= number_input f, :max_score, class: "t-input",
-        placeholder: gettext("Input max score"), step: 1 %>
+        placeholder: gettext("Input max score"), step: 1, min: 0 %>
     </div>
     <div class="flex flex-row space-x-3 items-center">
       <p class="font-sans text-white font-medium"><%= gettext "Available by default" %></p>

@@ -19,4 +19,91 @@
       <% end %>
     </span> <%= @challenge.max_score %>km
   </p>
+  <%= if role_allowed(@current_user, [:player, :superuser]) && !assigns[:submission] do %>
+    <%= f = form_for @changeset, "#", [phx_submit: :create, phx_change: :validate,
+      class: "flex flex-col space-y-6"] %>
+      <h2 class="text-white text-xl font-bold font-sans tracking-wider">
+        <%= gettext "Submission" %>
+        <%= hidden_input f, :group_id %>
+        <%= hidden_input f, :challenge_id %>
+        <%= hidden_input f, :submission_type %>
+      </h2>
+      <%= if @challenge.submission_type == :text do %>
+        <div class="flex flex-col">
+          <%= textarea f, :text, class: "t-input", rows: 6,
+            placeholder: gettext("Input submission") %>
+        </div>
+      <% else %>
+        <div class="flex flex-col space-y-4">
+          <div class="rounded-2xl bg-t-green flex flex-row px-8 h-14 flex-row items-center green-3d relative">
+            <span class="text-xl font-sans font-bold text-t-black space-x-3 flex items-center">
+              <i class="fas fa-upload"></i> <span><%= gettext("Upload image") %></span>
+            </span>
+            <%= live_file_input @uploads.image,
+              class: "absolute opacity-0 w-full h-full cursor-pointer" %>
+          </div>
+
+          <%= for entry <- @uploads.image.entries do %>
+            <%= live_img_preview entry, class: "w-full flex-1 rounded-2xl" %>
+          <% end %>
+        </div>
+      <% end %>
+      <div class="flex flex-row justify-end items-center pb-10">
+        <%= submit gettext("Submit"),
+          class: "t-button",
+          disabled: !@changeset.valid? ||
+            (@challenge.submission_type != :text && @uploads.image.entries == [])%>
+      </div>
+    </form>
+  <% end %>
+  <%= if assigns[:submission] do %>
+    <%= f = form_for @changeset, "#", [phx_submit: "judge-submission", phx_change: "validate-approve",
+      class: "flex flex-col space-y-6"] %>
+      <div class="flex flex-col">
+        <h2 class="text-white text-xl font-bold font-sans tracking-wider">
+          <%= gettext "Submission" %>
+          <%= hidden_input f, :status %>
+        </h2>
+        <h3 class="text-white text-lg text-medium font-sans tracking-wide">
+          <%= gettext "Group" %> <%= @submission.group.number %> - <%= @submission.group.name %>
+        </h3>
+      </div>
+      <%= if @challenge.submission_type == :text do %>
+        <div class="flex flex-col">
+          <%= textarea :text, :text, class: "t-input", rows: 6,
+            placeholder: gettext("Nothing submitted"), value: @submission.text, disabled: true %>
+        </div>
+      <% else %>
+        <div class="flex flex-col">
+          <%
+            image = base64_image(@submission.image)
+          %>
+          <img src="<%= image %>" class="w-full rounded-2xl" />
+        </div>
+      <% end %>
+      <%= if @challenge.pass_or_fail do %>
+        <div class="flex flex-row justify-between items-center pb-10">
+          <a href="#" phx-click="fail-submission",
+                    class="t-button text-3xl !bg-t-red red-3d">
+            <i class="fas fa-times"></i>
+          </a>
+          <a href="#" phx-click="approve-submission",
+                    class="t-button text-3xl">
+            <i class="fas fa-check"></i>
+          </a>
+        </div>
+      <% else %>
+        <div class="flex flex-col space-y-3">
+          <%= label f, :score, gettext("Score"), class: "font-sans text-white font-medium" %>
+          <%= number_input f, :score, class: "t-input",
+            placeholder: gettext("Give score"), step: 1, min: 0, max: @challenge.max_score %>
+        </div>
+        <div class="flex flex-row justify-end items-center pb-10">
+          <%= submit gettext("Submit"),
+            class: "t-button",
+            disabled: !@changeset.valid? %>
+        </div>
+      <% end %>
+    </form>
+  <% end %>
 </div>

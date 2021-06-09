@@ -10,21 +10,25 @@
           <span><%= challenge.name %></span>
         </h2>
       <% end %>
-      <%= live_redirect to: Routes.challenges_edit_path(@socket, :edit, challenge.id),
-        class: "rounded-2xl bg-t-green flex flex-col items-center justify-around
-          min-w-[4rem] w-16 h-14 green-3d" do %>
-        <h2 class="text-xl font-sans font-bold text-t-black space-x-3 flex items-center">
-          <i class="far fa-edit"></i>
-        </h2>
+      <%= if role_allowed(@current_user, [:admin, :superuser]) do %>
+        <%= live_redirect to: Routes.challenges_edit_path(@socket, :edit, challenge.id),
+          class: "rounded-2xl bg-t-green flex flex-col items-center justify-around
+            min-w-[4rem] w-16 h-14 green-3d" do %>
+          <h2 class="text-xl font-sans font-bold text-t-black space-x-3 flex items-center">
+            <i class="far fa-edit"></i>
+          </h2>
+        <% end %>
       <% end %>
     </div>
   <% end %>
-  <%= live_redirect to: Routes.challenges_edit_path(@socket, :new),
-    class: "rounded-2xl bg-t-green px-8 py-4 green-3d" do %>
-    <h2 class="text-xl font-sans font-bold text-t-black space-x-3 flex items-center">
-      <i class="fas fa-plus"></i>
-      <span><%= gettext "New challenge" %></span>
-    </h2>
+  <%= if role_allowed(@current_user, [:admin, :superuser]) do %>
+    <%= live_redirect to: Routes.challenges_edit_path(@socket, :new),
+      class: "rounded-2xl bg-t-green px-8 py-4 green-3d" do %>
+      <h2 class="text-xl font-sans font-bold text-t-black space-x-3 flex items-center">
+        <i class="fas fa-plus"></i>
+        <span><%= gettext "New challenge" %></span>
+      </h2>
+    <% end %>
   <% end %>
   <div class="pb-10"></div>
 </div>

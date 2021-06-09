@@ -1,0 +1,36 @@
+<div class="flex flex-col space-y-6 w-full pt-10">
+  <h2 class="uppercase text-white text-2xl ml-10 font-bold font-sans tracking-wider">
+    <%= gettext "Challenges" %>
+  </h2>
+  <%= for challenge <- @challenges do %>
+    <div class="flex flex-row items-center space-x-6 bg-t-red lead-bot py-4 px-6 w-full">
+      <% status = get_challenge_status(@group_submissions, challenge) %>
+      <%= if status == :unsubmitted || status == :failed do %>
+        <%= live_redirect to: Routes.challenges_show_path(@socket, :show, challenge.id), 
+          class: "font-sans t-button !px-4 !py-2" do %>
+          <i class="fas fa-upload"></i>
+        <% end %>
+      <% else %>
+        <p class="t-button font-sans !px-4 !py-2 opacity-50">
+          <i class="fas fa-upload"></i>
+        </p>
+      <% end %>
+      <p class="font-sans font-medium text-white text-lg">
+        <%= challenge.name %>
+        <br />
+        <span class="text-t-green text-sm font-base">
+          Status: <%= submission_status_label(status) %>
+        </span>
+      </p>
+      <p class="justify-self-end flex-1 text-right text-md font-medium text-t-green text-green-3d">
+        <%= if status == :unsubmitted || status == :pending do %>
+          <%= gettext "Max:" %> <%= challenge.max_score %>km
+        <% else %>
+          <%= get_challenge_submission(@group_submissions, challenge).score %>/<%= challenge.max_score %>km
+        <% end %>
+      </p>
+    </div>
+  <% end %>
+  <div class="pb-10"></div>
+</div>
+

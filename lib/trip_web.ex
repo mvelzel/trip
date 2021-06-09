@@ -121,12 +121,18 @@ defmodule TripWeb do
       def role_label(:admin), do: gettext("Admin")
       def role_label(:player), do: gettext("Player")
       def role_label(:postleader), do: gettext("Postleader")
+      def role_label(:judge), do: gettext("Judge")
 
       def submission_status_label(:pending), do: gettext("Pending")
       def submission_status_label(:passed), do: gettext("Passed")
+      def submission_status_label(:unsubmitted), do: gettext("Not submitted")
       def submission_status_label(:failed), do: gettext("Failed")
       def submission_type_label(:text), do: gettext("Text")
       def submission_type_label(:image), do: gettext("Image")
+
+      def base64_image(binary) do
+        "data:image/png;base64, " <> Base.encode64(binary)
+      end
     end
   end
 
