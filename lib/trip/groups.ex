@@ -19,14 +19,14 @@ defmodule Trip.Groups do
   """
   def list_groups do
     Group
-    |> order_by(:number)
+    |> order_by([asc: :number, asc: :id])
     |> Repo.all()
   end
   
   def list_groups(location_id) do
     Group
     |> where(location_id: ^location_id)
-    |> order_by(:number)
+    |> order_by([asc: :number, asc: :id])
     |> Repo.all()
   end
 

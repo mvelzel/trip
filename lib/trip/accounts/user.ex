@@ -5,7 +5,7 @@ defmodule Trip.Accounts.User do
   alias Trip.Groups.Group
   alias Trip.Accounts.UserPost
 
-  @roles [:admin, :player, :postleader]
+  @roles [:admin, :player, :postleader, :judge]
 
   @derive {Inspect, except: [:password]}
   schema "users" do

@@ -6,7 +6,8 @@ defmodule Trip.Challenges do
   import Ecto.Query, warn: false
   alias Trip.Repo
 
-  alias Trip.Challenges.Challenge
+  alias Trip.Groups
+  alias Trip.Challenges.{Challenge, Submission}
 
   @doc """
   Returns the list of challenges.
@@ -19,6 +20,19 @@ defmodule Trip.Challenges do
   """
   def list_challenges do
     Repo.all(Challenge)
+  end
+
+  def list_submissions(status) do
+    Submission
+    |> where(status: ^status)
+    |> Repo.all()
+    |> Repo.preload([:group, :challenge])
+  end
+
+  def list_submissions_group(id) do
+    Submission
+    |> where(group_id: ^id)
+    |> Repo.all()
   end
 
   @doc """
@@ -36,6 +50,10 @@ defmodule Trip.Challenges do
 
   """
   def get_challenge!(id), do: Repo.get!(Challenge, id)
+
+  def get_submission!(id), do:
+    Repo.get!(Submission, id)
+    |> Repo.preload([:group, :challenge])
 
   @doc """
   Creates a challenge.
@@ -55,6 +73,18 @@ defmodule Trip.Challenges do
     |> Repo.insert()
   end
 
+  def create_submission(attrs) do
+    %Submission{}
+    |> Submission.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  def create_submission(attrs, image) do
+    %Submission{}
+    |> Submission.changeset(attrs, image)
+    |> Repo.insert()
+  end
+
   @doc """
   Updates a challenge.
 
@@ -70,6 +100,19 @@ defmodule Trip.Challenges do
   def update_challenge(%Challenge{} = challenge, attrs) do
     challenge
     |> Challenge.changeset(attrs)
+    |> Repo.update()
+  end
+
+  def approve_submission(%Submission{} = submission, attrs) do
+    group = submission.group
+    old_score = submission.score || 0
+    group_score = group.score - old_score + String.to_integer(attrs["score"])
+
+    group
+    |> Groups.update_group(%{"score" => to_string(group_score)})
+
+    submission
+    |> Submission.approve_changeset(attrs)
     |> Repo.update()
   end
 

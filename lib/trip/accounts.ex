@@ -5,7 +5,7 @@ defmodule Trip.Accounts do
 
   import Ecto.Query, warn: false
   alias Trip.Repo
-  alias Trip.{Locations, Posts}
+  alias Trip.{Locations, Posts, Groups}
   alias Trip.Accounts.{User, UserToken, UserNotifier}
 
   ## Database getters
@@ -30,6 +30,13 @@ defmodule Trip.Accounts do
     case user.role do
       :player -> user.group.location
       _ -> Enum.at(Locations.list_locations(), 0)
+    end
+  end
+
+  def get_user_group(%User{} = user) do
+    case user.role do
+      :player -> user.group
+      _ -> Enum.at(Groups.list_groups(), 0)
     end
   end
 
