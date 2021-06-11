@@ -29,24 +29,15 @@ Hooks.Notifications = {
   mounted() {
     Notification.requestPermission().then((result) => {
       if (result === "granted") {
-        navigator.serviceWorker.getRegistration().then(function (reg) {
-          reg.showNotification("Hello world!", {
-            body: "Buzz! Buzz!",
-            vibrate: [300, 100, 300],
-            icon: 'images/phoenix_icon.png',
-					});
-        });
       }
     });
+    this.handleEvent("notification", ({ text }) =>
+      navigator.serviceWorker.getRegistration().then(function (reg) {
+        reg.showNotification(text);
+      })
+    );
   },
 };
-
-function randomNotification() {
-  navigator.serviceWorker.getRegistration().then(function (reg) {
-    reg.showNotification("Hello world!");
-  });
-  setTimeout(randomNotification, 10000);
-}
 
 // Hooks.Example = { mounted() { } }
 

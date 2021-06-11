@@ -59,7 +59,8 @@ defmodule TripWeb do
         IO.inspect(n)
         {:noreply, 
           socket
-          |> assign(notifications: socket.assigns.notifications + 1)}
+          |> assign(notifications: socket.assigns.notifications + 1)
+          |> push_event("notification", %{text: n.text})}
       end
 
       def assign_defaults(socket, session) do
