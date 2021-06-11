@@ -18,12 +18,36 @@ import NProgress from "nprogress";
 import { LiveSocket } from "phoenix_live_view";
 import LiveReact, { initLiveReact } from "phoenix_live_react";
 import { MapBoundsPicker, MapLocationPicker } from "./react/embed/MapEditor";
-import MapOverview from "./react/embed/MapOverview"
+import MapOverview from "./react/embed/MapOverview";
 import Leaderboards from "./react/embed/Leaderboards";
 import Dropdown from "./react/embed/Dropdown";
 import "alpinejs";
 
 let Hooks = { LiveReact };
+
+Hooks.Notifications = {
+  mounted() {
+    Notification.requestPermission().then((result) => {
+      if (result === "granted") {
+        navigator.serviceWorker.getRegistration().then(function (reg) {
+          reg.showNotification("Hello world!", {
+            body: "Buzz! Buzz!",
+            vibrate: [300, 100, 300],
+            icon: 'images/phoenix_icon.png',
+					});
+        });
+      }
+    });
+  },
+};
+
+function randomNotification() {
+  navigator.serviceWorker.getRegistration().then(function (reg) {
+    reg.showNotification("Hello world!");
+  });
+  setTimeout(randomNotification, 10000);
+}
+
 // Hooks.Example = { mounted() { } }
 
 window.Components = {
@@ -31,7 +55,7 @@ window.Components = {
   MapLocationPicker,
   Dropdown,
   Leaderboards,
-  MapOverview
+  MapOverview,
 };
 
 let csrfToken = document

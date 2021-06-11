@@ -55,6 +55,13 @@ defmodule TripWeb do
         {:noreply, assign(socket, menu_expanded: !socket.assigns.menu_expanded)}
       end
 
+      def handle_info(%Trip.Notifications.Notification{} = n, socket) do
+        IO.inspect(n)
+        {:noreply, 
+          socket
+          |> assign(notifications: socket.assigns.notifications + 1)}
+      end
+
       def assign_defaults(socket, session) do
         current_user =
           if Map.has_key?(session, "user_token") do
@@ -63,8 +70,13 @@ defmodule TripWeb do
             nil
           end
 
+        if current_user do
+          Phoenix.PubSub.subscribe(Trip.PubSub, "notification:#{current_user.id}")
+        end
+
         socket
         |> assign(current_user: current_user)
+        |> assign(notifications: 0)
         |> assign(menu_expanded: false)
       end
     end

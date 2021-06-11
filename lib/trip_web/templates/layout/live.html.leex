@@ -13,6 +13,7 @@
         class: "uppercase text-white text-3xl tracking-widest font-bold font-sans trip" do %>
         <%= gettext "Trip" %>
       <% end %>
+      <p id="notifications" phx-hook="Notifications"><%= @notifications %></p>
       <a class="text-4xl text-t-red burger flex items-center" href="#"
         phx-click="burger">
         <i class="fas fa-bars"></i>

@@ -11,9 +11,16 @@
     <script src="https://kit.fontawesome.com/8d7cddd315.js" crossorigin="anonymous"></script>
     <link href="https://api.fontshare.com/css?f[]=clash-grotesk@200,300,400,500,600,700&display=swap" rel="stylesheet">
     <link phx-track-static rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
+    <link phx-track-static rel="manifest" href="<%= Routes.static_path(@conn, "/manifest.json") %>"/>
     <script defer phx-track-static type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
   </head>
   <body class="h-full flex w-full bg-t-darkerBlue">
     <%= @inner_content %>
+		<script>
+			if('serviceWorker' in navigator) {
+				navigator.serviceWorker.register('/sw.js')
+				 .then(function() { console.log("Service Worker Registered"); });
+			}
+		</script>
   </body>
 </html>
