@@ -17,4 +17,10 @@
     [bounds: [[@location.lat0, @location.lon0],[@location.lat1, @location.lon1]],
       className: "h-96", postLocations: @post_locations],
     id: "map-overview") %>
+  <div class="flex flex-row justify-end">
+    <a href="#" phx-click="claim-post"
+                class="t-button">
+      <%= gettext "Claim post" %>
+    </a>
+  </div>
 </div>

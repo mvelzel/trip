@@ -8,7 +8,7 @@ defmodule Trip.Posts do
   alias Trip.Repo
 
   alias Trip.Groups
-  alias Trip.Posts.{Post, PostResult, PostLocation}
+  alias Trip.Posts.{Post, PostResult, PostLocation, PostClaim}
 
   @doc """
   Returns the list of posts.
@@ -23,6 +23,7 @@ defmodule Trip.Posts do
     Post
     |> order_by(:number)
     |> Repo.all()
+    |> Repo.preload(:locations)
   end
 
   def list_posts_locations(location_id) do
@@ -30,6 +31,13 @@ defmodule Trip.Posts do
     |> where(location_id: ^location_id)
     |> Repo.all()
     |> Repo.preload(:post)
+  end
+
+  def list_all_post_claims(post_location_id) do
+    PostClaim
+    |> where(post_location_id: ^post_location_id)
+    |> Repo.all()
+    |> Repo.preload(:group)
   end
 
   def list_all_post_results(post_id) do
@@ -111,6 +119,12 @@ defmodule Trip.Posts do
     |> Repo.insert()
   end
 
+  def create_post_claim(attrs \\ %{}) do
+    %PostClaim{}
+    |> PostClaim.changeset(attrs)
+    |> Repo.insert()
+  end
+
   def create_post_result(attrs, score_type, result_type) do
     res =
       %PostResult{}
@@ -149,6 +163,10 @@ defmodule Trip.Posts do
     end
 
     Repo.delete(post_result)
+  end
+
+  def delete_post_claim(%PostClaim{} = post_claim) do
+    Repo.delete(post_claim)
   end
 
   @doc """

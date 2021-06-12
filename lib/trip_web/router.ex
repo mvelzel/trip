@@ -90,6 +90,8 @@ defmodule TripWeb.Router do
     scope "/posts", PostsLive do
       live "/new", Edit, :new
 
+      live "/claims", Claims.Index, :index
+
       live "/edit/:post", Edit, :edit
     end
 

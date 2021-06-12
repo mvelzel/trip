@@ -14,9 +14,10 @@ defmodule Trip.Application do
       # Start the PubSub system
       {Phoenix.PubSub, name: Trip.PubSub},
       # Start the Endpoint (http/https)
-      TripWeb.Endpoint
+      TripWeb.Endpoint,
       # Start a worker by calling: Trip.Worker.start_link(arg)
       # {Trip.Worker, arg}
+      Trip.Games.Handler
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
