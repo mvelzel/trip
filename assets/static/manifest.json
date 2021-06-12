@@ -1,0 +1,11 @@
+{
+  "name": "Road to Brunstad",
+  "short_name": "Dagspel",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#033E8C",
+  "theme_color": "#056CF2",
+  "splash_pages": null
+}
+
