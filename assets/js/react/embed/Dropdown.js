@@ -54,8 +54,10 @@ export default function Dropdown({ selected, values, pushEvent, placeholder, phx
           values.map(([val, id]) => (
             <div
               key={id}
-              className="py-2 hover:font-medium"
-              onClick={() => pushEvent(phx_event, { value: id })}
+              className="py-2 hover:font-medium cursor-pointer"
+              onMouseDown={() => {
+                pushEvent(phx_event, { value: id })
+              }}
             >
               {val}
             </div>
