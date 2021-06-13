@@ -50,10 +50,12 @@ defmodule TripWeb do
 
       unquote(view_helpers())
 
+      @impl true
       def handle_event("burger", _params, socket) do
         {:noreply, assign(socket, menu_expanded: !socket.assigns.menu_expanded)}
       end
 
+      @impl true
       def handle_info(%Trip.Notifications.Notification{} = n, socket) do
         IO.inspect(n)
 
@@ -80,6 +82,7 @@ defmodule TripWeb do
         if current_user do
           Phoenix.PubSub.subscribe(Trip.PubSub, "notification:#{current_user.id}")
         end
+        Phoenix.PubSub.subscribe(Trip.PubSub, "game_front")
 
         socket
         |> assign(current_user: current_user)
