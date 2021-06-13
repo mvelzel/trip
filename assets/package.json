@@ -3,8 +3,8 @@
   "description": " ",
   "license": "MIT",
   "scripts": {
-    "deploy": "webpack --mode production",
-    "watch": "webpack --mode development --watch"
+    "deploy": "NODE_ENV=production TAILWIND_MODE=build webpack --mode production",
+    "watch": "NODE_ENV=development TAILWIND_MODE=watch webpack --mode development --watch"
   },
   "resolutions": {
     "react-leaflet/@react-leaflet/core": "1.0.2"
