@@ -80,6 +80,7 @@ defmodule Trip.Games do
       |> Game.changeset(attrs)
 
     Phoenix.PubSub.broadcast(Trip.PubSub, "game", Ecto.Changeset.apply_changes(changeset))
+    Phoenix.PubSub.broadcast(Trip.PubSub, "game_front", Ecto.Changeset.apply_changes(changeset))
 
     changeset
     |> Repo.update()
@@ -94,6 +95,7 @@ defmodule Trip.Games do
       |> Ecto.Changeset.put_change(:time_started, time)
 
     Phoenix.PubSub.broadcast(Trip.PubSub, "game", Ecto.Changeset.apply_changes(changeset))
+    Phoenix.PubSub.broadcast(Trip.PubSub, "game_front", Ecto.Changeset.apply_changes(changeset))
 
     changeset
     |> Repo.update()
@@ -116,7 +118,13 @@ defmodule Trip.Games do
 
     time_started = NaiveDateTime.new!(y, m, d, hnew, minnew, 0)
 
-    update_game(%{"started" => "true", "round" => "0"}, time_started)
+    Repo.delete_all(Trip.Posts.PostClaim)
+    update_game(%{"started" => "true", "current_round" => "0"}, time_started)
+  end
+
+  def stop_game() do
+    Repo.delete_all(Trip.Posts.PostClaim)
+    update_game(%{"started" => "false", "current_round" => "0"})
   end
 
   @doc """

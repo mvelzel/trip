@@ -22,12 +22,19 @@ defmodule Trip.Games.Handler do
 
   @impl true
   def handle_info(%Games.Game{} = game, state) do
-    if !state.game.started && game.started do
+    state = if !state.game.started && game.started do
       diff =
         game.time_started
         |> NaiveDateTime.diff(NaiveDateTime.utc_now(), :millisecond)
 
-      Process.send_after(self(), :increment_round, 15 * 60 * 1000 + diff)
+      #time_increment(state, 15 * 60 * 1000 + diff)
+      time_increment(state, 1 * 60 * 1000)
+    else
+      if state.game.started && !game.started do
+        stop_timer(state)
+      else
+        state
+      end
     end
 
     {:noreply,
@@ -42,17 +49,35 @@ defmodule Trip.Games.Handler do
 
     game = Ecto.Changeset.apply_changes(changeset)
 
-    IO.inspect(game.current_round)
+    Phoenix.PubSub.broadcast(Trip.PubSub, "game_front", Ecto.Changeset.apply_changes(changeset))
 
     changeset
     |> Trip.Repo.update()
 
-    if game.started do
-      Process.send_after(self(), :increment_round, 15 * 60 * 1000)
+    state = if game.started do
+      #time_increment(state, 15 * 60 * 1000)
+      time_increment(state, 1 * 60 * 1000)
     end
 
     {:noreply,
      state
      |> Map.put(:game, game)}
+  end
+
+  defp time_increment(state, time) do
+    if state[:timer] do
+      Process.cancel_timer(state.timer)
+    end
+    timer = Process.send_after(self(), :increment_round, time)
+    state |> Map.put(:timer, timer)
+  end
+
+  defp stop_timer(state) do
+    if state[:timer] do
+      Process.cancel_timer(state.timer)
+      state |> Map.delete(:timer)
+    else
+      state
+    end
   end
 end
