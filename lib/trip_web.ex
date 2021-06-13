@@ -48,7 +48,6 @@ defmodule TripWeb do
         container: {:div, class: "h-full w-full flex"},
         layout: {TripWeb.LayoutView, "live.html"}
 
-
       unquote(view_helpers())
 
       def handle_event("burger", _params, socket) do
@@ -57,10 +56,17 @@ defmodule TripWeb do
 
       def handle_info(%Trip.Notifications.Notification{} = n, socket) do
         IO.inspect(n)
-        {:noreply, 
-          socket
-          |> assign(notifications: socket.assigns.notifications + 1)
-          |> push_event("notification", %{text: n.text})}
+
+        {:noreply,
+         socket
+         |> assign(notifications: socket.assigns.notifications + 1)
+         |> push_event("notification", %{text: n.text})}
+      end
+
+      def handle_info(%Trip.Games.Game{} = game, socket) do
+        {:noreply,
+         socket
+         |> assign(game: game)}
       end
 
       def assign_defaults(socket, session) do
@@ -78,6 +84,7 @@ defmodule TripWeb do
         socket
         |> assign(current_user: current_user)
         |> assign(notifications: 0)
+        |> assign(game: Trip.Games.get_game!())
         |> assign(menu_expanded: false)
       end
     end
