@@ -40,6 +40,14 @@ defmodule Trip.Posts do
     |> Repo.preload(:group)
   end
 
+  def list_all_post_claims(post_location_id, group_id) do
+    PostClaim
+    |> where(post_location_id: ^post_location_id)
+    |> where(group_id: ^group_id)
+    |> Repo.all()
+    |> Repo.preload(:group)
+  end
+
   def list_all_post_results(post_id) do
     PostResult
     |> where(post_id: ^post_id)
@@ -100,6 +108,14 @@ defmodule Trip.Posts do
     do:
       Repo.get!(Post, id)
       |> Repo.preload(locations: [:location, :post])
+
+  def get_post_claim(post_location_id, round) do
+    PostClaim
+    |> where(post_location_id: ^post_location_id)
+    |> where(round: ^round)
+    |> Repo.one()
+    |> Repo.preload(:group)
+  end
 
   @doc """
   Creates a post.

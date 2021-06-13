@@ -15,12 +15,24 @@
     phx_event: "location-selected"], id: "location-dropdown" %>
   <%= live_react_component("Components.MapOverview",
     [bounds: [[@location.lat0, @location.lon0],[@location.lat1, @location.lon1]],
-      className: "h-96", postLocations: @post_locations],
+      className: "h-96", postLocations: @post_locations,
+      postStates: generate_post_states(@post_locations, @game)],
     id: "map-overview") %>
-  <div class="flex flex-row justify-end">
-    <a href="#" phx-click="claim-post"
-                class="t-button">
-      <%= gettext "Claim post" %>
-    </a>
-  </div>
+  <%= if @game.started do %>
+    <div class="flex flex-row justify-between items-center">
+      <p class="text-sans text-white font-medium text-xl">
+      <%= gettext "For round: " %> <br /> <%= @game.current_round + 2 %>
+      </p>
+      <%= if can_claim?(@current_user, @post_locations, @game) do %>
+        <a href="#" phx-click="claim-post"
+                    class="t-button">
+          <%= gettext "Claim post" %>
+        </a>
+      <% else %>
+        <p class="t-button opacity-50">
+          <%= gettext "Claim post" %>
+        </p>
+      <% end %>
+    </div>
+  <% end %>
 </div>

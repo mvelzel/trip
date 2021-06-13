@@ -2,6 +2,16 @@
   <h2 class="uppercase text-white text-2xl font-bold font-sans tracking-wider ml-10">
     <%= gettext "Home" %>
   </h2>
+  <p class="text-white text-xl font-base font-sans ml-10">
+    <span class="text-t-green text-green-3d font-medium">
+      <%= gettext "Current round:" %>
+    </span>
+    <%= if @game.started do %>
+      <%= @game.current_round %>
+    <% else %>
+      <%= gettext "Game not yet started" %>
+    <% end %>
+  </p>
   <div class="w-full px-10">
     <%= live_react_component "Components.Dropdown",
       [selected: @location.id, values: Enum.map(@locations, &[&1.name, &1.id]),
@@ -10,7 +20,8 @@
   <div class="flex-1">
   <%= live_react_component("Components.MapOverview",
     [bounds: [[@location.lat0, @location.lon0],[@location.lat1, @location.lon1]],
-      className: "flex-1", postLocations: @post_locations],
+      className: "flex-1", postLocations: @post_locations,
+      postStates: TripWeb.PostsLive.Show.generate_post_states(@post_locations, @game)],
     container: [class: "h-full flex flex-col"], id: "map-overview") %>
   </div>
 </div>
