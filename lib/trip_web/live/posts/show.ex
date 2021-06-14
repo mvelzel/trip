@@ -21,6 +21,7 @@ defmodule TripWeb.PostsLive.Show do
      socket
      |> assign(locations: locations)
      |> assign(location: location)
+     |> assign(selecting: false)
      |> assign(post_locations: post_locations)
      |> assign(post: post)}
   end
@@ -36,6 +37,7 @@ defmodule TripWeb.PostsLive.Show do
     {:noreply,
      socket
      |> assign(post_locations: post_locations)
+     |> assign(selecting: false)
      |> assign(location: location)}
   end
 
@@ -43,19 +45,19 @@ defmodule TripWeb.PostsLive.Show do
     {:noreply, push_redirect(socket, to: Routes.posts_show_path(socket, :show, id))}
   end
 
-  def handle_event("claim-post", _params, socket) do
+  def handle_event("set-selecting", %{"selecting" => selecting}, socket) do
+    {:noreply, assign(socket, selecting: String.to_atom(selecting))}
+  end
+
+  def handle_event("claim-post", %{"post_location" => id}, socket) do
     current_user = socket.assigns.current_user
 
     group = Accounts.get_user_group(current_user)
 
-    post_location =
-      socket.assigns.post_locations
-      |> Enum.find(&(&1.location_id == group.location_id))
-
     round = socket.assigns.game.current_round + 2
 
     Posts.create_post_claim(%{
-      "post_location_id" => post_location.id,
+      "post_location_id" => id,
       "group_id" => group.id,
       "round" => to_string(round)
     })
@@ -64,21 +66,24 @@ defmodule TripWeb.PostsLive.Show do
      push_redirect(socket, to: Routes.posts_show_path(socket, :show, socket.assigns.post.id))}
   end
 
-  def generate_post_state(post_location, game) do
+  def generate_post_state(current_user, post_location, game) do
     current_claim = Posts.get_post_claim(post_location.id, game.current_round)
     next_claim = Posts.get_post_claim(post_location.id, game.current_round + 1)
     final_claim = Posts.get_post_claim(post_location.id, game.current_round + 2)
 
+    group = Accounts.get_user_group(current_user)
+
     %{
       current_group: find_claim_group(current_claim),
       next_group: find_claim_group(next_claim),
-      final_group: find_claim_group(final_claim)
+      final_group: find_claim_group(final_claim),
+      can_claim: can_claim?(group, post_location, game)
     }
   end
 
-  def generate_post_states(post_locations, game) do
+  def generate_post_states(current_user, post_locations, game) do
     post_locations
-    |> Enum.map(&{&1.id, generate_post_state(&1, game)})
+    |> Enum.map(&{&1.id, generate_post_state(current_user, &1, game)})
     |> Map.new()
   end
 
@@ -90,15 +95,21 @@ defmodule TripWeb.PostsLive.Show do
     end
   end
 
-  defp can_claim?(current_user, post_locations, game) do
+  defp can_claim_any?(current_user, post_locations, game) do
     group = Accounts.get_user_group(current_user)
 
-    post_location =
-      post_locations
-      |> Enum.find(&(&1.location_id == group.location_id))
+    post_locations
+    |> Enum.map(&can_claim?(group, &1, game))
+    |> Enum.any?()
+  end
 
+  defp can_claim?(group, post_location, game) do
     post_claims =
-      Posts.list_all_post_claims(post_location.id, group.id)
+      Posts.list_all_post_claims_group(group.id)
+
+    post_post_claims =
+      post_claims
+      |> Enum.filter(&(&1.post_location_id == post_location.id))
 
     if Enum.count(post_claims) > 0 do
       most_recent = 
@@ -106,10 +117,16 @@ defmodule TripWeb.PostsLive.Show do
         |> Enum.sort_by(&(&1.round), :desc)
         |> Enum.at(0)
 
+      post_most_recent =
+        post_post_claims
+        |> Enum.sort_by(&(&1.round), :desc)
+        |> Enum.at(0)
+
 
       current_round = game.current_round
+
       most_recent.round != current_round + 2 &&
-        most_recent.round != current_round &&
+        (is_nil(post_most_recent) || post_most_recent.round != current_round) &&
         rem(most_recent.round, 2) == rem(current_round, 2)
     else
       true

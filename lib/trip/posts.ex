@@ -40,6 +40,13 @@ defmodule Trip.Posts do
     |> Repo.preload(:group)
   end
 
+  def list_all_post_claims_group(group_id) do
+    PostClaim
+    |> where(group_id: ^group_id)
+    |> Repo.all()
+    |> Repo.preload(:group)
+  end
+
   def list_all_post_claims(post_location_id, group_id) do
     PostClaim
     |> where(post_location_id: ^post_location_id)

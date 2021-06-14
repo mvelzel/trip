@@ -21,7 +21,7 @@
   <%= live_react_component("Components.MapOverview",
     [bounds: [[@location.lat0, @location.lon0],[@location.lat1, @location.lon1]],
       className: "flex-1", postLocations: @post_locations,
-      postStates: TripWeb.PostsLive.Show.generate_post_states(@post_locations, @game)],
+      postStates: TripWeb.PostsLive.Show.generate_post_states(@current_user, @post_locations, @game)],
     container: [class: "h-full flex flex-col"], id: "map-overview") %>
   </div>
 </div>
