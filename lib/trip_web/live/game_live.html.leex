@@ -1,0 +1,28 @@
+<div class="flex flex-col space-y-6 w-full p-10">
+  <h2 class="uppercase text-white text-2xl font-bold font-sans tracking-wider">
+    <%= gettext "Manage game" %>
+  </h2>
+  <p class="text-white text-xl font-base font-sans">
+    <span class="text-t-green text-green-3d font-medium">
+      <%= gettext "Current round:" %>
+    </span>
+    <%= if @game.started do %>
+      <%= @game.current_round %>
+    <% else %>
+      <%= gettext "Game not yet started" %>
+    <% end %>
+  </p>
+  <a href="#" phx-click="start-game"
+              class="rounded-2xl bg-t-green px-8 py-4 green-3d">
+    <h2 class="text-xl font-sans font-bold text-t-black space-x-3 flex items-center justify-around">
+      <span><%= gettext "Start game" %></span>
+    </h2>
+  </a>
+  <a href="#" phx-click="stop-game"
+              class="rounded-2xl bg-t-red px-8 py-4 red-3d text-center">
+    <h2 class="text-xl font-sans font-bold text-t-black space-x-3 flex items-center justify-around">
+      <span><%= gettext "Stop game" %></span>
+    </h2>
+  </a>
+  <div class="pb-10"></div>
+</div>

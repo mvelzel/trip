@@ -79,6 +79,8 @@ defmodule TripWeb.Router do
   scope "/", TripWeb do
     pipe_through [:browser, :require_authenticated_user, :admin_permission]
 
+    live "/game", GameLive, :index
+
     scope "/locations", LocationsLive do
       live "/new", Edit, :new
 
