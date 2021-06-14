@@ -5,10 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <%= csrf_meta_tag() %>
-    <%= live_title_tag assigns[:page_title] || "Trip", suffix: " · Phoenix Framework" %>
+    <%= live_title_tag assigns[:page_title] || "Road to Brunstad" %>
     <link href="https://api.fontshare.com/css?f[]=clash-grotesk@200,300,400,500,600,700&display=swap" rel="stylesheet">
     <link phx-track-static rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
     <script defer phx-track-static type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
+    <link phx-track-static rel="manifest" href="<%= Routes.static_path(@conn, "/manifest.json") %>"/>
   </head>
   <body class="h-full flex w-full bg-t-darkerBlue">
     <svg class="w-full z-[-1000] fixed top-0 left-0 back-top" viewBox="0 0 185 100">
