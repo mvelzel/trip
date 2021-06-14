@@ -3,6 +3,8 @@ defmodule Trip.Games.Handler do
 
   alias Trip.Games
 
+  @round_time 1 * 60 * 1000
+
   def start_link(_opts) do
     GenServer.start_link(__MODULE__, %{})
   end
@@ -13,11 +15,29 @@ defmodule Trip.Games.Handler do
       Trip.Games.create_game()
     end
 
+    game = Games.get_game!()
+
+    game = if game.started do
+      diff =
+        NaiveDateTime.utc_now()
+        |> NaiveDateTime.diff(game.time_started, :millisecond)
+      round = div(diff, @round_time)
+      delay = diff - round * @round_time
+
+      Games.update_game(%{"current_round" => to_string(round)})
+
+      time_increment(state, delay)
+
+      Map.put(game, :current_round, round)
+    else
+      game
+    end
+
     Phoenix.PubSub.subscribe(Trip.PubSub, "game")
 
     {:ok,
      state
-     |> Map.put(:game, Games.get_game!())}
+     |> Map.put(:game, game)}
   end
 
   @impl true
@@ -27,8 +47,7 @@ defmodule Trip.Games.Handler do
         game.time_started
         |> NaiveDateTime.diff(NaiveDateTime.utc_now(), :millisecond)
 
-      #time_increment(state, 15 * 60 * 1000 + diff)
-      time_increment(state, 1 * 60 * 1000)
+      time_increment(state, @round_time + diff)
     else
       if state.game.started && !game.started do
         stop_timer(state)
@@ -55,8 +74,7 @@ defmodule Trip.Games.Handler do
     |> Trip.Repo.update()
 
     state = if game.started do
-      #time_increment(state, 15 * 60 * 1000)
-      time_increment(state, 1 * 60 * 1000)
+      time_increment(state, @round_time)
     end
 
     {:noreply,
