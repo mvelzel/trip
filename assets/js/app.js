@@ -1,6 +1,7 @@
 // We need to import the CSS so that webpack will load it.
 // The MiniCssExtractPlugin is used to separate it out into
 // its own CSS file.
+import 'react-toastify/dist/ReactToastify.css';
 import "../css/app.scss";
 
 // webpack automatically bundles all modules in your
@@ -19,6 +20,7 @@ import { LiveSocket } from "phoenix_live_view";
 import LiveReact, { initLiveReact } from "phoenix_live_react";
 import { MapBoundsPicker, MapLocationPicker } from "./react/embed/MapEditor";
 import MapOverview from "./react/embed/MapOverview";
+import Notifications from "./react/embed/Notifications";
 import Leaderboards from "./react/embed/Leaderboards";
 import Dropdown from "./react/embed/Dropdown";
 import "alpinejs";
@@ -33,7 +35,9 @@ Hooks.Notifications = {
     });
     this.handleEvent("notification", ({ text }) =>
       navigator.serviceWorker.getRegistration().then(function (reg) {
-        reg.showNotification(text);
+        reg.showNotification(text, {
+          icon: "/images/icon-192x192.png"
+        });
       })
     );
   },
@@ -47,6 +51,7 @@ window.Components = {
   Dropdown,
   Leaderboards,
   MapOverview,
+  Notifications
 };
 
 let csrfToken = document
