@@ -17,8 +17,19 @@ defmodule Trip.Notifications do
       [%Notification{}, ...]
 
   """
-  def list_notifications do
-    Repo.all(Notification)
+  def list_notifications(user_id) do
+    Notification
+    |> where(user_id: ^user_id)
+    |> order_by(desc: :inserted_at)
+    |> Repo.all()
+  end
+
+  def list_unread_notifications(user_id) do
+    Notification
+    |> where(user_id: ^user_id)
+    |> order_by(desc: :inserted_at)
+    |> where(read: false)
+    |> Repo.all()
   end
 
   @doc """
@@ -57,8 +68,8 @@ defmodule Trip.Notifications do
     notification = Ecto.Changeset.apply_changes(changeset)
     Phoenix.PubSub.broadcast(Trip.PubSub, "notification:#{notification.user_id}", notification)
 
-    # changeset
-    # |> Repo.insert()
+    changeset
+    |> Repo.insert()
   end
 
   @doc """
@@ -77,6 +88,12 @@ defmodule Trip.Notifications do
     notification
     |> Notification.changeset(attrs)
     |> Repo.update()
+  end
+
+  def mark_all_read(user_id) do
+    Notification
+    |> where(user_id: ^user_id)
+    |> Repo.update_all(set: [read: true])
   end
 
   @doc """

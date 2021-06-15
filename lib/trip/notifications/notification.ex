@@ -6,10 +6,12 @@ defmodule Trip.Notifications.Notification do
 
   @priority_values [:normal, :urgent]
 
+  @derive {Jason.Encoder, only: [:priority, :read, :text, :action, :id, :user_id]}
   schema "notifications" do
     field :priority, Ecto.Enum, values: @priority_values
     field :read, :boolean, default: false
     field :text, :string
+    field :action, :string, default: nil
 
     belongs_to :user, User
 
@@ -19,7 +21,7 @@ defmodule Trip.Notifications.Notification do
   @doc false
   def changeset(notification, attrs) do
     notification
-    |> cast(attrs, [:read, :text, :priority, :user_id])
+    |> cast(attrs, [:read, :text, :priority, :user_id, :action])
     |> validate_changeset()
   end
 
