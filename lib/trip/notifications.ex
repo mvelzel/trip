@@ -7,6 +7,7 @@ defmodule Trip.Notifications do
   alias Trip.Repo
 
   alias Trip.Notifications.Notification
+  alias Trip.Accounts
 
   @doc """
   Returns the list of notifications.
@@ -65,11 +66,29 @@ defmodule Trip.Notifications do
       %Notification{}
       |> Notification.changeset(attrs)
 
-    notification = Ecto.Changeset.apply_changes(changeset)
-    Phoenix.PubSub.broadcast(Trip.PubSub, "notification:#{notification.user_id}", notification)
+    {:ok, notification} =
+      changeset
+      |> Repo.insert()
 
-    changeset
-    |> Repo.insert()
+    Phoenix.PubSub.broadcast(Trip.PubSub, "notification:#{notification.user_id}", notification)
+  end
+
+  def notify_all_role(attrs, role) do
+    for user <- Accounts.list_users_by_role(role) do
+      create_notification(
+        attrs
+        |> Map.put("user_id", user.id)
+      )
+    end
+  end
+
+  def notify_all(attrs) do
+    for user <- Accounts.list_users() do
+      create_notification(
+        attrs
+        |> Map.put("user_id", user.id)
+      )
+    end
   end
 
   @doc """
@@ -93,6 +112,19 @@ defmodule Trip.Notifications do
   def mark_all_read(user_id) do
     Notification
     |> where(user_id: ^user_id)
+    |> Repo.update_all(set: [read: true])
+  end
+
+  def delete_all_read(user_id) do
+    Notification
+    |> where(user_id: ^user_id)
+    |> where(read: true)
+    |> Repo.delete_all()
+  end
+
+  def mark_as_read(not_id) do
+    Notification
+    |> where(id: ^not_id)
     |> Repo.update_all(set: [read: true])
   end
 

@@ -1,7 +1,13 @@
 <div class="flex flex-col space-y-6 w-full pt-10">
-  <h2 class="uppercase text-white text-2xl ml-10 font-bold font-sans tracking-wider">
-    <%= gettext "Notifications" %>
-  </h2>
+  <div class="flex justify-between items-center px-10">
+    <h2 class="uppercase text-white text-2xl font-bold font-sans tracking-wider">
+      <%= gettext "Notifications" %>
+    </h2>
+    <a href="#" phx-click="clear"
+      class="font-sans text-lg text-green-3d text-t-green font-medium">
+      <%= gettext "Clear" %>
+    </a>
+  </div>
   <%= for notification <- @notifications do %>
     <% dest = if notification.action, do: notification.action,
       else: Routes.notifications_index_path(@socket, :index) %>

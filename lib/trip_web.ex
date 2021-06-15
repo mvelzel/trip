@@ -55,16 +55,23 @@ defmodule TripWeb do
         {:noreply, assign(socket, menu_expanded: !socket.assigns.menu_expanded)}
       end
 
-      def handle_event("notification-action", %{"action" => action}, socket) do
+      def handle_event("notification-action", %{"action" => action, "id" => id}, socket) do
         if !action do
           {:noreply, push_redirect(socket, to: Routes.notifications_index_path(socket, :index))}
         else
+          Trip.Notifications.mark_as_read(id)
           {:noreply, push_redirect(socket, to: action)}
         end
       end
 
       @impl true
       def handle_info(%Trip.Notifications.Notification{} = n, socket) do
+        Phoenix.PubSub.broadcast(
+          Trip.PubSub,
+          "local_not:#{socket.assigns.current_user.id}",
+          {:local_not, n}
+        )
+
         {:noreply,
          socket
          |> assign(notification_count: socket.assigns.notification_count + 1)
@@ -72,6 +79,21 @@ defmodule TripWeb do
       end
 
       def handle_info(%Trip.Games.Game{} = game, socket) do
+        if game.started && game.started != socket.assigns.game.started do
+          not_text = gettext("The game has begun!")
+
+          Trip.Notifications.notify_all(%{
+            "text" => not_text,
+            "priority" => "urgent",
+            "action" => Routes.index_path(socket, :index)
+          })
+        end
+
+        if game.started && game.current_round != socket.assigns.game.current_round do
+          not_text = gettext("New round has begun: ") <> "#{game.current_round}"
+          Trip.Notifications.notify_all(%{"text" => not_text, "priority" => "normal"})
+        end
+
         {:noreply,
          socket
          |> assign(game: game)}

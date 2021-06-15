@@ -13,9 +13,11 @@ export default function Notifications({ handleEvent, pushEvent }) {
         draggable: true,
         progress: undefined,
         onClick: () => {
-          console.log(notification)
-          pushEvent("notification-action", { "action": notification.action })
-        }
+          pushEvent("notification-action", {
+            action: notification.action,
+            id: notification.id,
+          });
+        },
       })
     );
   }

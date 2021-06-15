@@ -68,6 +68,11 @@ defmodule Trip.Accounts do
 
   def list_users(), do: Repo.all(User)
 
+  def list_users_by_role(role), do:
+    User
+    |> where(role: ^role)
+    |> Repo.all()
+
   @doc """
   Gets a user by email and password.
 
