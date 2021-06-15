@@ -55,14 +55,20 @@ defmodule TripWeb do
         {:noreply, assign(socket, menu_expanded: !socket.assigns.menu_expanded)}
       end
 
+      def handle_event("notification-action", %{"action" => action}, socket) do
+        if !action do
+          {:noreply, push_redirect(socket, to: Routes.notifications_index_path(socket, :index))}
+        else
+          {:noreply, push_redirect(socket, to: action)}
+        end
+      end
+
       @impl true
       def handle_info(%Trip.Notifications.Notification{} = n, socket) do
-        IO.inspect(n)
-
         {:noreply,
          socket
-         |> assign(notifications: socket.assigns.notifications + 1)
-         |> push_event("notification", %{text: n.text})}
+         |> assign(notification_count: socket.assigns.notification_count + 1)
+         |> push_event("notification", n)}
       end
 
       def handle_info(%Trip.Games.Game{} = game, socket) do
@@ -79,14 +85,22 @@ defmodule TripWeb do
             nil
           end
 
-        if current_user do
-          Phoenix.PubSub.subscribe(Trip.PubSub, "notification:#{current_user.id}")
-        end
+        notifications =
+          if current_user do
+            Phoenix.PubSub.subscribe(Trip.PubSub, "notification:#{current_user.id}")
+
+            notifications =
+              Trip.Notifications.list_unread_notifications(current_user.id)
+              |> Enum.count()
+          else
+            0
+          end
+
         Phoenix.PubSub.subscribe(Trip.PubSub, "game_front")
 
         socket
         |> assign(current_user: current_user)
-        |> assign(notifications: 0)
+        |> assign(notification_count: notifications)
         |> assign(game: Trip.Games.get_game!())
         |> assign(menu_expanded: false)
       end

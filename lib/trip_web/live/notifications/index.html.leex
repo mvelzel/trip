@@ -1,0 +1,21 @@
+<div class="flex flex-col space-y-6 w-full pt-10">
+  <h2 class="uppercase text-white text-2xl ml-10 font-bold font-sans tracking-wider">
+    <%= gettext "Notifications" %>
+  </h2>
+  <%= for notification <- @notifications do %>
+    <% dest = if notification.action, do: notification.action,
+      else: Routes.notifications_index_path(@socket, :index) %>
+    <%= live_redirect to: dest,
+      class: "flex flex-row items-center space-x-6 bg-t-red lead-bot py-4 px-6 w-full
+        #{if notification.read, do: "opacity-50"}"
+      do %>
+      <p class="text-white text-xl font-sans !px-4">
+        <i class="fas fa-bell"></i>
+      </p>
+      <p class="font-sans font-medium text-white text-lg">
+        <%= notification.text %>
+      </p>
+    <% end %>
+  <% end %>
+  <div class="pb-10"></div>
+</div>

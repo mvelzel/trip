@@ -131,6 +131,8 @@ defmodule TripWeb.Router do
       live "/:post", Show, :show
     end
 
+    live "/notifications", NotificationsLive.Index, :index
+
     live "/users/edit/:user", UsersLive.Edit, :edit
 
   end
