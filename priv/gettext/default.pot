@@ -732,7 +732,40 @@ msgid "Stop game"
 msgstr ""
 
 #, elixir-format
-#: lib/trip_web/live/notifications/index.html.leex:3
+#: lib/trip_web/live/notifications/index.html.leex:4
 #: lib/trip_web/templates/layout/live.html.leex:50
 msgid "Notifications"
+msgstr ""
+
+#, elixir-format
+#: lib/trip_web/live/notifications/index.html.leex:8
+msgid "Clear"
+msgstr ""
+
+#, elixir-format
+#: lib/trip_web/live/challenges/edit.ex:2
+#: lib/trip_web/live/challenges/index.ex:2 lib/trip_web/live/challenges/player_index.ex:2
+#: lib/trip_web/live/challenges/show.ex:2 lib/trip_web/live/challenges/submissions/index.ex:2
+#: lib/trip_web/live/game_live.ex:2 lib/trip_web/live/groups/edit.ex:2 lib/trip_web/live/groups/index.ex:2
+#: lib/trip_web/live/index_live.ex:2 lib/trip_web/live/leaderboards/index.ex:2
+#: lib/trip_web/live/locations/edit.ex:2 lib/trip_web/live/locations/index.ex:2
+#: lib/trip_web/live/notifications/index.ex:2 lib/trip_web/live/page_live.ex:2 lib/trip_web/live/posts/claims/index.ex:2
+#: lib/trip_web/live/posts/edit.ex:2 lib/trip_web/live/posts/index.ex:2 lib/trip_web/live/posts/results/index.ex:2
+#: lib/trip_web/live/posts/results/new.ex:2 lib/trip_web/live/posts/show.ex:2 lib/trip_web/live/users/edit.ex:2
+#: lib/trip_web/live/users/index.ex:2
+msgid "New round has begun: "
+msgstr ""
+
+#, elixir-format
+#: lib/trip_web/live/challenges/edit.ex:2
+#: lib/trip_web/live/challenges/index.ex:2 lib/trip_web/live/challenges/player_index.ex:2
+#: lib/trip_web/live/challenges/show.ex:2 lib/trip_web/live/challenges/submissions/index.ex:2
+#: lib/trip_web/live/game_live.ex:2 lib/trip_web/live/groups/edit.ex:2 lib/trip_web/live/groups/index.ex:2
+#: lib/trip_web/live/index_live.ex:2 lib/trip_web/live/leaderboards/index.ex:2
+#: lib/trip_web/live/locations/edit.ex:2 lib/trip_web/live/locations/index.ex:2
+#: lib/trip_web/live/notifications/index.ex:2 lib/trip_web/live/page_live.ex:2 lib/trip_web/live/posts/claims/index.ex:2
+#: lib/trip_web/live/posts/edit.ex:2 lib/trip_web/live/posts/index.ex:2 lib/trip_web/live/posts/results/index.ex:2
+#: lib/trip_web/live/posts/results/new.ex:2 lib/trip_web/live/posts/show.ex:2 lib/trip_web/live/users/edit.ex:2
+#: lib/trip_web/live/users/index.ex:2
+msgid "The game has begun!"
 msgstr ""
