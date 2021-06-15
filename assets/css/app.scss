@@ -1,7 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import '../node_modules/leaflet-extra-markers/dist/css/leaflet.extra-markers.min.css';
+@import "../node_modules/leaflet-extra-markers/dist/css/leaflet.extra-markers.min.css";
 
 /* For Phoenix Live reload script */
 [hidden] {
@@ -32,28 +32,21 @@
 }
 
 .log-bot {
-  filter: drop-shadow(0px 1px #056CF2)
-          drop-shadow(0px 2px #056CF2)
-          drop-shadow(0px 3px #056CF2)
-          drop-shadow(0px 4px #056CF2)
-          drop-shadow(0px 5px #056CF2)
-          drop-shadow(0px 6px #056CF2)
-          drop-shadow(0px 7px 8px rgba(0, 0, 0, 0.5));
+  filter: drop-shadow(0px 1px #056cf2) drop-shadow(0px 2px #056cf2)
+    drop-shadow(0px 3px #056cf2) drop-shadow(0px 4px #056cf2)
+    drop-shadow(0px 5px #056cf2) drop-shadow(0px 6px #056cf2)
+    drop-shadow(0px 7px 8px rgba(0, 0, 0, 0.5));
 }
 
 .lead-bot {
-  filter: drop-shadow(0px 1px #0455bf)
-          drop-shadow(0px 2px #0455bf)
-          drop-shadow(0px 3px #0455bf)
-          drop-shadow(0px 4px #0455bf)
-          drop-shadow(0px 5px 5px rgba(0, 0, 0, 0.5));
+  filter: drop-shadow(0px 1px #0455bf) drop-shadow(0px 2px #0455bf)
+    drop-shadow(0px 3px #0455bf) drop-shadow(0px 4px #0455bf)
+    drop-shadow(0px 5px 5px rgba(0, 0, 0, 0.5));
 }
 
 .log-top {
-  filter: drop-shadow(0px -1px #033E8C)
-          drop-shadow(0px -2px #033E8C)
-          drop-shadow(0px -3px #033E8C)
-          drop-shadow(0px -4px #033E8C);
+  filter: drop-shadow(0px -1px #033e8c) drop-shadow(0px -2px #033e8c)
+    drop-shadow(0px -3px #033e8c) drop-shadow(0px -4px #033e8c);
 }
 
 .back-top {
@@ -81,12 +74,12 @@
 }
 
 .red-3d {
-  box-shadow: 0 1px 0 #BF263A, 0 2px 0 #BF263A, 0 3px 0 #BF263A, 0 4px 0 #BF263A,
-    0 5px 0 #BF263A, 0 4px 3px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 1px 0 #bf263a, 0 2px 0 #bf263a, 0 3px 0 #bf263a, 0 4px 0 #bf263a,
+    0 5px 0 #bf263a, 0 4px 3px rgba(0, 0, 0, 0.5);
 }
 
 .text-red-3d {
-  text-shadow: 0 1px 0 #BF263A, 0 2px 2px rgba(0, 0, 0, 0.5);
+  text-shadow: 0 1px 0 #bf263a, 0 2px 2px rgba(0, 0, 0, 0.5);
 }
 
 .text-green-3d {
@@ -108,5 +101,21 @@
 }
 
 .leaflet-marker-icon > svg {
-  display: inline; 
+  display: inline;
+}
+
+@media only screen and (max-width: 480px) {
+  .Toastify__toast-container {
+    @apply px-6;
+
+    width: 100vw;
+    left: 0;
+    margin: 0;
+  }
+  .Toastify__toast-container--top-left,
+  .Toastify__toast-container--top-center,
+  .Toastify__toast-container--top-right {
+    @apply top-6;
+    transform: translateX(0);
+  }
 }
