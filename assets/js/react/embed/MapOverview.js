@@ -30,7 +30,6 @@ export default function MapOverview({
       className={className}
     >
       <TileLayer
-        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
       <SetBoundZoom bounds={bounds} />
