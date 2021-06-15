@@ -23,7 +23,7 @@ msgstr ""
 
 #, elixir-format
 #: lib/trip_web/live/locations/index.html.leex:3
-#: lib/trip_web/templates/layout/live.html.leex:85
+#: lib/trip_web/templates/layout/live.html.leex:103
 msgid "Locations"
 msgstr ""
 
@@ -48,8 +48,8 @@ msgid "Save"
 msgstr ""
 
 #, elixir-format
-#: lib/trip_web/templates/layout/live.html.leex:14
-#: lib/trip_web/templates/layout/session.html.eex:19
+#: lib/trip_web/templates/layout/live.html.leex:16
+#: lib/trip_web/templates/layout/session.html.eex:20
 msgid "Trip"
 msgstr ""
 
@@ -81,7 +81,7 @@ msgstr ""
 
 #, elixir-format
 #: lib/trip_web/live/posts/index.html.leex:3
-#: lib/trip_web/templates/layout/live.html.leex:48
+#: lib/trip_web/templates/layout/live.html.leex:66
 msgid "Posts"
 msgstr ""
 
@@ -114,7 +114,7 @@ msgstr ""
 
 #, elixir-format
 #: lib/trip_web/live/groups/index.html.leex:3
-#: lib/trip_web/templates/layout/live.html.leex:91
+#: lib/trip_web/templates/layout/live.html.leex:109
 msgid "Groups"
 msgstr ""
 
@@ -139,13 +139,14 @@ msgstr ""
 #: lib/trip_web/live/challenges/show.ex:2 lib/trip_web/live/challenges/submissions/index.ex:2
 #: lib/trip_web/live/game_live.ex:2 lib/trip_web/live/groups/edit.ex:2 lib/trip_web/live/groups/index.ex:2
 #: lib/trip_web/live/index_live.ex:2 lib/trip_web/live/leaderboards/index.ex:2
-#: lib/trip_web/live/locations/edit.ex:2 lib/trip_web/live/locations/index.ex:2 lib/trip_web/live/page_live.ex:2
-#: lib/trip_web/live/posts/claims/index.ex:2 lib/trip_web/live/posts/edit.ex:2 lib/trip_web/live/posts/index.ex:2
-#: lib/trip_web/live/posts/results/index.ex:2 lib/trip_web/live/posts/results/new.ex:2 lib/trip_web/live/posts/show.ex:2
-#: lib/trip_web/live/users/edit.ex:2 lib/trip_web/live/users/index.ex:2 lib/trip_web/views/error_view.ex:2
-#: lib/trip_web/views/layout_view.ex:2 lib/trip_web/views/user_confirmation_view.ex:2
-#: lib/trip_web/views/user_registration_view.ex:2 lib/trip_web/views/user_reset_password_view.ex:2
-#: lib/trip_web/views/user_session_view.ex:2 lib/trip_web/views/user_settings_view.ex:2
+#: lib/trip_web/live/locations/edit.ex:2 lib/trip_web/live/locations/index.ex:2
+#: lib/trip_web/live/notifications/index.ex:2 lib/trip_web/live/page_live.ex:2 lib/trip_web/live/posts/claims/index.ex:2
+#: lib/trip_web/live/posts/edit.ex:2 lib/trip_web/live/posts/index.ex:2 lib/trip_web/live/posts/results/index.ex:2
+#: lib/trip_web/live/posts/results/new.ex:2 lib/trip_web/live/posts/show.ex:2 lib/trip_web/live/users/edit.ex:2
+#: lib/trip_web/live/users/index.ex:2 lib/trip_web/views/error_view.ex:2 lib/trip_web/views/layout_view.ex:2
+#: lib/trip_web/views/user_confirmation_view.ex:2 lib/trip_web/views/user_registration_view.ex:2
+#: lib/trip_web/views/user_reset_password_view.ex:2 lib/trip_web/views/user_session_view.ex:2
+#: lib/trip_web/views/user_settings_view.ex:2
 msgid "Highscore"
 msgstr ""
 
@@ -159,7 +160,8 @@ msgstr ""
 #: lib/trip_web/live/groups/edit.ex:2 lib/trip_web/live/groups/index.ex:2 lib/trip_web/live/groups/index.ex:2
 #: lib/trip_web/live/index_live.ex:2 lib/trip_web/live/index_live.ex:2 lib/trip_web/live/leaderboards/index.ex:2
 #: lib/trip_web/live/leaderboards/index.ex:2 lib/trip_web/live/locations/edit.ex:2 lib/trip_web/live/locations/edit.ex:2
-#: lib/trip_web/live/locations/index.ex:2 lib/trip_web/live/locations/index.ex:2 lib/trip_web/live/page_live.ex:2
+#: lib/trip_web/live/locations/index.ex:2 lib/trip_web/live/locations/index.ex:2
+#: lib/trip_web/live/notifications/index.ex:2 lib/trip_web/live/notifications/index.ex:2 lib/trip_web/live/page_live.ex:2
 #: lib/trip_web/live/page_live.ex:2 lib/trip_web/live/posts/claims/index.ex:2
 #: lib/trip_web/live/posts/claims/index.ex:2 lib/trip_web/live/posts/edit.ex:2 lib/trip_web/live/posts/edit.ex:2
 #: lib/trip_web/live/posts/index.ex:2 lib/trip_web/live/posts/index.ex:2 lib/trip_web/live/posts/results/index.ex:2
@@ -282,13 +284,14 @@ msgstr ""
 #: lib/trip_web/live/challenges/show.ex:2 lib/trip_web/live/challenges/submissions/index.ex:2
 #: lib/trip_web/live/game_live.ex:2 lib/trip_web/live/groups/edit.ex:2 lib/trip_web/live/groups/index.ex:2
 #: lib/trip_web/live/index_live.ex:2 lib/trip_web/live/leaderboards/index.ex:2
-#: lib/trip_web/live/locations/edit.ex:2 lib/trip_web/live/locations/index.ex:2 lib/trip_web/live/page_live.ex:2
-#: lib/trip_web/live/posts/claims/index.ex:2 lib/trip_web/live/posts/edit.ex:2 lib/trip_web/live/posts/index.ex:2
-#: lib/trip_web/live/posts/results/index.ex:2 lib/trip_web/live/posts/results/new.ex:2 lib/trip_web/live/posts/show.ex:2
-#: lib/trip_web/live/users/edit.ex:2 lib/trip_web/live/users/index.ex:2 lib/trip_web/views/error_view.ex:2
-#: lib/trip_web/views/layout_view.ex:2 lib/trip_web/views/user_confirmation_view.ex:2
-#: lib/trip_web/views/user_registration_view.ex:2 lib/trip_web/views/user_reset_password_view.ex:2
-#: lib/trip_web/views/user_session_view.ex:2 lib/trip_web/views/user_settings_view.ex:2
+#: lib/trip_web/live/locations/edit.ex:2 lib/trip_web/live/locations/index.ex:2
+#: lib/trip_web/live/notifications/index.ex:2 lib/trip_web/live/page_live.ex:2 lib/trip_web/live/posts/claims/index.ex:2
+#: lib/trip_web/live/posts/edit.ex:2 lib/trip_web/live/posts/index.ex:2 lib/trip_web/live/posts/results/index.ex:2
+#: lib/trip_web/live/posts/results/new.ex:2 lib/trip_web/live/posts/show.ex:2 lib/trip_web/live/users/edit.ex:2
+#: lib/trip_web/live/users/index.ex:2 lib/trip_web/views/error_view.ex:2 lib/trip_web/views/layout_view.ex:2
+#: lib/trip_web/views/user_confirmation_view.ex:2 lib/trip_web/views/user_registration_view.ex:2
+#: lib/trip_web/views/user_reset_password_view.ex:2 lib/trip_web/views/user_session_view.ex:2
+#: lib/trip_web/views/user_settings_view.ex:2
 msgid "Time"
 msgstr ""
 
@@ -308,13 +311,14 @@ msgstr ""
 #: lib/trip_web/live/challenges/show.ex:2 lib/trip_web/live/challenges/submissions/index.ex:2
 #: lib/trip_web/live/game_live.ex:2 lib/trip_web/live/groups/edit.ex:2 lib/trip_web/live/groups/index.ex:2
 #: lib/trip_web/live/index_live.ex:2 lib/trip_web/live/leaderboards/index.ex:2
-#: lib/trip_web/live/locations/edit.ex:2 lib/trip_web/live/locations/index.ex:2 lib/trip_web/live/page_live.ex:2
-#: lib/trip_web/live/posts/claims/index.ex:2 lib/trip_web/live/posts/edit.ex:2 lib/trip_web/live/posts/index.ex:2
-#: lib/trip_web/live/posts/results/index.ex:2 lib/trip_web/live/posts/results/new.ex:2 lib/trip_web/live/posts/show.ex:2
-#: lib/trip_web/live/users/edit.ex:2 lib/trip_web/live/users/index.ex:2 lib/trip_web/views/error_view.ex:2
-#: lib/trip_web/views/layout_view.ex:2 lib/trip_web/views/user_confirmation_view.ex:2
-#: lib/trip_web/views/user_registration_view.ex:2 lib/trip_web/views/user_reset_password_view.ex:2
-#: lib/trip_web/views/user_session_view.ex:2 lib/trip_web/views/user_settings_view.ex:2
+#: lib/trip_web/live/locations/edit.ex:2 lib/trip_web/live/locations/index.ex:2
+#: lib/trip_web/live/notifications/index.ex:2 lib/trip_web/live/page_live.ex:2 lib/trip_web/live/posts/claims/index.ex:2
+#: lib/trip_web/live/posts/edit.ex:2 lib/trip_web/live/posts/index.ex:2 lib/trip_web/live/posts/results/index.ex:2
+#: lib/trip_web/live/posts/results/new.ex:2 lib/trip_web/live/posts/show.ex:2 lib/trip_web/live/users/edit.ex:2
+#: lib/trip_web/live/users/index.ex:2 lib/trip_web/views/error_view.ex:2 lib/trip_web/views/layout_view.ex:2
+#: lib/trip_web/views/user_confirmation_view.ex:2 lib/trip_web/views/user_registration_view.ex:2
+#: lib/trip_web/views/user_reset_password_view.ex:2 lib/trip_web/views/user_session_view.ex:2
+#: lib/trip_web/views/user_settings_view.ex:2
 msgid "Admin"
 msgstr ""
 
@@ -341,7 +345,7 @@ msgid "Log in"
 msgstr ""
 
 #, elixir-format
-#: lib/trip_web/templates/layout/live.html.leex:116
+#: lib/trip_web/templates/layout/live.html.leex:134
 msgid "Log out"
 msgstr ""
 
@@ -362,13 +366,14 @@ msgstr ""
 #: lib/trip_web/live/challenges/show.ex:2 lib/trip_web/live/challenges/submissions/index.ex:2
 #: lib/trip_web/live/game_live.ex:2 lib/trip_web/live/groups/edit.ex:2 lib/trip_web/live/groups/index.ex:2
 #: lib/trip_web/live/index_live.ex:2 lib/trip_web/live/leaderboards/index.ex:2
-#: lib/trip_web/live/locations/edit.ex:2 lib/trip_web/live/locations/index.ex:2 lib/trip_web/live/page_live.ex:2
-#: lib/trip_web/live/posts/claims/index.ex:2 lib/trip_web/live/posts/edit.ex:2 lib/trip_web/live/posts/index.ex:2
-#: lib/trip_web/live/posts/results/index.ex:2 lib/trip_web/live/posts/results/new.ex:2 lib/trip_web/live/posts/show.ex:2
-#: lib/trip_web/live/users/edit.ex:2 lib/trip_web/live/users/index.ex:2 lib/trip_web/views/error_view.ex:2
-#: lib/trip_web/views/layout_view.ex:2 lib/trip_web/views/user_confirmation_view.ex:2
-#: lib/trip_web/views/user_registration_view.ex:2 lib/trip_web/views/user_reset_password_view.ex:2
-#: lib/trip_web/views/user_session_view.ex:2 lib/trip_web/views/user_settings_view.ex:2
+#: lib/trip_web/live/locations/edit.ex:2 lib/trip_web/live/locations/index.ex:2
+#: lib/trip_web/live/notifications/index.ex:2 lib/trip_web/live/page_live.ex:2 lib/trip_web/live/posts/claims/index.ex:2
+#: lib/trip_web/live/posts/edit.ex:2 lib/trip_web/live/posts/index.ex:2 lib/trip_web/live/posts/results/index.ex:2
+#: lib/trip_web/live/posts/results/new.ex:2 lib/trip_web/live/posts/show.ex:2 lib/trip_web/live/users/edit.ex:2
+#: lib/trip_web/live/users/index.ex:2 lib/trip_web/views/error_view.ex:2 lib/trip_web/views/layout_view.ex:2
+#: lib/trip_web/views/user_confirmation_view.ex:2 lib/trip_web/views/user_registration_view.ex:2
+#: lib/trip_web/views/user_reset_password_view.ex:2 lib/trip_web/views/user_session_view.ex:2
+#: lib/trip_web/views/user_settings_view.ex:2
 msgid "Player"
 msgstr ""
 
@@ -390,7 +395,7 @@ msgstr ""
 
 #, elixir-format
 #: lib/trip_web/live/users/index.html.leex:3
-#: lib/trip_web/templates/layout/live.html.leex:97
+#: lib/trip_web/templates/layout/live.html.leex:115
 msgid "Users"
 msgstr ""
 
@@ -405,18 +410,19 @@ msgstr ""
 #: lib/trip_web/live/challenges/show.ex:2 lib/trip_web/live/challenges/submissions/index.ex:2
 #: lib/trip_web/live/game_live.ex:2 lib/trip_web/live/groups/edit.ex:2 lib/trip_web/live/groups/index.ex:2
 #: lib/trip_web/live/index_live.ex:2 lib/trip_web/live/leaderboards/index.ex:2
-#: lib/trip_web/live/locations/edit.ex:2 lib/trip_web/live/locations/index.ex:2 lib/trip_web/live/page_live.ex:2
-#: lib/trip_web/live/posts/claims/index.ex:2 lib/trip_web/live/posts/edit.ex:2 lib/trip_web/live/posts/index.ex:2
-#: lib/trip_web/live/posts/results/index.ex:2 lib/trip_web/live/posts/results/new.ex:2 lib/trip_web/live/posts/show.ex:2
-#: lib/trip_web/live/users/edit.ex:2 lib/trip_web/live/users/index.ex:2 lib/trip_web/views/error_view.ex:2
-#: lib/trip_web/views/layout_view.ex:2 lib/trip_web/views/user_confirmation_view.ex:2
-#: lib/trip_web/views/user_registration_view.ex:2 lib/trip_web/views/user_reset_password_view.ex:2
-#: lib/trip_web/views/user_session_view.ex:2 lib/trip_web/views/user_settings_view.ex:2
+#: lib/trip_web/live/locations/edit.ex:2 lib/trip_web/live/locations/index.ex:2
+#: lib/trip_web/live/notifications/index.ex:2 lib/trip_web/live/page_live.ex:2 lib/trip_web/live/posts/claims/index.ex:2
+#: lib/trip_web/live/posts/edit.ex:2 lib/trip_web/live/posts/index.ex:2 lib/trip_web/live/posts/results/index.ex:2
+#: lib/trip_web/live/posts/results/new.ex:2 lib/trip_web/live/posts/show.ex:2 lib/trip_web/live/users/edit.ex:2
+#: lib/trip_web/live/users/index.ex:2 lib/trip_web/views/error_view.ex:2 lib/trip_web/views/layout_view.ex:2
+#: lib/trip_web/views/user_confirmation_view.ex:2 lib/trip_web/views/user_registration_view.ex:2
+#: lib/trip_web/views/user_reset_password_view.ex:2 lib/trip_web/views/user_session_view.ex:2
+#: lib/trip_web/views/user_settings_view.ex:2
 msgid "Postleader"
 msgstr ""
 
 #, elixir-format
-#: lib/trip_web/templates/layout/live.html.leex:42
+#: lib/trip_web/templates/layout/live.html.leex:44
 msgid "Leaderboards"
 msgstr ""
 
@@ -427,7 +433,7 @@ msgstr ""
 
 #, elixir-format
 #: lib/trip_web/live/posts/results/index.html.leex:3
-#: lib/trip_web/templates/layout/live.html.leex:77
+#: lib/trip_web/templates/layout/live.html.leex:95
 msgid "Post results"
 msgstr ""
 
@@ -438,14 +444,14 @@ msgstr ""
 
 #, elixir-format
 #: lib/trip_web/live/challenges/submissions/index.html.leex:3
-#: lib/trip_web/templates/layout/live.html.leex:69
+#: lib/trip_web/templates/layout/live.html.leex:87
 msgid "Challenge submissions"
 msgstr ""
 
 #, elixir-format
 #: lib/trip_web/live/challenges/index.html.leex:3
-#: lib/trip_web/live/challenges/player_index.html.leex:3 lib/trip_web/templates/layout/live.html.leex:55
-#: lib/trip_web/templates/layout/live.html.leex:63
+#: lib/trip_web/live/challenges/player_index.html.leex:3 lib/trip_web/templates/layout/live.html.leex:73
+#: lib/trip_web/templates/layout/live.html.leex:81
 msgid "Challenges"
 msgstr ""
 
@@ -460,13 +466,14 @@ msgstr ""
 #: lib/trip_web/live/challenges/show.ex:2 lib/trip_web/live/challenges/submissions/index.ex:2
 #: lib/trip_web/live/game_live.ex:2 lib/trip_web/live/groups/edit.ex:2 lib/trip_web/live/groups/index.ex:2
 #: lib/trip_web/live/index_live.ex:2 lib/trip_web/live/leaderboards/index.ex:2
-#: lib/trip_web/live/locations/edit.ex:2 lib/trip_web/live/locations/index.ex:2 lib/trip_web/live/page_live.ex:2
-#: lib/trip_web/live/posts/claims/index.ex:2 lib/trip_web/live/posts/edit.ex:2 lib/trip_web/live/posts/index.ex:2
-#: lib/trip_web/live/posts/results/index.ex:2 lib/trip_web/live/posts/results/new.ex:2 lib/trip_web/live/posts/show.ex:2
-#: lib/trip_web/live/users/edit.ex:2 lib/trip_web/live/users/index.ex:2 lib/trip_web/views/error_view.ex:2
-#: lib/trip_web/views/layout_view.ex:2 lib/trip_web/views/user_confirmation_view.ex:2
-#: lib/trip_web/views/user_registration_view.ex:2 lib/trip_web/views/user_reset_password_view.ex:2
-#: lib/trip_web/views/user_session_view.ex:2 lib/trip_web/views/user_settings_view.ex:2
+#: lib/trip_web/live/locations/edit.ex:2 lib/trip_web/live/locations/index.ex:2
+#: lib/trip_web/live/notifications/index.ex:2 lib/trip_web/live/page_live.ex:2 lib/trip_web/live/posts/claims/index.ex:2
+#: lib/trip_web/live/posts/edit.ex:2 lib/trip_web/live/posts/index.ex:2 lib/trip_web/live/posts/results/index.ex:2
+#: lib/trip_web/live/posts/results/new.ex:2 lib/trip_web/live/posts/show.ex:2 lib/trip_web/live/users/edit.ex:2
+#: lib/trip_web/live/users/index.ex:2 lib/trip_web/views/error_view.ex:2 lib/trip_web/views/layout_view.ex:2
+#: lib/trip_web/views/user_confirmation_view.ex:2 lib/trip_web/views/user_registration_view.ex:2
+#: lib/trip_web/views/user_reset_password_view.ex:2 lib/trip_web/views/user_session_view.ex:2
+#: lib/trip_web/views/user_settings_view.ex:2
 msgid "Failed"
 msgstr ""
 
@@ -487,13 +494,14 @@ msgstr ""
 #: lib/trip_web/live/challenges/show.ex:2 lib/trip_web/live/challenges/submissions/index.ex:2
 #: lib/trip_web/live/game_live.ex:2 lib/trip_web/live/groups/edit.ex:2 lib/trip_web/live/groups/index.ex:2
 #: lib/trip_web/live/index_live.ex:2 lib/trip_web/live/leaderboards/index.ex:2
-#: lib/trip_web/live/locations/edit.ex:2 lib/trip_web/live/locations/index.ex:2 lib/trip_web/live/page_live.ex:2
-#: lib/trip_web/live/posts/claims/index.ex:2 lib/trip_web/live/posts/edit.ex:2 lib/trip_web/live/posts/index.ex:2
-#: lib/trip_web/live/posts/results/index.ex:2 lib/trip_web/live/posts/results/new.ex:2 lib/trip_web/live/posts/show.ex:2
-#: lib/trip_web/live/users/edit.ex:2 lib/trip_web/live/users/index.ex:2 lib/trip_web/views/error_view.ex:2
-#: lib/trip_web/views/layout_view.ex:2 lib/trip_web/views/user_confirmation_view.ex:2
-#: lib/trip_web/views/user_registration_view.ex:2 lib/trip_web/views/user_reset_password_view.ex:2
-#: lib/trip_web/views/user_session_view.ex:2 lib/trip_web/views/user_settings_view.ex:2
+#: lib/trip_web/live/locations/edit.ex:2 lib/trip_web/live/locations/index.ex:2
+#: lib/trip_web/live/notifications/index.ex:2 lib/trip_web/live/page_live.ex:2 lib/trip_web/live/posts/claims/index.ex:2
+#: lib/trip_web/live/posts/edit.ex:2 lib/trip_web/live/posts/index.ex:2 lib/trip_web/live/posts/results/index.ex:2
+#: lib/trip_web/live/posts/results/new.ex:2 lib/trip_web/live/posts/show.ex:2 lib/trip_web/live/users/edit.ex:2
+#: lib/trip_web/live/users/index.ex:2 lib/trip_web/views/error_view.ex:2 lib/trip_web/views/layout_view.ex:2
+#: lib/trip_web/views/user_confirmation_view.ex:2 lib/trip_web/views/user_registration_view.ex:2
+#: lib/trip_web/views/user_reset_password_view.ex:2 lib/trip_web/views/user_session_view.ex:2
+#: lib/trip_web/views/user_settings_view.ex:2
 msgid "Image"
 msgstr ""
 
@@ -513,13 +521,14 @@ msgstr ""
 #: lib/trip_web/live/challenges/show.ex:2 lib/trip_web/live/challenges/submissions/index.ex:2
 #: lib/trip_web/live/game_live.ex:2 lib/trip_web/live/groups/edit.ex:2 lib/trip_web/live/groups/index.ex:2
 #: lib/trip_web/live/index_live.ex:2 lib/trip_web/live/leaderboards/index.ex:2
-#: lib/trip_web/live/locations/edit.ex:2 lib/trip_web/live/locations/index.ex:2 lib/trip_web/live/page_live.ex:2
-#: lib/trip_web/live/posts/claims/index.ex:2 lib/trip_web/live/posts/edit.ex:2 lib/trip_web/live/posts/index.ex:2
-#: lib/trip_web/live/posts/results/index.ex:2 lib/trip_web/live/posts/results/new.ex:2 lib/trip_web/live/posts/show.ex:2
-#: lib/trip_web/live/users/edit.ex:2 lib/trip_web/live/users/index.ex:2 lib/trip_web/views/error_view.ex:2
-#: lib/trip_web/views/layout_view.ex:2 lib/trip_web/views/user_confirmation_view.ex:2
-#: lib/trip_web/views/user_registration_view.ex:2 lib/trip_web/views/user_reset_password_view.ex:2
-#: lib/trip_web/views/user_session_view.ex:2 lib/trip_web/views/user_settings_view.ex:2
+#: lib/trip_web/live/locations/edit.ex:2 lib/trip_web/live/locations/index.ex:2
+#: lib/trip_web/live/notifications/index.ex:2 lib/trip_web/live/page_live.ex:2 lib/trip_web/live/posts/claims/index.ex:2
+#: lib/trip_web/live/posts/edit.ex:2 lib/trip_web/live/posts/index.ex:2 lib/trip_web/live/posts/results/index.ex:2
+#: lib/trip_web/live/posts/results/new.ex:2 lib/trip_web/live/posts/show.ex:2 lib/trip_web/live/users/edit.ex:2
+#: lib/trip_web/live/users/index.ex:2 lib/trip_web/views/error_view.ex:2 lib/trip_web/views/layout_view.ex:2
+#: lib/trip_web/views/user_confirmation_view.ex:2 lib/trip_web/views/user_registration_view.ex:2
+#: lib/trip_web/views/user_reset_password_view.ex:2 lib/trip_web/views/user_session_view.ex:2
+#: lib/trip_web/views/user_settings_view.ex:2
 msgid "Judge"
 msgstr ""
 
@@ -549,13 +558,14 @@ msgstr ""
 #: lib/trip_web/live/challenges/show.ex:2 lib/trip_web/live/challenges/submissions/index.ex:2
 #: lib/trip_web/live/game_live.ex:2 lib/trip_web/live/groups/edit.ex:2 lib/trip_web/live/groups/index.ex:2
 #: lib/trip_web/live/index_live.ex:2 lib/trip_web/live/leaderboards/index.ex:2
-#: lib/trip_web/live/locations/edit.ex:2 lib/trip_web/live/locations/index.ex:2 lib/trip_web/live/page_live.ex:2
-#: lib/trip_web/live/posts/claims/index.ex:2 lib/trip_web/live/posts/edit.ex:2 lib/trip_web/live/posts/index.ex:2
-#: lib/trip_web/live/posts/results/index.ex:2 lib/trip_web/live/posts/results/new.ex:2 lib/trip_web/live/posts/show.ex:2
-#: lib/trip_web/live/users/edit.ex:2 lib/trip_web/live/users/index.ex:2 lib/trip_web/views/error_view.ex:2
-#: lib/trip_web/views/layout_view.ex:2 lib/trip_web/views/user_confirmation_view.ex:2
-#: lib/trip_web/views/user_registration_view.ex:2 lib/trip_web/views/user_reset_password_view.ex:2
-#: lib/trip_web/views/user_session_view.ex:2 lib/trip_web/views/user_settings_view.ex:2
+#: lib/trip_web/live/locations/edit.ex:2 lib/trip_web/live/locations/index.ex:2
+#: lib/trip_web/live/notifications/index.ex:2 lib/trip_web/live/page_live.ex:2 lib/trip_web/live/posts/claims/index.ex:2
+#: lib/trip_web/live/posts/edit.ex:2 lib/trip_web/live/posts/index.ex:2 lib/trip_web/live/posts/results/index.ex:2
+#: lib/trip_web/live/posts/results/new.ex:2 lib/trip_web/live/posts/show.ex:2 lib/trip_web/live/users/edit.ex:2
+#: lib/trip_web/live/users/index.ex:2 lib/trip_web/views/error_view.ex:2 lib/trip_web/views/layout_view.ex:2
+#: lib/trip_web/views/user_confirmation_view.ex:2 lib/trip_web/views/user_registration_view.ex:2
+#: lib/trip_web/views/user_reset_password_view.ex:2 lib/trip_web/views/user_session_view.ex:2
+#: lib/trip_web/views/user_settings_view.ex:2
 msgid "Not submitted"
 msgstr ""
 
@@ -575,13 +585,14 @@ msgstr ""
 #: lib/trip_web/live/challenges/show.ex:2 lib/trip_web/live/challenges/submissions/index.ex:2
 #: lib/trip_web/live/game_live.ex:2 lib/trip_web/live/groups/edit.ex:2 lib/trip_web/live/groups/index.ex:2
 #: lib/trip_web/live/index_live.ex:2 lib/trip_web/live/leaderboards/index.ex:2
-#: lib/trip_web/live/locations/edit.ex:2 lib/trip_web/live/locations/index.ex:2 lib/trip_web/live/page_live.ex:2
-#: lib/trip_web/live/posts/claims/index.ex:2 lib/trip_web/live/posts/edit.ex:2 lib/trip_web/live/posts/index.ex:2
-#: lib/trip_web/live/posts/results/index.ex:2 lib/trip_web/live/posts/results/new.ex:2 lib/trip_web/live/posts/show.ex:2
-#: lib/trip_web/live/users/edit.ex:2 lib/trip_web/live/users/index.ex:2 lib/trip_web/views/error_view.ex:2
-#: lib/trip_web/views/layout_view.ex:2 lib/trip_web/views/user_confirmation_view.ex:2
-#: lib/trip_web/views/user_registration_view.ex:2 lib/trip_web/views/user_reset_password_view.ex:2
-#: lib/trip_web/views/user_session_view.ex:2 lib/trip_web/views/user_settings_view.ex:2
+#: lib/trip_web/live/locations/edit.ex:2 lib/trip_web/live/locations/index.ex:2
+#: lib/trip_web/live/notifications/index.ex:2 lib/trip_web/live/page_live.ex:2 lib/trip_web/live/posts/claims/index.ex:2
+#: lib/trip_web/live/posts/edit.ex:2 lib/trip_web/live/posts/index.ex:2 lib/trip_web/live/posts/results/index.ex:2
+#: lib/trip_web/live/posts/results/new.ex:2 lib/trip_web/live/posts/show.ex:2 lib/trip_web/live/users/edit.ex:2
+#: lib/trip_web/live/users/index.ex:2 lib/trip_web/views/error_view.ex:2 lib/trip_web/views/layout_view.ex:2
+#: lib/trip_web/views/user_confirmation_view.ex:2 lib/trip_web/views/user_registration_view.ex:2
+#: lib/trip_web/views/user_reset_password_view.ex:2 lib/trip_web/views/user_session_view.ex:2
+#: lib/trip_web/views/user_settings_view.ex:2
 msgid "Passed"
 msgstr ""
 
@@ -591,13 +602,14 @@ msgstr ""
 #: lib/trip_web/live/challenges/show.ex:2 lib/trip_web/live/challenges/submissions/index.ex:2
 #: lib/trip_web/live/game_live.ex:2 lib/trip_web/live/groups/edit.ex:2 lib/trip_web/live/groups/index.ex:2
 #: lib/trip_web/live/index_live.ex:2 lib/trip_web/live/leaderboards/index.ex:2
-#: lib/trip_web/live/locations/edit.ex:2 lib/trip_web/live/locations/index.ex:2 lib/trip_web/live/page_live.ex:2
-#: lib/trip_web/live/posts/claims/index.ex:2 lib/trip_web/live/posts/edit.ex:2 lib/trip_web/live/posts/index.ex:2
-#: lib/trip_web/live/posts/results/index.ex:2 lib/trip_web/live/posts/results/new.ex:2 lib/trip_web/live/posts/show.ex:2
-#: lib/trip_web/live/users/edit.ex:2 lib/trip_web/live/users/index.ex:2 lib/trip_web/views/error_view.ex:2
-#: lib/trip_web/views/layout_view.ex:2 lib/trip_web/views/user_confirmation_view.ex:2
-#: lib/trip_web/views/user_registration_view.ex:2 lib/trip_web/views/user_reset_password_view.ex:2
-#: lib/trip_web/views/user_session_view.ex:2 lib/trip_web/views/user_settings_view.ex:2
+#: lib/trip_web/live/locations/edit.ex:2 lib/trip_web/live/locations/index.ex:2
+#: lib/trip_web/live/notifications/index.ex:2 lib/trip_web/live/page_live.ex:2 lib/trip_web/live/posts/claims/index.ex:2
+#: lib/trip_web/live/posts/edit.ex:2 lib/trip_web/live/posts/index.ex:2 lib/trip_web/live/posts/results/index.ex:2
+#: lib/trip_web/live/posts/results/new.ex:2 lib/trip_web/live/posts/show.ex:2 lib/trip_web/live/users/edit.ex:2
+#: lib/trip_web/live/users/index.ex:2 lib/trip_web/views/error_view.ex:2 lib/trip_web/views/layout_view.ex:2
+#: lib/trip_web/views/user_confirmation_view.ex:2 lib/trip_web/views/user_registration_view.ex:2
+#: lib/trip_web/views/user_reset_password_view.ex:2 lib/trip_web/views/user_session_view.ex:2
+#: lib/trip_web/views/user_settings_view.ex:2
 msgid "Pending"
 msgstr ""
 
@@ -644,13 +656,14 @@ msgstr ""
 #: lib/trip_web/live/challenges/show.ex:2 lib/trip_web/live/challenges/submissions/index.ex:2
 #: lib/trip_web/live/game_live.ex:2 lib/trip_web/live/groups/edit.ex:2 lib/trip_web/live/groups/index.ex:2
 #: lib/trip_web/live/index_live.ex:2 lib/trip_web/live/leaderboards/index.ex:2
-#: lib/trip_web/live/locations/edit.ex:2 lib/trip_web/live/locations/index.ex:2 lib/trip_web/live/page_live.ex:2
-#: lib/trip_web/live/posts/claims/index.ex:2 lib/trip_web/live/posts/edit.ex:2 lib/trip_web/live/posts/index.ex:2
-#: lib/trip_web/live/posts/results/index.ex:2 lib/trip_web/live/posts/results/new.ex:2 lib/trip_web/live/posts/show.ex:2
-#: lib/trip_web/live/users/edit.ex:2 lib/trip_web/live/users/index.ex:2 lib/trip_web/views/error_view.ex:2
-#: lib/trip_web/views/layout_view.ex:2 lib/trip_web/views/user_confirmation_view.ex:2
-#: lib/trip_web/views/user_registration_view.ex:2 lib/trip_web/views/user_reset_password_view.ex:2
-#: lib/trip_web/views/user_session_view.ex:2 lib/trip_web/views/user_settings_view.ex:2
+#: lib/trip_web/live/locations/edit.ex:2 lib/trip_web/live/locations/index.ex:2
+#: lib/trip_web/live/notifications/index.ex:2 lib/trip_web/live/page_live.ex:2 lib/trip_web/live/posts/claims/index.ex:2
+#: lib/trip_web/live/posts/edit.ex:2 lib/trip_web/live/posts/index.ex:2 lib/trip_web/live/posts/results/index.ex:2
+#: lib/trip_web/live/posts/results/new.ex:2 lib/trip_web/live/posts/show.ex:2 lib/trip_web/live/users/edit.ex:2
+#: lib/trip_web/live/users/index.ex:2 lib/trip_web/views/error_view.ex:2 lib/trip_web/views/layout_view.ex:2
+#: lib/trip_web/views/user_confirmation_view.ex:2 lib/trip_web/views/user_registration_view.ex:2
+#: lib/trip_web/views/user_reset_password_view.ex:2 lib/trip_web/views/user_session_view.ex:2
+#: lib/trip_web/views/user_settings_view.ex:2
 msgid "Text"
 msgstr ""
 
@@ -677,7 +690,7 @@ msgstr ""
 
 #, elixir-format
 #: lib/trip_web/live/game_live.html.leex:7
-#: lib/trip_web/live/index_live.html.leex:7 lib/trip_web/templates/layout/live.html.leex:34
+#: lib/trip_web/live/index_live.html.leex:7 lib/trip_web/templates/layout/live.html.leex:36
 msgid "Current round:"
 msgstr ""
 
@@ -699,13 +712,13 @@ msgstr ""
 
 #, elixir-format
 #: lib/trip_web/live/posts/claims/index.html.leex:3
-#: lib/trip_web/templates/layout/live.html.leex:103
+#: lib/trip_web/templates/layout/live.html.leex:121
 msgid "Post claims"
 msgstr ""
 
 #, elixir-format
 #: lib/trip_web/live/game_live.html.leex:3
-#: lib/trip_web/templates/layout/live.html.leex:109
+#: lib/trip_web/templates/layout/live.html.leex:127
 msgid "Manage game"
 msgstr ""
 
@@ -717,4 +730,10 @@ msgstr ""
 #, elixir-format
 #: lib/trip_web/live/game_live.html.leex:24
 msgid "Stop game"
+msgstr ""
+
+#, elixir-format
+#: lib/trip_web/live/notifications/index.html.leex:3
+#: lib/trip_web/templates/layout/live.html.leex:50
+msgid "Notifications"
 msgstr ""
