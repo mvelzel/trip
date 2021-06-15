@@ -109,6 +109,7 @@ defmodule TripWeb do
 
         notifications =
           if current_user do
+            Phoenix.PubSub.unsubscribe(Trip.PubSub, "notification:#{current_user.id}")
             Phoenix.PubSub.subscribe(Trip.PubSub, "notification:#{current_user.id}")
 
             notifications =
@@ -118,6 +119,7 @@ defmodule TripWeb do
             0
           end
 
+        Phoenix.PubSub.unsubscribe(Trip.PubSub, "game_front")
         Phoenix.PubSub.subscribe(Trip.PubSub, "game_front")
 
         socket
@@ -172,7 +174,7 @@ defmodule TripWeb do
       import TripWeb.Gettext
       alias TripWeb.Router.Helpers, as: Routes
 
-      def result_type_label(:points), do: gettext("Points")
+      def result_type_label(:points), do: gettext("Battle")
       def result_type_label(:high_score), do: gettext("Highscore")
       def score_type_label(:points), do: gettext("Points")
       def score_type_label(:time), do: gettext("Time")

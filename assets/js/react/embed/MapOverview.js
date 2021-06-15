@@ -29,9 +29,7 @@ export default function MapOverview({
       doubleClickZoom={false}
       className={className}
     >
-      <TileLayer
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-      />
+      <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
       <SetBoundZoom bounds={bounds} />
       <Rectangle bounds={bounds} color="white" />
       {postLocations &&
@@ -79,7 +77,7 @@ function MapOverlay({ selectingPost, pushEvent }) {
             color="black"
             pathOptions={{ stroke: false }}
             eventHandlers={rectClick}
-        />
+          />
           <p className="absolute z-[5000] font-sans font-bold text-t-red text-red-3d text-3xl text-center w-full">
             Claim een post
           </p>
@@ -93,7 +91,13 @@ function MapOverlay({ selectingPost, pushEvent }) {
 
 function PostMarker({ postLocation, postState, pushEvent, selectingPost }) {
   let color = "#0455BF";
-  if (postState.final_group) {
+  if (postLocation.post.result_type == "points") {
+    if (postState.final_groups.length > 1) {
+      color = "#F23054";
+    } else if (postState.final_groups[0]) {
+      color = "yellow";
+    }
+  } else if (postState.final_groups[0]) {
     color = "#F23054";
   }
 
@@ -123,22 +127,22 @@ function PostMarker({ postLocation, postState, pushEvent, selectingPost }) {
           <p className="!m-0 font-sans text-xs font-normal">
             Huidige ronde:
             <br />
-            {postState.current_group
-              ? `Claim door Groep ${postState.current_group.number}`
+            {postState.current_groups[0]
+              ? `Claim door ${stateGroupsNumber(postState.current_groups)}`
               : `Ongeclaimd`}
           </p>
           <p className="!m-0 font-sans text-xs font-normal">
             Volgende ronde:
             <br />
-            {postState.next_group
-              ? `Claim door Groep ${postState.next_group.number}`
+            {postState.next_groups[0]
+              ? `Claim door ${stateGroupsNumber(postState.next_groups)}`
               : `Ongeclaimd`}
           </p>
           <p className="font-sans text-sm font-medium">
             Over 2 rondes:
             <br />
-            {postState.final_group
-              ? `Claim door Groep ${postState.final_group.number}`
+            {postState.final_groups[0]
+              ? `Claim door ${stateGroupsNumber(postState.final_groups)}`
               : `Ongeclaimd`}
           </p>
           <a
@@ -153,6 +157,14 @@ function PostMarker({ postLocation, postState, pushEvent, selectingPost }) {
       </Popup>
     </Marker>
   );
+}
+
+function stateGroupsNumber(stateGroups) {
+  if (stateGroups.length > 1) {
+    return `Groepen ${stateGroups[0].number}&${stateGroups[1].number}`;
+  } else {
+    return `Groep ${stateGroups[0].number}`;
+  }
 }
 
 function generateNumberMarker(number, color) {

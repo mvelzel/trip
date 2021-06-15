@@ -116,11 +116,11 @@ defmodule Trip.Posts do
       Repo.get!(Post, id)
       |> Repo.preload(locations: [:location, :post])
 
-  def get_post_claim(post_location_id, round) do
+  def get_post_claims(post_location_id, round) do
     PostClaim
     |> where(post_location_id: ^post_location_id)
     |> where(round: ^round)
-    |> Repo.one()
+    |> Repo.all()
     |> Repo.preload(:group)
   end
 

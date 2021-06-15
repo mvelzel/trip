@@ -91,16 +91,16 @@ defmodule TripWeb.PostsLive.Show do
   end
 
   def generate_post_state(current_user, post_location, game) do
-    current_claim = Posts.get_post_claim(post_location.id, game.current_round)
-    next_claim = Posts.get_post_claim(post_location.id, game.current_round + 1)
-    final_claim = Posts.get_post_claim(post_location.id, game.current_round + 2)
+    current_claim = Posts.get_post_claims(post_location.id, game.current_round)
+    next_claim = Posts.get_post_claims(post_location.id, game.current_round + 1)
+    final_claim = Posts.get_post_claims(post_location.id, game.current_round + 2)
 
     group = Accounts.get_user_group(current_user)
 
     %{
-      current_group: find_claim_group(current_claim),
-      next_group: find_claim_group(next_claim),
-      final_group: find_claim_group(final_claim),
+      current_groups: find_claim_groups(current_claim),
+      next_groups: find_claim_groups(next_claim),
+      final_groups: find_claim_groups(final_claim),
       can_claim: can_claim?(group, post_location, game)
     }
   end
@@ -111,11 +111,12 @@ defmodule TripWeb.PostsLive.Show do
     |> Map.new()
   end
 
-  defp find_claim_group(claim) do
-    if claim do
-      claim.group
+  defp find_claim_groups(claims) do
+    if Enum.count(claims) > 0 do
+      claims
+      |> Enum.map(& &1.group)
     else
-      nil
+      claims
     end
   end
 
@@ -130,9 +131,33 @@ defmodule TripWeb.PostsLive.Show do
   defp can_claim?(group, post_location, game) do
     post_claims = Posts.list_all_post_claims_group(group.id)
 
+    current_round = game.current_round
+
     post_post_claims =
       post_claims
       |> Enum.filter(&(&1.post_location_id == post_location.id))
+
+    most_recent_claim_all =
+      Posts.list_all_post_claims(post_location.id)
+      |> Enum.sort_by(& &1.round, :desc)
+
+    all_check =
+      case post_location.post.result_type do
+        :points ->
+          if Enum.count(most_recent_claim_all) >= 2 do
+            Enum.at(most_recent_claim_all, 0).round != current_round + 2 &&
+              Enum.at(most_recent_claim_all, 1).round != current_round + 2
+          else
+            true
+          end
+
+        :high_score ->
+          if Enum.count(most_recent_claim_all) >= 1 do
+            Enum.at(most_recent_claim_all, 0).round != current_round + 2
+          else
+            true
+          end
+      end
 
     if Enum.count(post_claims) > 0 do
       most_recent =
@@ -145,13 +170,12 @@ defmodule TripWeb.PostsLive.Show do
         |> Enum.sort_by(& &1.round, :desc)
         |> Enum.at(0)
 
-      current_round = game.current_round
-
-      most_recent.round != current_round + 2 &&
+      all_check &&
+        most_recent.round != current_round + 2 &&
         (is_nil(post_most_recent) || post_most_recent.round != current_round) &&
         rem(most_recent.round, 2) == rem(current_round, 2)
     else
-      true
+      all_check
     end
   end
 end
