@@ -16,7 +16,7 @@
   <%= live_react_component("Components.MapOverview",
     [bounds: [[@location.lat0, @location.lon0],[@location.lat1, @location.lon1]],
       className: "h-96", postLocations: @post_locations, selectingPost: @selecting,
-      postStates: generate_post_states(@current_user, @post_locations, @game)],
+      postStates: @post_states],
     id: "map-overview") %>
   <%= if @game.started do %>
     <div class="flex flex-row justify-between items-center">

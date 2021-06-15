@@ -2,6 +2,7 @@ defmodule TripWeb.PostsLive.Show do
   use TripWeb, :live_view
 
   alias Trip.{Locations, Posts, Accounts}
+  alias Trip.Posts.PostClaim
 
   @impl true
   def mount(%{"post" => id}, session, socket) do
@@ -16,6 +17,10 @@ defmodule TripWeb.PostsLive.Show do
       post.locations
       |> Enum.filter(&(&1.location.id == location.id))
 
+    post_states =
+      generate_post_states(socket.assigns.current_user, post_locations, socket.assigns.game)
+
+    Phoenix.PubSub.subscribe(Trip.PubSub, "post_claims")
 
     {:ok,
      socket
@@ -23,6 +28,7 @@ defmodule TripWeb.PostsLive.Show do
      |> assign(location: location)
      |> assign(selecting: false)
      |> assign(post_locations: post_locations)
+     |> assign(post_states: post_states)
      |> assign(post: post)}
   end
 
@@ -34,9 +40,13 @@ defmodule TripWeb.PostsLive.Show do
       socket.assigns.post.locations
       |> Enum.filter(&(&1.location.id == location.id))
 
+    post_states =
+      generate_post_states(socket.assigns.current_user, post_locations, socket.assigns.game)
+
     {:noreply,
      socket
      |> assign(post_locations: post_locations)
+     |> assign(post_states: post_states)
      |> assign(selecting: false)
      |> assign(location: location)}
   end
@@ -64,6 +74,20 @@ defmodule TripWeb.PostsLive.Show do
 
     {:noreply,
      push_redirect(socket, to: Routes.posts_show_path(socket, :show, socket.assigns.post.id))}
+  end
+
+  @impl true
+  def handle_info(:post_claims, socket) do
+    post_states =
+      generate_post_states(
+        socket.assigns.current_user,
+        socket.assigns.post_locations,
+        socket.assigns.game
+      )
+
+    {:noreply,
+     socket
+     |> assign(post_states: post_states)}
   end
 
   def generate_post_state(current_user, post_location, game) do
@@ -104,24 +128,22 @@ defmodule TripWeb.PostsLive.Show do
   end
 
   defp can_claim?(group, post_location, game) do
-    post_claims =
-      Posts.list_all_post_claims_group(group.id)
+    post_claims = Posts.list_all_post_claims_group(group.id)
 
     post_post_claims =
       post_claims
       |> Enum.filter(&(&1.post_location_id == post_location.id))
 
     if Enum.count(post_claims) > 0 do
-      most_recent = 
+      most_recent =
         post_claims
-        |> Enum.sort_by(&(&1.round), :desc)
+        |> Enum.sort_by(& &1.round, :desc)
         |> Enum.at(0)
 
       post_most_recent =
         post_post_claims
-        |> Enum.sort_by(&(&1.round), :desc)
+        |> Enum.sort_by(& &1.round, :desc)
         |> Enum.at(0)
-
 
       current_round = game.current_round
 

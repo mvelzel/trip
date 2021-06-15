@@ -143,9 +143,14 @@ defmodule Trip.Posts do
   end
 
   def create_post_claim(attrs \\ %{}) do
-    %PostClaim{}
-    |> PostClaim.changeset(attrs)
+    changeset =
+      %PostClaim{}
+      |> PostClaim.changeset(attrs)
+
+    changeset
     |> Repo.insert()
+
+    Phoenix.PubSub.broadcast(Trip.PubSub, "post_claims", :post_claims)
   end
 
   def create_post_result(attrs, score_type, result_type) do
@@ -190,6 +195,7 @@ defmodule Trip.Posts do
 
   def delete_post_claim(%PostClaim{} = post_claim) do
     Repo.delete(post_claim)
+    Phoenix.PubSub.broadcast(Trip.PubSub, "post_claims", :post_claims)
   end
 
   @doc """

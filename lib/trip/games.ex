@@ -124,6 +124,7 @@ defmodule Trip.Games do
 
   def stop_game() do
     Repo.delete_all(Trip.Posts.PostClaim)
+    Phoenix.PubSub.broadcast(Trip.PubSub, "post_claims", :post_claims)
     update_game(%{"started" => "false", "current_round" => "0"})
   end
 

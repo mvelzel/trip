@@ -3,7 +3,7 @@ defmodule Trip.Games.Handler do
 
   alias Trip.Games
 
-  @round_time 1 * 60 * 1000
+  @round_time 15 * 60 * 1000
 
   def start_link(_opts) do
     GenServer.start_link(__MODULE__, %{})
