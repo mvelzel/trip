@@ -5,22 +5,24 @@
   <div class="flex flex-row px-10 items-center space-x-3">
     <div class="flex-1">
       <%= live_react_component("Components.Dropdown",
-        [selected: @post.id,
+        [selected: (if @post, do: @post.id, else: ""),
         values: Enum.map(@posts, &["##{&1.number} #{&1.name}", &1.id]),
         placeholder: gettext("Select a post"), phx_event: "post-selected"],
         id: "post-dropdown") %>
     </div>
-    <div>
-      <%= live_redirect to: Routes.posts_results_new_path(@socket, :new, @post.id),
-        class: "font-sans text-t-black green-3d px-4 py-3 bg-t-green rounded-2xl
-          tracking-wider font-bold" do %>
-        <%= if @post.score_type == :points do %>
-        +km
-        <% else %>
-        +<i class="far fa-clock"></i>
+    <%= if @post do %>
+      <div>
+        <%= live_redirect to: Routes.posts_results_new_path(@socket, :new, @post.id),
+          class: "font-sans text-t-black green-3d px-4 py-3 bg-t-green rounded-2xl
+            tracking-wider font-bold" do %>
+          <%= if @post.score_type == :points do %>
+          +km
+          <% else %>
+          +<i class="far fa-clock"></i>
+          <% end %>
         <% end %>
-      <% end %>
-    </div>
+      </div>
+    <% end %>
   </div>
 
   <div class="flex flex-col space-y-6">

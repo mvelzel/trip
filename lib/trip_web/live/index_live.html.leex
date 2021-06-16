@@ -14,14 +14,17 @@
   </p>
   <div class="w-full px-10">
     <%= live_react_component "Components.Dropdown",
-      [selected: @location.id, values: Enum.map(@locations, &[&1.name, &1.id]),
+      [selected: (if @location, do: @location.id, else: ""),
+      values: Enum.map(@locations, &[&1.name, &1.id]),
       phx_event: "location-selected"], id: "location-dropdown" %>
   </div>
   <div class="flex-1">
-  <%= live_react_component("Components.MapOverview",
-    [bounds: [[@location.lat0, @location.lon0],[@location.lat1, @location.lon1]],
-      className: "flex-1", postLocations: @post_locations,
-      postStates: @post_states],
-    container: [class: "h-full flex flex-col"], id: "map-overview") %>
-  </div>
+  <%= if @location do %>
+    <%= live_react_component("Components.MapOverview",
+      [bounds: [[@location.lat0, @location.lon0],[@location.lat1, @location.lon1]],
+        className: "flex-1", postLocations: @post_locations,
+        postStates: @post_states],
+      container: [class: "h-full flex flex-col"], id: "map-overview") %>
+    </div>
+  <% end %>
 </div>

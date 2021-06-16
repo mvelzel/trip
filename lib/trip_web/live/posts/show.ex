@@ -129,53 +129,57 @@ defmodule TripWeb.PostsLive.Show do
   end
 
   defp can_claim?(group, post_location, game) do
-    post_claims = Posts.list_all_post_claims_group(group.id)
+    if group do
+      post_claims = Posts.list_all_post_claims_group(group.id)
 
-    current_round = game.current_round
+      current_round = game.current_round
 
-    post_post_claims =
-      post_claims
-      |> Enum.filter(&(&1.post_location_id == post_location.id))
-
-    most_recent_claim_all =
-      Posts.list_all_post_claims(post_location.id)
-      |> Enum.sort_by(& &1.round, :desc)
-
-    all_check =
-      case post_location.post.result_type do
-        :points ->
-          if Enum.count(most_recent_claim_all) >= 2 do
-            Enum.at(most_recent_claim_all, 0).round != current_round + 2 &&
-              Enum.at(most_recent_claim_all, 1).round != current_round + 2
-          else
-            true
-          end
-
-        :high_score ->
-          if Enum.count(most_recent_claim_all) >= 1 do
-            Enum.at(most_recent_claim_all, 0).round != current_round + 2
-          else
-            true
-          end
-      end
-
-    if Enum.count(post_claims) > 0 do
-      most_recent =
+      post_post_claims =
         post_claims
-        |> Enum.sort_by(& &1.round, :desc)
-        |> Enum.at(0)
+        |> Enum.filter(&(&1.post_location_id == post_location.id))
 
-      post_most_recent =
-        post_post_claims
+      most_recent_claim_all =
+        Posts.list_all_post_claims(post_location.id)
         |> Enum.sort_by(& &1.round, :desc)
-        |> Enum.at(0)
 
-      all_check &&
-        most_recent.round != current_round + 2 &&
-        (is_nil(post_most_recent) || post_most_recent.round != current_round) &&
-        rem(most_recent.round, 2) == rem(current_round, 2)
+      all_check =
+        case post_location.post.result_type do
+          :points ->
+            if Enum.count(most_recent_claim_all) >= 2 do
+              Enum.at(most_recent_claim_all, 0).round != current_round + 2 &&
+                Enum.at(most_recent_claim_all, 1).round != current_round + 2
+            else
+              true
+            end
+
+          :high_score ->
+            if Enum.count(most_recent_claim_all) >= 1 do
+              Enum.at(most_recent_claim_all, 0).round != current_round + 2
+            else
+              true
+            end
+        end
+
+      if Enum.count(post_claims) > 0 do
+        most_recent =
+          post_claims
+          |> Enum.sort_by(& &1.round, :desc)
+          |> Enum.at(0)
+
+        post_most_recent =
+          post_post_claims
+          |> Enum.sort_by(& &1.round, :desc)
+          |> Enum.at(0)
+
+        all_check &&
+          most_recent.round != current_round + 2 &&
+          (is_nil(post_most_recent) || post_most_recent.round != current_round) &&
+          rem(most_recent.round, 2) == rem(current_round, 2)
+      else
+        all_check
+      end
     else
-      all_check
+      false
     end
   end
 end

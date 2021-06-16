@@ -9,9 +9,13 @@ defmodule TripWeb.PostsLive.Results.Index do
 
     posts = Accounts.get_user_posts(socket.assigns.current_user)
     post = Enum.at(posts, 0)
-    post_results =
+
+    post_results = if post do
       Posts.list_all_post_results(post.id)
       |> Enum.sort_by(&(&1.inserted_at), {:desc, Date})
+    else
+      []
+    end
 
     {:ok,
      socket
