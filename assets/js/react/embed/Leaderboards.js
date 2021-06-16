@@ -28,6 +28,7 @@ export default function Leaderboards({
   return (
     <>
     <SwipeableViews
+      enableMouseEvents
       index={pageIndex}
       className="h-full"
       containerStyle={{ height: "100%" }}
