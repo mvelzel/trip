@@ -11,7 +11,11 @@ defmodule TripWeb.IndexLive do
     socket = assign_defaults(socket, session)
 
     location = Accounts.get_user_location(socket.assigns.current_user)
-    post_locations = Posts.list_posts_locations(location.id)
+    post_locations = if location do 
+      Posts.list_posts_locations(location.id)
+    else
+      []
+    end
 
     post_states =
       Show.generate_post_states(

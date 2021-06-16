@@ -11,12 +11,20 @@ defmodule TripWeb.PostsLive.Claims.Index do
     location = Enum.at(locations, 0)
     posts = Posts.list_posts()
     post = Enum.at(posts, 0)
-    post_location =
-      post.locations
-      |> Enum.find(&(&1.location_id == location.id))
-    post_claims =
-      Posts.list_all_post_claims(post_location.id)
-      |> Enum.sort_by(&(&1.round), :desc)
+
+    {post_location, post_claims} =
+      if post do
+        loc =
+          post.locations
+          |> Enum.find(&(&1.location_id == location.id))
+        {
+          loc,
+          Posts.list_all_post_claims(loc.id)
+          |> Enum.sort_by(& &1.round, :desc)
+        }
+      else
+        {nil, []}
+      end
 
     {:ok,
      socket
@@ -38,7 +46,7 @@ defmodule TripWeb.PostsLive.Claims.Index do
 
     post_claims =
       Posts.list_all_post_claims(socket.assigns.post_location.id)
-      |> Enum.sort_by(&(&1.round), :desc)
+      |> Enum.sort_by(& &1.round, :desc)
 
     {:noreply,
      socket
@@ -47,12 +55,14 @@ defmodule TripWeb.PostsLive.Claims.Index do
 
   def handle_event("post-selected", %{"value" => id}, socket) do
     post = Posts.get_post!(id)
+
     post_location =
       post.locations
       |> Enum.find(&(&1.location_id == socket.assigns.location.id))
+
     post_claims =
       Posts.list_all_post_claims(post_location.id)
-      |> Enum.sort_by(&(&1.round), :desc)
+      |> Enum.sort_by(& &1.round, :desc)
 
     {:noreply,
      socket
@@ -63,12 +73,14 @@ defmodule TripWeb.PostsLive.Claims.Index do
 
   def handle_event("location-selected", %{"value" => id}, socket) do
     location = Locations.get_location!(id)
+
     post_location =
       socket.assigns.post.locations
       |> Enum.find(&(&1.location_id == location.id))
+
     post_claims =
       Posts.list_all_post_claims(post_location.id)
-      |> Enum.sort_by(&(&1.round), :desc)
+      |> Enum.sort_by(& &1.round, :desc)
 
     {:noreply,
      socket
@@ -77,4 +89,3 @@ defmodule TripWeb.PostsLive.Claims.Index do
      |> assign(post_location: post_location)}
   end
 end
-

@@ -11,7 +11,11 @@ defmodule TripWeb.ChallengesLive.PlayerIndex do
     user = socket.assigns.current_user
     group = Accounts.get_user_group(user)
 
-    group_submissions = Challenges.list_submissions_group(group.id)
+    group_submissions = if group do 
+      Challenges.list_submissions_group(group.id)
+    else
+      []
+    end
 
     {:ok,
      socket

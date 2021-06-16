@@ -5,7 +5,7 @@
   <div class="flex flex-row px-10 items-center space-x-3">
     <div class="flex-1">
       <%= live_react_component("Components.Dropdown",
-        [selected: @location.id,
+        [selected: (if @location, do: @location.id, else: ""),
         values: Enum.map(@locations, &[&1.name, &1.id]),
         placeholder: gettext("Select a location"), phx_event: "location-selected"],
         id: "location-dropdown") %>
@@ -15,7 +15,7 @@
   <div class="flex flex-row px-10 items-center space-x-3">
     <div class="flex-1">
       <%= live_react_component("Components.Dropdown",
-        [selected: @post.id,
+        [selected: (if @post, do: @post.id, else: ""),
         values: Enum.map(@posts, &["##{&1.number} #{&1.name}", &1.id]),
         placeholder: gettext("Select a post"), phx_event: "post-selected"],
         id: "post-dropdown") %>
