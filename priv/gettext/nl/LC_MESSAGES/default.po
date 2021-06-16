@@ -795,7 +795,7 @@ msgstr "Verwijder"
 #, elixir-format, fuzzy
 #: lib/trip_web/live/challenges/show.html.leex:69
 msgid "Upload video"
-msgstr "Afbeelding uploaden"
+msgstr "Video uploaden"
 
 #, elixir-format
 #: lib/trip_web/live/challenges/edit.ex:2
