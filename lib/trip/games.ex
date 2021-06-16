@@ -79,11 +79,12 @@ defmodule Trip.Games do
       game
       |> Game.changeset(attrs)
 
-    Phoenix.PubSub.broadcast(Trip.PubSub, "game", Ecto.Changeset.apply_changes(changeset))
-    Phoenix.PubSub.broadcast(Trip.PubSub, "game_front", Ecto.Changeset.apply_changes(changeset))
+    {:ok, updated} =
+      changeset
+      |> Repo.update()
 
-    changeset
-    |> Repo.update()
+    Phoenix.PubSub.broadcast(Trip.PubSub, "game", updated)
+    Phoenix.PubSub.broadcast(Trip.PubSub, "game_front", updated)
   end
 
   def update_game(attrs, time) do
@@ -94,11 +95,13 @@ defmodule Trip.Games do
       |> Game.changeset(attrs)
       |> Ecto.Changeset.put_change(:time_started, time)
 
-    Phoenix.PubSub.broadcast(Trip.PubSub, "game", Ecto.Changeset.apply_changes(changeset))
-    Phoenix.PubSub.broadcast(Trip.PubSub, "game_front", Ecto.Changeset.apply_changes(changeset))
 
-    changeset
-    |> Repo.update()
+    {:ok, updated} =
+      changeset
+      |> Repo.update()
+
+    Phoenix.PubSub.broadcast(Trip.PubSub, "game", updated)
+    Phoenix.PubSub.broadcast(Trip.PubSub, "game_front", updated)
   end
 
   def start_game() do

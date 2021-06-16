@@ -66,34 +66,27 @@ defmodule TripWeb do
 
       @impl true
       def handle_info(%Trip.Notifications.Notification{} = n, socket) do
-        Phoenix.PubSub.broadcast(
-          Trip.PubSub,
-          "local_not:#{socket.assigns.current_user.id}",
-          {:local_not, n}
-        )
+        socket =
+          if nots = socket.assigns[:notifications] do
+            notifications =
+              [n]
+              |> Enum.concat(nots)
+
+            Trip.Notifications.mark_as_read(n.id)
+
+            assign(socket, notifications: notifications)
+          else
+            socket
+          end
 
         {:noreply,
          socket
          |> assign(notification_count: socket.assigns.notification_count + 1)
+         |> push_event("service-notification", n)
          |> push_event("notification", n)}
       end
 
       def handle_info(%Trip.Games.Game{} = game, socket) do
-        if game.started && game.started != socket.assigns.game.started do
-          not_text = gettext("The game has begun!")
-
-          Trip.Notifications.notify_all(%{
-            "text" => not_text,
-            "priority" => "urgent",
-            "action" => Routes.index_path(socket, :index)
-          })
-        end
-
-        if game.started && game.current_round != socket.assigns.game.current_round do
-          not_text = gettext("New round has begun: ") <> "#{game.current_round}"
-          Trip.Notifications.notify_all(%{"text" => not_text, "priority" => "normal"})
-        end
-
         {:noreply,
          socket
          |> assign(game: game)}
@@ -109,7 +102,6 @@ defmodule TripWeb do
 
         notifications =
           if current_user do
-            Phoenix.PubSub.unsubscribe(Trip.PubSub, "notification:#{current_user.id}")
             Phoenix.PubSub.subscribe(Trip.PubSub, "notification:#{current_user.id}")
 
             notifications =
@@ -119,7 +111,6 @@ defmodule TripWeb do
             0
           end
 
-        Phoenix.PubSub.unsubscribe(Trip.PubSub, "game_front")
         Phoenix.PubSub.subscribe(Trip.PubSub, "game_front")
 
         socket

@@ -1,5 +1,6 @@
 defmodule Trip.Games.Handler do
   use GenServer
+  import TripWeb.Gettext
 
   alias Trip.Games
 
@@ -21,7 +22,7 @@ defmodule Trip.Games.Handler do
       diff =
         NaiveDateTime.utc_now()
         |> NaiveDateTime.diff(game.time_started, :millisecond)
-      round = div(diff, @round_time)
+      round = max(div(diff, @round_time), 0)
       delay = diff - round * @round_time
 
       Games.update_game(%{"current_round" => to_string(round)})
@@ -46,6 +47,14 @@ defmodule Trip.Games.Handler do
       diff =
         game.time_started
         |> NaiveDateTime.diff(NaiveDateTime.utc_now(), :millisecond)
+
+      not_text = gettext("The game has begun!")
+
+      Trip.Notifications.notify_all(%{
+        "text" => not_text,
+        "priority" => "urgent",
+        "action" => "/"
+      })
 
       time_increment(state, @round_time + diff)
     else
@@ -76,6 +85,9 @@ defmodule Trip.Games.Handler do
     state = if game.started do
       time_increment(state, @round_time)
     end
+
+    not_text = gettext("New round has begun: ") <> "#{game.current_round}"
+    Trip.Notifications.notify_all(%{"text" => not_text, "priority" => "normal"})
 
     {:noreply,
      state

@@ -13,8 +13,6 @@ defmodule TripWeb.NotificationsLive.Index do
 
     Notifications.mark_all_read(current_user.id)
 
-    Phoenix.PubSub.subscribe(Trip.PubSub, "local_not:#{current_user.id}")
-
     {:ok,
      socket
      |> assign(notifications: notifications)}
@@ -25,18 +23,5 @@ defmodule TripWeb.NotificationsLive.Index do
     Notifications.delete_all_read(socket.assigns.current_user.id)
 
     {:noreply, push_redirect(socket, to: Routes.notifications_index_path(socket, :index))}
-  end
-
-  @impl true
-  def handle_info({:local_not, notification}, socket) do
-    notifications =
-      [notification]
-      |> Enum.concat(socket.assigns.notifications)
-
-    Notifications.mark_as_read(notification.id)
-
-    {:noreply,
-     socket
-     |> assign(notifications: notifications)}
   end
 end

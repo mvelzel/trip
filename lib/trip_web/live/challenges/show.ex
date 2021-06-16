@@ -134,12 +134,6 @@ defmodule TripWeb.ChallengesLive.Show do
      push_redirect(socket, to: Routes.challenges_submissions_index_path(socket, :index))}
   end
 
-  def handle_progress(:videoupload, entry, socket) do
-    IO.inspect(entry)
-
-    {:noreply, socket}
-  end
-
   defp has_file_upload(challenge, uploads) do
     case challenge.submission_type do
       :text -> true

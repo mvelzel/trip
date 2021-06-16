@@ -1,7 +1,7 @@
 // We need to import the CSS so that webpack will load it.
 // The MiniCssExtractPlugin is used to separate it out into
 // its own CSS file.
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 import "../css/app.scss";
 
 // webpack automatically bundles all modules in your
@@ -33,13 +33,14 @@ Hooks.Notifications = {
       if (result === "granted") {
       }
     });
-    this.handleEvent("notification", ({ text }) =>
+    this.handleEvent("service-notification", ({ text }) => {
       navigator.serviceWorker.getRegistration().then(function (reg) {
+        console.log(text);
         reg.showNotification(text, {
-          icon: "/images/icon-192x192.png"
+          icon: "/images/icon-192x192.png",
         });
-      })
-    );
+      });
+    });
   },
 };
 
@@ -51,7 +52,7 @@ window.Components = {
   Dropdown,
   Leaderboards,
   MapOverview,
-  Notifications
+  Notifications,
 };
 
 let csrfToken = document
