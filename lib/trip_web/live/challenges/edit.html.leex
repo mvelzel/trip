@@ -38,6 +38,19 @@
       <%= checkbox f, :pass_or_fail, class: "t-checkbox" %>
       <p class="font-sans text-white font-medium"><%= gettext "Pass or fail" %></p>
     </div>
+    <div class="flex flex-col space-y-4">
+      <div class="rounded-2xl bg-t-green flex flex-row px-8 h-14 flex-row items-center green-3d relative">
+        <span class="text-xl font-sans font-bold text-t-black space-x-3 flex items-center">
+          <i class="fas fa-upload"></i> <span><%= gettext("Add image") %></span>
+        </span>
+        <%= live_file_input @uploads.image,
+          class: "absolute opacity-0 w-full h-full cursor-pointer" %>
+      </div>
+
+      <%= for entry <- @uploads.image.entries do %>
+        <%= live_img_preview entry, class: "w-full flex-1 rounded-2xl" %>
+      <% end %>
+    </div>
     <div class="flex flex-row justify-between items-center pb-10">
       <%= if @live_action == :edit do %>
         <a href="#" phx-click="remove-challenge",

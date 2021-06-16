@@ -21,7 +21,7 @@ defmodule Trip.Notifications do
   def list_notifications(user_id) do
     Notification
     |> where(user_id: ^user_id)
-    |> order_by(desc: :inserted_at)
+    |> order_by([desc: :read, desc: :inserted_at])
     |> Repo.all()
   end
 

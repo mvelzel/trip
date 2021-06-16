@@ -32,6 +32,7 @@ defmodule Trip.Challenges do
   def list_submissions_group(id) do
     Submission
     |> where(group_id: ^id)
+    |> order_by(desc: :inserted_at)
     |> Repo.all()
   end
 
@@ -67,9 +68,15 @@ defmodule Trip.Challenges do
       {:error, %Ecto.Changeset{}}
 
   """
-  def create_challenge(attrs \\ %{}) do
+  def create_challenge(attrs) do
     %Challenge{}
     |> Challenge.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  def create_challenge(attrs, image) do
+    %Challenge{}
+    |> Challenge.changeset(attrs, image)
     |> Repo.insert()
   end
 
@@ -100,6 +107,12 @@ defmodule Trip.Challenges do
   def update_challenge(%Challenge{} = challenge, attrs) do
     challenge
     |> Challenge.changeset(attrs)
+    |> Repo.update()
+  end
+
+  def update_challenge(%Challenge{} = challenge, attrs, image) do
+    challenge
+    |> Challenge.changeset(attrs, image)
     |> Repo.update()
   end
 

@@ -119,3 +119,15 @@
     transform: translateX(0);
   }
 }
+
+.t-button.phx-submit-loading {
+  text-indent: -9999px;
+  line-height: 0;
+
+  &::after {
+    content: "Laden...";
+    text-indent: 0;
+    display: block;
+    line-height: initial;
+  }
+}

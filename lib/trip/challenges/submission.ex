@@ -64,7 +64,7 @@ defmodule Trip.Challenges.Submission do
     case submission_type do
       :text -> changeset |> validate_required([:text])
       :image -> changeset |> validate_required([])
-      :video -> changeset |> validate_required([:video])
+      :video -> changeset |> validate_required([])
     end
   end
 

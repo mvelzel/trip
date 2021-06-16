@@ -15,6 +15,7 @@ defmodule TripWeb.ChallengesLive.Edit do
     {:ok,
      socket
      |> assign_defaults(session)
+     |> allow_upload(:image, accept: ~w(.jpg .jpeg .png))
      |> assign(challenge: challenge)
      |> assign(changeset: changeset)}
   end
@@ -27,6 +28,7 @@ defmodule TripWeb.ChallengesLive.Edit do
     {:ok,
      socket
      |> assign_defaults(session)
+     |> allow_upload(:image, accept: ~w(.jpg .jpeg .png))
      |> assign(changeset: changeset)}
   end
 
@@ -57,13 +59,31 @@ defmodule TripWeb.ChallengesLive.Edit do
         %{"challenge" => challenge_params},
         %{assigns: %{live_action: :edit}} = socket
       ) do
-    {:ok, _} = Challenges.update_challenge(socket.assigns.challenge, challenge_params)
+    if Enum.empty?(socket.assigns.uploads.image.entries) do
+      {:ok, _} = Challenges.update_challenge(socket.assigns.challenge, challenge_params)
+    else
+      [image] =
+        consume_uploaded_entries(socket, :image, fn %{path: path}, _entry ->
+          File.read!(path)
+        end)
+
+      {:ok, _} = Challenges.update_challenge(socket.assigns.challenge, challenge_params, image)
+    end
 
     {:noreply, push_redirect(socket, to: Routes.challenges_index_path(socket, :index))}
   end
 
   def handle_event("create", %{"challenge" => challenge_params}, socket) do
-    {:ok, _} = Challenges.create_challenge(challenge_params)
+    if Enum.empty?(socket.assigns.uploads.image.entries) do
+      {:ok, _} = Challenges.create_challenge(challenge_params)
+    else
+      [image] =
+        consume_uploaded_entries(socket, :image, fn %{path: path}, _entry ->
+          File.read!(path)
+        end)
+
+      {:ok, _} = Challenges.create_challenge(challenge_params, image)
+    end
 
     {:noreply, push_redirect(socket, to: Routes.challenges_index_path(socket, :index))}
   end

@@ -19,7 +19,21 @@
       <% end %>
     </span> <%= @challenge.max_score %>km
   </p>
-  <%= if role_allowed(@current_user, [:player, :superuser]) && !assigns[:submission] do %>
+  <%= if @challenge.thumbnail do %>
+    <p class="text-white text-xl font-base font-sans">
+      <span class="text-t-green text-green-3d font-medium">
+        <%= gettext "Image:" %>
+      </span>
+    </p>
+    <div class="flex flex-col">
+      <%
+        image = base64_image(@challenge.thumbnail)
+      %>
+      <img src="<%= image %>" class="w-full" />
+    </div>
+  <% end %>
+  <%= if role_allowed(@current_user, [:player, :superuser]) &&
+    !assigns[:submission] && assigns[:changeset] do %>
     <%= f = form_for @changeset, "#", [phx_submit: :create, phx_change: :validate,
       class: "flex flex-col space-y-6"] %>
       <h2 class="text-white text-xl font-bold font-sans tracking-wider">
@@ -29,12 +43,12 @@
         <%= hidden_input f, :submission_type %>
       </h2>
       <%= case @challenge.submission_type do %>
-        <%= :text -> %>
+        <% :text -> %>
           <div class="flex flex-col">
             <%= textarea f, :text, class: "t-input", rows: 6,
               placeholder: gettext("Input submission") %>
           </div>
-        <%= :image -> %>
+        <% :image -> %>
           <div class="flex flex-col space-y-4">
             <div class="rounded-2xl bg-t-green flex flex-row px-8 h-14 flex-row items-center green-3d relative">
               <span class="text-xl font-sans font-bold text-t-black space-x-3 flex items-center">
@@ -45,20 +59,20 @@
             </div>
 
             <%= for entry <- @uploads.image.entries do %>
-              <%= live_img_preview entry, class: "w-full flex-1 rounded-2xl" %>
+              <%= live_img_preview entry, class: "w-full flex-1" %>
             <% end %>
           </div>
-        <%= :video -> %>
+        <% :video -> %>
           <div class="flex flex-col space-y-4">
             <div class="rounded-2xl bg-t-green flex flex-row px-8 h-14 flex-row items-center green-3d relative">
               <span class="text-xl font-sans font-bold text-t-black space-x-3 flex items-center">
                 <i class="fas fa-upload"></i> <span><%= gettext("Upload video") %></span>
               </span>
-              <%= live_file_input @uploads.video,
+              <%= live_file_input @uploads.videoupload,
                 class: "absolute opacity-0 w-full h-full cursor-pointer" %>
             </div>
 
-            <%= for entry <- @uploads.video.entries do %>
+            <%= for entry <- @uploads.videoupload.entries do %>
               <p class="text-white font-sans font-medium text-lg">
                 <%= entry.client_name %>
               </p>
@@ -85,20 +99,24 @@
         </h3>
       </div>
       <%= case @challenge.submission_type do %>
-        <%= :text -> %>
+        <% :text -> %>
           <div class="flex flex-col">
             <%= textarea :text, :text, class: "t-input", rows: 6,
               placeholder: gettext("Nothing submitted"), value: @submission.text, disabled: true %>
           </div>
-        <%= :image -> %>
+        <% :image -> %>
           <div class="flex flex-col">
             <%
               image = base64_image(@submission.image)
             %>
-            <img src="<%= image %>" class="w-full rounded-2xl" />
+            <img src="<%= image %>" class="w-full" />
           </div>
-        <%= :video -> %>
-          <p>testvideo</p>
+        <% :video -> %>
+          <div class="flex flex-col">
+            <video controls>
+              <source src="<%= @submission.video %>">
+            </video>
+          </div>
       <% end %>
       <%= if @challenge.pass_or_fail do %>
         <div class="flex flex-row justify-between items-center pb-10">

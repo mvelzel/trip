@@ -13,7 +13,8 @@ defmodule TripWeb.ChallengesLive.Show do
     user = socket.assigns.current_user
 
     socket =
-      if role_allowed(user, [:player, :superuser]) do
+      if role_allowed(user, [:player, :superuser]) &&
+       Accounts.get_user_group(user) do
         changeset =
           %Submission{}
           |> Submission.changeset(%{
@@ -30,10 +31,7 @@ defmodule TripWeb.ChallengesLive.Show do
     {:ok,
      socket
      |> allow_upload(:image, accept: ~w(.jpg .jpeg .png))
-     |> allow_upload(:video, accept: ["video/*"],
-       auto_upload: true,
-       progress: &handle_progress/3
-     )
+     |> allow_upload(:videoupload, accept: ["video/*"])
      |> assign(challenge: challenge)}
   end
 
@@ -70,8 +68,6 @@ defmodule TripWeb.ChallengesLive.Show do
   end
 
   def handle_event("create", %{"submission" => submission_params}, socket) do
-    IO.inspect("cmon man")
-
     case socket.assigns.challenge.submission_type do
       :image ->
         [image] =
@@ -79,14 +75,15 @@ defmodule TripWeb.ChallengesLive.Show do
             File.read!(path)
           end)
 
-        {:ok, _} = Challenges.create_submission(submission_params, {:image, image})
+        {:ok, _} = Challenges.create_submission(submission_params, image)
 
       :text ->
         {:ok, _} = Challenges.create_submission(submission_params)
 
-        video =
-          consume_uploaded_entries(socket, :video, fn %{path: path}, _entry ->
-            dest = Path.join([:code.priv_dir(:my_app), "static", "uploads", Path.basename(path)])
+      :video ->
+        [video] =
+          consume_uploaded_entries(socket, :videoupload, fn %{path: path}, _entry ->
+            dest = Path.join([:code.priv_dir(:trip), "static", "uploads", Path.basename(path)])
             File.cp!(path, dest)
             Routes.static_path(socket, "/uploads/#{Path.basename(dest)}")
           end)
@@ -137,7 +134,7 @@ defmodule TripWeb.ChallengesLive.Show do
      push_redirect(socket, to: Routes.challenges_submissions_index_path(socket, :index))}
   end
 
-  def handle_progress(:video, entry, socket) do
+  def handle_progress(:videoupload, entry, socket) do
     IO.inspect(entry)
 
     {:noreply, socket}
@@ -147,7 +144,7 @@ defmodule TripWeb.ChallengesLive.Show do
     case challenge.submission_type do
       :text -> true
       :image -> uploads.image.entries != []
-      :video -> uploads.video.entries != []
+      :video -> uploads.videoupload.entries != []
     end
   end
 end
