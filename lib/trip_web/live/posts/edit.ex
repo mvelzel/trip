@@ -164,4 +164,10 @@ defmodule TripWeb.PostsLive.Edit do
 
     {:noreply, push_redirect(socket, to: Routes.posts_index_path(socket, :index))}
   end
+
+  def handle_event("remove_nested", %{"cursor" => cursor}, socket) do
+    IO.inspect(cursor)
+    changeset = remove_nested(socket.assigns.changeset, cursor)
+    {:noreply, assign(socket, changeset: changeset)}
+  end
 end

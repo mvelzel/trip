@@ -1,6 +1,7 @@
 defmodule Trip.Posts.PostLocation do
   use Ecto.Schema
   import Ecto.Changeset
+  import Trip.ChangesetHelpers
 
   alias Trip.Posts.Post
   alias Trip.Locations.Location
@@ -23,6 +24,7 @@ defmodule Trip.Posts.PostLocation do
     |> cast(attrs, [:latitude, :longitude, :post_id, :location_id, :delete])
     |> validate_changeset()
     |> assoc_constraint(:post)
+    |> maybe_mark_for_deletion()
   end
 
   def validate_changeset(changeset) do

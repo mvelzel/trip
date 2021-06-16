@@ -70,18 +70,27 @@
       <%= if !is_nil(input_value(fl, :location_id)) do %>
         <% id = String.to_integer(to_string(input_value(fl, :location_id))) %>
         <% location = Locations.get_location!(id) %>
-        <div class="flex flex-col space-y-3">
-          <p class="font-sans text-white font-medium"><%= location.name %></p>
-          <p class="font-sans text-sm text-white"><%= gettext "Double tap to set location" %></p>
-          <%= live_react_component("Components.MapLocationPicker",
-            [bounds: [[location.lat0, location.lon0],[location.lat1, location.lon1]],
-            location: (if !is_nil(fl.data.id), do: [fl.data.latitude, fl.data.longitude],
-              else: []),
-            enableClick: true,
-            className: "h-96", cursor: cursor_for(fl)],
-            id: "map-editor-#{fl.index}") %>
-        </div>
+        <%= if input_value(fl, :delete) != true do %>
+          <div class="flex flex-col space-y-3">
+            <div class="flex flex-row justify-between">
+              <p class="font-sans text-white font-medium"><%= location.name %></p>
+              <a href="#" phx-click="remove_nested" phx-value-cursor="<%= cursor_for(fl) %>"
+                class="font-sans font-bold text-t-red text-red-3d cursor-pointer">
+                <%= gettext "Remove" %>
+              </a>
+            </div>
+            <p class="font-sans text-sm text-white"><%= gettext "Double tap to set location" %></p>
+            <%= live_react_component("Components.MapLocationPicker",
+              [bounds: [[location.lat0, location.lon0],[location.lat1, location.lon1]],
+              location: (if !is_nil(fl.data.id), do: [fl.data.latitude, fl.data.longitude],
+                else: []),
+              enableClick: true,
+              className: "h-96", cursor: cursor_for(fl)],
+              id: "map-editor-#{fl.index}") %>
+          </div>
+        <% end %>
         <%= hidden_input fl, :location_id %>
+        <%= hidden_input fl, :delete %>
         <%= hidden_input fl, :longitude %>
         <%= hidden_input fl, :latitude %>
       <% end %>
