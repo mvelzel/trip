@@ -190,6 +190,7 @@ defmodule TripWeb do
       def submission_status_label(:failed), do: gettext("Failed")
       def submission_type_label(:text), do: gettext("Text")
       def submission_type_label(:image), do: gettext("Image")
+      def submission_type_label(:video), do: gettext("Video")
 
       def base64_image(binary) do
         "data:image/png;base64, " <> Base.encode64(binary)

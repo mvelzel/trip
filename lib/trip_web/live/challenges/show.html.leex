@@ -28,31 +28,47 @@
         <%= hidden_input f, :challenge_id %>
         <%= hidden_input f, :submission_type %>
       </h2>
-      <%= if @challenge.submission_type == :text do %>
-        <div class="flex flex-col">
-          <%= textarea f, :text, class: "t-input", rows: 6,
-            placeholder: gettext("Input submission") %>
-        </div>
-      <% else %>
-        <div class="flex flex-col space-y-4">
-          <div class="rounded-2xl bg-t-green flex flex-row px-8 h-14 flex-row items-center green-3d relative">
-            <span class="text-xl font-sans font-bold text-t-black space-x-3 flex items-center">
-              <i class="fas fa-upload"></i> <span><%= gettext("Upload image") %></span>
-            </span>
-            <%= live_file_input @uploads.image,
-              class: "absolute opacity-0 w-full h-full cursor-pointer" %>
+      <%= case @challenge.submission_type do %>
+        <%= :text -> %>
+          <div class="flex flex-col">
+            <%= textarea f, :text, class: "t-input", rows: 6,
+              placeholder: gettext("Input submission") %>
           </div>
+        <%= :image -> %>
+          <div class="flex flex-col space-y-4">
+            <div class="rounded-2xl bg-t-green flex flex-row px-8 h-14 flex-row items-center green-3d relative">
+              <span class="text-xl font-sans font-bold text-t-black space-x-3 flex items-center">
+                <i class="fas fa-upload"></i> <span><%= gettext("Upload image") %></span>
+              </span>
+              <%= live_file_input @uploads.image,
+                class: "absolute opacity-0 w-full h-full cursor-pointer" %>
+            </div>
 
-          <%= for entry <- @uploads.image.entries do %>
-            <%= live_img_preview entry, class: "w-full flex-1 rounded-2xl" %>
-          <% end %>
-        </div>
+            <%= for entry <- @uploads.image.entries do %>
+              <%= live_img_preview entry, class: "w-full flex-1 rounded-2xl" %>
+            <% end %>
+          </div>
+        <%= :video -> %>
+          <div class="flex flex-col space-y-4">
+            <div class="rounded-2xl bg-t-green flex flex-row px-8 h-14 flex-row items-center green-3d relative">
+              <span class="text-xl font-sans font-bold text-t-black space-x-3 flex items-center">
+                <i class="fas fa-upload"></i> <span><%= gettext("Upload video") %></span>
+              </span>
+              <%= live_file_input @uploads.video,
+                class: "absolute opacity-0 w-full h-full cursor-pointer" %>
+            </div>
+
+            <%= for entry <- @uploads.video.entries do %>
+              <p class="text-white font-sans font-medium text-lg">
+                <%= entry.client_name %>
+              </p>
+            <% end %>
+          </div>
       <% end %>
       <div class="flex flex-row justify-end items-center pb-10">
         <%= submit gettext("Submit"),
           class: "t-button",
-          disabled: !@changeset.valid? ||
-            (@challenge.submission_type != :text && @uploads.image.entries == [])%>
+          disabled: !@changeset.valid? || !has_file_upload(@challenge, @uploads) %>
       </div>
     </form>
   <% end %>
@@ -68,18 +84,21 @@
           <%= gettext "Group" %> <%= @submission.group.number %> - <%= @submission.group.name %>
         </h3>
       </div>
-      <%= if @challenge.submission_type == :text do %>
-        <div class="flex flex-col">
-          <%= textarea :text, :text, class: "t-input", rows: 6,
-            placeholder: gettext("Nothing submitted"), value: @submission.text, disabled: true %>
-        </div>
-      <% else %>
-        <div class="flex flex-col">
-          <%
-            image = base64_image(@submission.image)
-          %>
-          <img src="<%= image %>" class="w-full rounded-2xl" />
-        </div>
+      <%= case @challenge.submission_type do %>
+        <%= :text -> %>
+          <div class="flex flex-col">
+            <%= textarea :text, :text, class: "t-input", rows: 6,
+              placeholder: gettext("Nothing submitted"), value: @submission.text, disabled: true %>
+          </div>
+        <%= :image -> %>
+          <div class="flex flex-col">
+            <%
+              image = base64_image(@submission.image)
+            %>
+            <img src="<%= image %>" class="w-full rounded-2xl" />
+          </div>
+        <%= :video -> %>
+          <p>testvideo</p>
       <% end %>
       <%= if @challenge.pass_or_fail do %>
         <div class="flex flex-row justify-between items-center pb-10">

@@ -30,6 +30,10 @@ defmodule TripWeb.ChallengesLive.Show do
     {:ok,
      socket
      |> allow_upload(:image, accept: ~w(.jpg .jpeg .png))
+     |> allow_upload(:video, accept: ["video/*"],
+       auto_upload: true,
+       progress: &handle_progress/3
+     )
      |> assign(challenge: challenge)}
   end
 
@@ -66,6 +70,8 @@ defmodule TripWeb.ChallengesLive.Show do
   end
 
   def handle_event("create", %{"submission" => submission_params}, socket) do
+    IO.inspect("cmon man")
+
     case socket.assigns.challenge.submission_type do
       :image ->
         [image] =
@@ -73,10 +79,19 @@ defmodule TripWeb.ChallengesLive.Show do
             File.read!(path)
           end)
 
-        {:ok, _} = Challenges.create_submission(submission_params, image)
+        {:ok, _} = Challenges.create_submission(submission_params, {:image, image})
 
       :text ->
         {:ok, _} = Challenges.create_submission(submission_params)
+
+        video =
+          consume_uploaded_entries(socket, :video, fn %{path: path}, _entry ->
+            dest = Path.join([:code.priv_dir(:my_app), "static", "uploads", Path.basename(path)])
+            File.cp!(path, dest)
+            Routes.static_path(socket, "/uploads/#{Path.basename(dest)}")
+          end)
+
+        {:ok, _} = Challenges.create_submission(Map.put(submission_params, "video", video))
     end
 
     {:noreply, push_redirect(socket, to: Routes.challenges_player_index_path(socket, :index))}
@@ -89,7 +104,8 @@ defmodule TripWeb.ChallengesLive.Show do
         %{"status" => "passed", "score" => to_string(socket.assigns.challenge.max_score)}
       )
 
-    {:noreply, push_redirect(socket, to: Routes.challenges_submissions_index_path(socket, :index))}
+    {:noreply,
+     push_redirect(socket, to: Routes.challenges_submissions_index_path(socket, :index))}
   end
 
   def handle_event("fail-submission", _params, socket) do
@@ -99,21 +115,39 @@ defmodule TripWeb.ChallengesLive.Show do
         %{"status" => "failed", "score" => "0"}
       )
 
-    {:noreply, push_redirect(socket, to: Routes.challenges_submissions_index_path(socket, :index))}
+    {:noreply,
+     push_redirect(socket, to: Routes.challenges_submissions_index_path(socket, :index))}
   end
 
   def handle_event("judge-submission", %{"submission" => submission_params}, socket) do
-    status = if submission_params["score"] != "0" do
-      "passed"
-    else
-      "failed"
-    end
+    status =
+      if submission_params["score"] != "0" do
+        "passed"
+      else
+        "failed"
+      end
+
     {:ok, _} =
       Challenges.approve_submission(
         socket.assigns.submission,
         %{submission_params | "status" => status}
       )
 
-    {:noreply, push_redirect(socket, to: Routes.challenges_submissions_index_path(socket, :index))}
+    {:noreply,
+     push_redirect(socket, to: Routes.challenges_submissions_index_path(socket, :index))}
+  end
+
+  def handle_progress(:video, entry, socket) do
+    IO.inspect(entry)
+
+    {:noreply, socket}
+  end
+
+  defp has_file_upload(challenge, uploads) do
+    case challenge.submission_type do
+      :text -> true
+      :image -> uploads.image.entries != []
+      :video -> uploads.video.entries != []
+    end
   end
 end

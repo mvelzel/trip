@@ -4,7 +4,7 @@ defmodule Trip.Challenges.Challenge do
 
   alias Trip.Challenges.Submission
 
-  @submission_types [:text, :image]
+  @submission_types [:text, :image, :video]
 
   schema "challenges" do
     field :available, :boolean, default: true
@@ -13,6 +13,7 @@ defmodule Trip.Challenges.Challenge do
     field :name, :string
     field :pass_or_fail, :boolean, default: false
     field :submission_type, Ecto.Enum, values: @submission_types
+    field :thumbnail, :binary
 
     has_many :submission, Submission
 
@@ -24,6 +25,14 @@ defmodule Trip.Challenges.Challenge do
     challenge
     |> cast(attrs, [:name, :description, :max_score, :pass_or_fail, :available, :submission_type])
     |> validate_changeset()
+    |> cast_assoc(:submission)
+  end
+
+  def changeset(challenge, attrs, thumbnail) do
+    challenge
+    |> cast(attrs, [:name, :description, :max_score, :pass_or_fail, :available, :submission_type])
+    |> validate_changeset()
+    |> put_change(:thumbnail, thumbnail)
     |> cast_assoc(:submission)
   end
 
