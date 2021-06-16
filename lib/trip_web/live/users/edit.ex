@@ -10,7 +10,7 @@ defmodule TripWeb.UsersLive.Edit do
     locations = Locations.list_locations()
     posts = Posts.list_posts()
     user = Accounts.get_user!(id)
-    {selected_location, groups} = if !is_nil(user.group) do
+    {selected_location, groups} = if user.group && user.group.location do
       {user.group.location.id, Groups.list_groups(user.group.location.id)}
     else
       {"", []}
