@@ -35,7 +35,6 @@ Hooks.Notifications = {
     });
     this.handleEvent("service-notification", ({ text }) => {
       navigator.serviceWorker.getRegistration().then(function (reg) {
-        console.log(text);
         reg.showNotification(text, {
           icon: "/images/icon-192x192.png",
         });
@@ -88,4 +87,7 @@ window.liveSocket = liveSocket;
 // The pushEvent, pushEventTo and handleEvent props will not be passed here.
 document.addEventListener("DOMContentLoaded", (e) => {
   initLiveReact();
+});
+
+window.addEventListener("beforeinstallprompt", (e) => {
 });
