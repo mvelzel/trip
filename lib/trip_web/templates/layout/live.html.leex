@@ -10,10 +10,10 @@
   <%= live_react_component "Components.Notifications", [], id: "notifications-toast" %>
 
   <div class="h-[4.5rem] w-full">
-    <div class="h-full bg-t-blue flex shadow-lg justify-between px-8 items-center">
+    <div class="h-full bg-t-blue flex shadow-lg justify-between px-6 items-center">
       <%= live_redirect to: Routes.index_path(@socket, :index),
-        class: "uppercase text-white text-3xl tracking-widest font-bold font-sans trip" do %>
-        <%= gettext "Trip" %>
+        class: "uppercase text-white text-2xl tracking-widest font-bold font-sans trip" do %>
+        <%= gettext "Road to Brunstad" %>
       <% end %>
       <div class="relative">
         <a class="text-4xl text-t-red burger flex items-center" href="#"
