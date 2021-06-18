@@ -110,6 +110,14 @@ defmodule Trip.Challenges do
     |> Repo.update()
   end
 
+  def publish_challenge(%Challenge{} = challenge) do
+    update_challenge(challenge, %{"available" => "true"})
+  end
+
+  def unpublish_challenge(%Challenge{} = challenge) do
+    update_challenge(challenge, %{"available" => "false"})
+  end
+
   def update_challenge(%Challenge{} = challenge, attrs, image) do
     challenge
     |> Challenge.changeset(attrs, image)

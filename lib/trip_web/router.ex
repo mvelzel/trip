@@ -101,6 +101,8 @@ defmodule TripWeb.Router do
       live "/new", Edit, :new
 
       live "/edit/:challenge", Edit, :edit
+
+      live "/publish", Publish, :publish
     end
 
     scope "/users", UsersLive do

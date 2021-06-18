@@ -1,0 +1,34 @@
+<div class="flex flex-col w-full px-10 pt-10 space-y-4">
+  <h2 class="uppercase text-white text-2xl font-bold font-sans tracking-wider">
+    <%= gettext "Publish challenge" %>
+  </h2>
+  <%= live_react_component "Components.Dropdown",
+    [selected: (if @challenge, do: @challenge.id, else: ""),
+    values: Enum.map(@challenges, &[&1.name, &1.id]),
+    phx_event: "challenge-selected"], id: "challenge-dropdown" %>
+  <%= if @challenge do %>
+    <p class="text-white text-xl font-base font-sans">
+      <span class="text-t-green text-green-3d font-medium">
+        <%= gettext "Status:" %>
+      </span>
+      <%= if @challenge.available do %>
+        <%= gettext "Published" %>
+      <% else %>
+        <%= gettext "Unpublished" %>
+      <% end %>
+    </p>
+    <a href="#" phx-click="publish-challenge"
+                class="rounded-2xl bg-t-green px-8 py-4 green-3d">
+      <h2 class="text-xl font-sans font-bold text-t-black space-x-3 flex items-center justify-around">
+        <span><%= gettext "Publish" %></span>
+      </h2>
+    </a>
+    <a href="#" phx-click="unpublish-challenge"
+                class="rounded-2xl bg-t-red px-8 py-4 red-3d text-center">
+      <h2 class="text-xl font-sans font-bold text-t-black space-x-3 flex items-center justify-around">
+        <span><%= gettext "Unpublish" %></span>
+      </h2>
+    </a>
+  <% end %>
+  <div class="pb-10"></div>
+</div>

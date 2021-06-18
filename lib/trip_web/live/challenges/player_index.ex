@@ -5,7 +5,9 @@ defmodule TripWeb.ChallengesLive.PlayerIndex do
 
   @impl true
   def mount(_params, session, socket) do
-    challenges = Challenges.list_challenges()
+    challenges =
+      Challenges.list_challenges()
+      |> Enum.filter(&(&1.available))
 
     socket = assign_defaults(socket, session)
     user = socket.assigns.current_user

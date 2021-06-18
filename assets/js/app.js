@@ -36,7 +36,11 @@ Hooks.Notifications = {
     this.handleEvent("service-notification", ({ text }) => {
       navigator.serviceWorker.getRegistration().then(function (reg) {
         reg.showNotification(text, {
+          body: text,
           icon: "/images/icon-192x192.png",
+          badge: "/images/icon-192x192.png",
+          image: "/images/icon-512x512.png",
+          vibrate: [300, 100, 300],
         });
       });
     });
