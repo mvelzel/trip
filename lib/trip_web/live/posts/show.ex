@@ -2,7 +2,6 @@ defmodule TripWeb.PostsLive.Show do
   use TripWeb, :live_view
 
   alias Trip.{Locations, Posts, Accounts}
-  alias Trip.Posts.PostClaim
 
   @impl true
   def mount(%{"post" => id}, session, socket) do
@@ -129,7 +128,7 @@ defmodule TripWeb.PostsLive.Show do
   end
 
   defp can_claim?(group, post_location, game) do
-    if group do
+    if group && post_location.location_id == group.location_id do
       post_claims = Posts.list_all_post_claims_group(group.id)
 
       current_round = game.current_round
