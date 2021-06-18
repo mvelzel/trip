@@ -50,8 +50,6 @@ defmodule TripWeb.Router do
     pipe_through [:browser, :require_authenticated_user, :post_permission]
 
     scope "/posts", PostsLive do
-      live "/results", Results.Index, :index
-
       live "/:post/results/new", Results.New, :new
     end
   end
@@ -95,6 +93,8 @@ defmodule TripWeb.Router do
       live "/claims", Claims.Index, :index
 
       live "/edit/:post", Edit, :edit
+
+      live "/results", Results.Index, :index
     end
 
     scope "/challenges", ChallengesLive do

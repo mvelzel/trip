@@ -93,15 +93,13 @@
           <span><%= gettext "Publish challenges" %></span>
         <% end %>
       <% end %>
-      <%= if role_allowed(@current_user, [:postleader, :admin, :superuser]) do %>
+      <%= if role_allowed(@current_user, [:admin, :superuser]) do %>
         <%= live_redirect to: Routes.posts_results_index_path(@socket, :index),
           class: "py-4 font-sans text-white font-medium border-b-4 border-tr-green text-2xl
                   flex flex-row items-center space-x-3 sep" do %>
           <i class="fas fa-arrow-right"></i>
           <span><%= gettext "Post results" %></span>
         <% end %>
-      <% end %>
-      <%= if role_allowed(@current_user, [:admin, :superuser]) do %>
         <%= live_redirect to: Routes.locations_index_path(@socket, :index),
           class: "py-4 font-sans text-white font-medium border-b-4 border-tr-green text-2xl
                   flex flex-row items-center space-x-3 sep" do %>

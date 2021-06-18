@@ -1,7 +1,7 @@
 defmodule TripWeb.PostsLive.Results.Index do
   use TripWeb, :live_view
 
-  alias Trip.{Posts, Accounts}
+  alias Trip.{Posts, Accounts, Locations}
 
   @impl true
   def mount(_params, session, socket) do
@@ -10,16 +10,26 @@ defmodule TripWeb.PostsLive.Results.Index do
     posts = Accounts.get_user_posts(socket.assigns.current_user)
     post = Enum.at(posts, 0)
 
-    post_results = if post do
-      Posts.list_all_post_results(post.id)
-      |> Enum.sort_by(&(&1.inserted_at), {:desc, Date})
-    else
-      []
-    end
+    locations = Locations.list_locations()
+
+    location =
+      locations
+      |> Enum.at(0)
+
+    post_results =
+      if post && location do
+        Posts.list_all_post_results(post.id)
+        |> Enum.filter(&(&1.group.location_id == location.id))
+        |> Enum.sort_by(& &1.inserted_at, {:desc, Date})
+      else
+        []
+      end
 
     {:ok,
      socket
      |> assign(post_results: post_results)
+     |> assign(location: location)
+     |> assign(locations: locations)
      |> assign(post: post)
      |> assign(posts: posts)}
   end
@@ -33,8 +43,13 @@ defmodule TripWeb.PostsLive.Results.Index do
     Posts.delete_post_result(post_result)
 
     post_results =
-      Posts.list_all_post_results(socket.assigns.post.id)
-      |> Enum.sort_by(&(&1.inserted_at), {:desc, Date})
+      if socket.assigns.post && socket.assigns.location do
+        Posts.list_all_post_results(socket.assigns.post.id)
+        |> Enum.filter(&(&1.group.location_id == socket.assigns.location.id))
+        |> Enum.sort_by(& &1.inserted_at, {:desc, Date})
+      else
+        []
+      end
 
     {:noreply,
      socket
@@ -43,13 +58,37 @@ defmodule TripWeb.PostsLive.Results.Index do
 
   def handle_event("post-selected", %{"value" => id}, socket) do
     post = Posts.get_post!(id)
+
     post_results =
-      Posts.list_all_post_results(post.id)
-      |> Enum.sort_by(&(&1.inserted_at), {:desc, Date})
+      if post && socket.assigns.location do
+        Posts.list_all_post_results(post.id)
+        |> Enum.filter(&(&1.group.location_id == socket.assigns.location.id))
+        |> Enum.sort_by(& &1.inserted_at, {:desc, Date})
+      else
+        []
+      end
 
     {:noreply,
      socket
      |> assign(post: post)
      |> assign(post_results: post_results)}
+  end
+
+  def handle_event("location-selected", %{"value" => id}, socket) do
+    location = Locations.get_location!(id)
+
+    post_results =
+      if socket.assigns.post && location do
+        Posts.list_all_post_results(socket.assigns.post.id)
+        |> Enum.filter(&(&1.group.location_id == location.id))
+        |> Enum.sort_by(& &1.inserted_at, {:desc, Date})
+      else
+        []
+      end
+
+    {:noreply,
+     socket
+     |> assign(post_results: post_results)
+     |> assign(location: location)}
   end
 end

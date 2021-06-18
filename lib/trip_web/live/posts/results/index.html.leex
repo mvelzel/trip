@@ -2,6 +2,13 @@
   <h2 class="uppercase text-white text-2xl font-bold font-sans tracking-wider ml-10">
     <%= gettext "Post results" %>
   </h2>
+  <div class="px-10">
+    <%= live_react_component("Components.Dropdown",
+      [selected: (if @location, do: @location.id, else: ""),
+      values: Enum.map(@locations, &[&1.name, &1.id]),
+      placeholder: gettext("Select a location"), phx_event: "location-selected"],
+      id: "location-dropdown") %>
+  </div>
   <div class="flex flex-row px-10 items-center space-x-3">
     <div class="flex-1">
       <%= live_react_component("Components.Dropdown",

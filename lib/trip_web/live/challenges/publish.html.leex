@@ -5,6 +5,7 @@
   <%= live_react_component "Components.Dropdown",
     [selected: (if @challenge, do: @challenge.id, else: ""),
     values: Enum.map(@challenges, &[&1.name, &1.id]),
+    placeholder: gettext("Select a challenge"),
     phx_event: "challenge-selected"], id: "challenge-dropdown" %>
   <%= if @challenge do %>
     <p class="text-white text-xl font-base font-sans">
