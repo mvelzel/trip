@@ -3,6 +3,7 @@ defmodule Trip.Posts.ScoreDivision do
   import Ecto.Changeset
   alias Trip.Posts.ScoreDivision
 
+  @derive Jason.Encoder
   embedded_schema do
     field :points, :integer
   end

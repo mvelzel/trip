@@ -8,7 +8,8 @@ defmodule Trip.Posts.Post do
   @result_types [:points, :high_score]
   @score_types [:points, :time]
 
-  @derive {Jason.Encoder, only: [:description, :name, :number, :result_type, :score_type, :id]}
+  @derive {Jason.Encoder,
+           only: [:description, :name, :number, :result_type, :score_type, :id, :score_divisions]}
   schema "posts" do
     field :description, :string
     field :name, :string
