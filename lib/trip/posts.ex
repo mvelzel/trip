@@ -124,6 +124,16 @@ defmodule Trip.Posts do
     |> Repo.preload(:group)
   end
 
+  def get_prelim_scores(group_id) do
+    from(r in PostResult,
+      where: r.group_id == ^group_id,
+      left_join: p in Posts,
+      on: p.id == r.post_id,
+      where: p.result_type == "high_score",
+      select: r)
+      |> order_by(desc: :score)
+  end
+
   @doc """
   Creates a post.
 
