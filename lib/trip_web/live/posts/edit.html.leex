@@ -43,12 +43,21 @@
       <div class="flex flex-col space-y-3">
         <p class="font-sans text-white font-medium"><%= gettext "Score divisions" %></p>
         <%= inputs_for f, :score_divisions, fn fd -> %>
-          <div class="flex flex-row space-x-3 items-center w-full">
-            <p class="font-sans text-lg text-t-green font-medium">
-              #<%= fd.index + 1 %>
-            </p>
-            <%= number_input fd, :points, class: "t-input w-full", step: 1,
-              placeholder: gettext("Input points") %>
+          <div>
+          <%= if to_string(input_value(fd, :delete)) != "true" do %>
+            <div class="flex flex-row space-x-3 items-center w-full">
+              <p class="font-sans text-lg text-t-green font-medium">
+                #<%= fd.index + 1 %>
+              </p>
+              <%= number_input fd, :points, class: "t-input flex-1", step: 1,
+                placeholder: gettext("Input points") %>
+              <a class="font-sans text-white min-w-[1rem] min-h-[1rem]"
+                 phx-click="remove_nested" phx-value-cursor="<%= cursor_for(fd) %>">
+                <i class="fas fa-times"></i>
+              </a>
+            </div>
+          <% end %>
+          <%= hidden_input fd, :delete %>
           </div>
         <% end %>
         <div class="flex flex-row justify-end">
@@ -70,7 +79,7 @@
       <%= if !is_nil(input_value(fl, :location_id)) do %>
         <% id = String.to_integer(to_string(input_value(fl, :location_id))) %>
         <% location = Locations.get_location!(id) %>
-        <%= if input_value(fl, :delete) != true do %>
+        <%= if to_string(input_value(fl, :delete)) != "true" do %>
           <div class="flex flex-col space-y-3">
             <div class="flex flex-row justify-between">
               <p class="font-sans text-white font-medium"><%= location.name %></p>
