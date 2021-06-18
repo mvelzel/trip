@@ -73,6 +73,11 @@ defmodule Trip.Notifications do
     Phoenix.PubSub.broadcast(Trip.PubSub, "notification:#{notification.user_id}", notification)
   end
 
+  def notify_all_roles(attrs, roles) do
+    roles
+    |> Enum.map(&notify_all_role(attrs, &1))
+  end
+
   def notify_all_role(attrs, role) do
     for user <- Accounts.list_users_by_role(role) do
       create_notification(

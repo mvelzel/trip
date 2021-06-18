@@ -4,6 +4,7 @@ defmodule Trip.Challenges do
   """
 
   import Ecto.Query, warn: false
+  import TripWeb.Gettext
   alias Trip.Repo
 
   alias Trip.Groups
@@ -52,9 +53,10 @@ defmodule Trip.Challenges do
   """
   def get_challenge!(id), do: Repo.get!(Challenge, id)
 
-  def get_submission!(id), do:
-    Repo.get!(Submission, id)
-    |> Repo.preload([:group, :challenge])
+  def get_submission!(id),
+    do:
+      Repo.get!(Submission, id)
+      |> Repo.preload([:group, :challenge])
 
   @doc """
   Creates a challenge.
@@ -111,6 +113,15 @@ defmodule Trip.Challenges do
   end
 
   def publish_challenge(%Challenge{} = challenge) do
+    Trip.Notifications.notify_all_roles(
+      %{
+        "priority" => "urgent",
+        "text" => gettext("A new challenge is temporarily available!"),
+        "action" => "/challenges/player"
+      },
+      [:player, :admin, :judge, :superuser]
+    )
+
     update_challenge(challenge, %{"available" => "true"})
   end
 

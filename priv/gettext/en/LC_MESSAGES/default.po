@@ -23,7 +23,7 @@ msgstr ""
 
 #, elixir-format
 #: lib/trip_web/live/locations/index.html.leex:3
-#: lib/trip_web/templates/layout/live.html.leex:103
+#: lib/trip_web/templates/layout/live.html.leex:109
 msgid "Locations"
 msgstr ""
 
@@ -48,7 +48,6 @@ msgid "Save"
 msgstr ""
 
 #, elixir-format
-#: lib/trip_web/templates/layout/live.html.leex:16
 #: lib/trip_web/templates/layout/session.html.eex:20
 msgid "Trip"
 msgstr ""
@@ -114,7 +113,7 @@ msgstr ""
 
 #, elixir-format
 #: lib/trip_web/live/groups/index.html.leex:3
-#: lib/trip_web/templates/layout/live.html.leex:109
+#: lib/trip_web/templates/layout/live.html.leex:115
 msgid "Groups"
 msgstr ""
 
@@ -136,9 +135,9 @@ msgstr ""
 #, elixir-format
 #: lib/trip_web/live/challenges/edit.ex:2
 #: lib/trip_web/live/challenges/index.ex:2 lib/trip_web/live/challenges/player_index.ex:2
-#: lib/trip_web/live/challenges/show.ex:2 lib/trip_web/live/challenges/submissions/index.ex:2
-#: lib/trip_web/live/game_live.ex:2 lib/trip_web/live/groups/edit.ex:2 lib/trip_web/live/groups/index.ex:2
-#: lib/trip_web/live/index_live.ex:2 lib/trip_web/live/leaderboards/index.ex:2
+#: lib/trip_web/live/challenges/publish.ex:2 lib/trip_web/live/challenges/show.ex:2
+#: lib/trip_web/live/challenges/submissions/index.ex:2 lib/trip_web/live/game_live.ex:2 lib/trip_web/live/groups/edit.ex:2
+#: lib/trip_web/live/groups/index.ex:2 lib/trip_web/live/index_live.ex:2 lib/trip_web/live/leaderboards/index.ex:2
 #: lib/trip_web/live/locations/edit.ex:2 lib/trip_web/live/locations/index.ex:2
 #: lib/trip_web/live/notifications/index.ex:2 lib/trip_web/live/page_live.ex:2 lib/trip_web/live/posts/claims/index.ex:2
 #: lib/trip_web/live/posts/edit.ex:2 lib/trip_web/live/posts/index.ex:2 lib/trip_web/live/posts/results/index.ex:2
@@ -153,9 +152,9 @@ msgstr ""
 #, elixir-format
 #: lib/trip_web/live/challenges/edit.ex:2
 #: lib/trip_web/live/challenges/index.ex:2 lib/trip_web/live/challenges/player_index.ex:2
-#: lib/trip_web/live/challenges/show.ex:2 lib/trip_web/live/challenges/submissions/index.ex:2
-#: lib/trip_web/live/game_live.ex:2 lib/trip_web/live/groups/edit.ex:2 lib/trip_web/live/groups/index.ex:2
-#: lib/trip_web/live/index_live.ex:2 lib/trip_web/live/leaderboards/index.ex:2
+#: lib/trip_web/live/challenges/publish.ex:2 lib/trip_web/live/challenges/show.ex:2
+#: lib/trip_web/live/challenges/submissions/index.ex:2 lib/trip_web/live/game_live.ex:2 lib/trip_web/live/groups/edit.ex:2
+#: lib/trip_web/live/groups/index.ex:2 lib/trip_web/live/index_live.ex:2 lib/trip_web/live/leaderboards/index.ex:2
 #: lib/trip_web/live/locations/edit.ex:2 lib/trip_web/live/locations/index.ex:2
 #: lib/trip_web/live/notifications/index.ex:2 lib/trip_web/live/page_live.ex:2 lib/trip_web/live/posts/claims/index.ex:2
 #: lib/trip_web/live/posts/edit.ex:2 lib/trip_web/live/posts/index.ex:2 lib/trip_web/live/posts/results/index.ex:2
@@ -270,9 +269,9 @@ msgstr ""
 #, elixir-format
 #: lib/trip_web/live/challenges/edit.ex:2
 #: lib/trip_web/live/challenges/index.ex:2 lib/trip_web/live/challenges/player_index.ex:2
-#: lib/trip_web/live/challenges/show.ex:2 lib/trip_web/live/challenges/submissions/index.ex:2
-#: lib/trip_web/live/game_live.ex:2 lib/trip_web/live/groups/edit.ex:2 lib/trip_web/live/groups/index.ex:2
-#: lib/trip_web/live/index_live.ex:2 lib/trip_web/live/leaderboards/index.ex:2
+#: lib/trip_web/live/challenges/publish.ex:2 lib/trip_web/live/challenges/show.ex:2
+#: lib/trip_web/live/challenges/submissions/index.ex:2 lib/trip_web/live/game_live.ex:2 lib/trip_web/live/groups/edit.ex:2
+#: lib/trip_web/live/groups/index.ex:2 lib/trip_web/live/index_live.ex:2 lib/trip_web/live/leaderboards/index.ex:2
 #: lib/trip_web/live/locations/edit.ex:2 lib/trip_web/live/locations/index.ex:2
 #: lib/trip_web/live/notifications/index.ex:2 lib/trip_web/live/page_live.ex:2 lib/trip_web/live/posts/claims/index.ex:2
 #: lib/trip_web/live/posts/edit.ex:2 lib/trip_web/live/posts/index.ex:2 lib/trip_web/live/posts/results/index.ex:2
@@ -297,9 +296,9 @@ msgstr ""
 #, elixir-format
 #: lib/trip_web/live/challenges/edit.ex:2
 #: lib/trip_web/live/challenges/index.ex:2 lib/trip_web/live/challenges/player_index.ex:2
-#: lib/trip_web/live/challenges/show.ex:2 lib/trip_web/live/challenges/submissions/index.ex:2
-#: lib/trip_web/live/game_live.ex:2 lib/trip_web/live/groups/edit.ex:2 lib/trip_web/live/groups/index.ex:2
-#: lib/trip_web/live/index_live.ex:2 lib/trip_web/live/leaderboards/index.ex:2
+#: lib/trip_web/live/challenges/publish.ex:2 lib/trip_web/live/challenges/show.ex:2
+#: lib/trip_web/live/challenges/submissions/index.ex:2 lib/trip_web/live/game_live.ex:2 lib/trip_web/live/groups/edit.ex:2
+#: lib/trip_web/live/groups/index.ex:2 lib/trip_web/live/index_live.ex:2 lib/trip_web/live/leaderboards/index.ex:2
 #: lib/trip_web/live/locations/edit.ex:2 lib/trip_web/live/locations/index.ex:2
 #: lib/trip_web/live/notifications/index.ex:2 lib/trip_web/live/page_live.ex:2 lib/trip_web/live/posts/claims/index.ex:2
 #: lib/trip_web/live/posts/edit.ex:2 lib/trip_web/live/posts/index.ex:2 lib/trip_web/live/posts/results/index.ex:2
@@ -334,7 +333,7 @@ msgid "Log in"
 msgstr ""
 
 #, elixir-format
-#: lib/trip_web/templates/layout/live.html.leex:134
+#: lib/trip_web/templates/layout/live.html.leex:140
 msgid "Log out"
 msgstr ""
 
@@ -352,9 +351,9 @@ msgstr ""
 #, elixir-format
 #: lib/trip_web/live/challenges/edit.ex:2
 #: lib/trip_web/live/challenges/index.ex:2 lib/trip_web/live/challenges/player_index.ex:2
-#: lib/trip_web/live/challenges/show.ex:2 lib/trip_web/live/challenges/submissions/index.ex:2
-#: lib/trip_web/live/game_live.ex:2 lib/trip_web/live/groups/edit.ex:2 lib/trip_web/live/groups/index.ex:2
-#: lib/trip_web/live/index_live.ex:2 lib/trip_web/live/leaderboards/index.ex:2
+#: lib/trip_web/live/challenges/publish.ex:2 lib/trip_web/live/challenges/show.ex:2
+#: lib/trip_web/live/challenges/submissions/index.ex:2 lib/trip_web/live/game_live.ex:2 lib/trip_web/live/groups/edit.ex:2
+#: lib/trip_web/live/groups/index.ex:2 lib/trip_web/live/index_live.ex:2 lib/trip_web/live/leaderboards/index.ex:2
 #: lib/trip_web/live/locations/edit.ex:2 lib/trip_web/live/locations/index.ex:2
 #: lib/trip_web/live/notifications/index.ex:2 lib/trip_web/live/page_live.ex:2 lib/trip_web/live/posts/claims/index.ex:2
 #: lib/trip_web/live/posts/edit.ex:2 lib/trip_web/live/posts/index.ex:2 lib/trip_web/live/posts/results/index.ex:2
@@ -384,7 +383,7 @@ msgstr ""
 
 #, elixir-format
 #: lib/trip_web/live/users/index.html.leex:3
-#: lib/trip_web/templates/layout/live.html.leex:115
+#: lib/trip_web/templates/layout/live.html.leex:121
 msgid "Users"
 msgstr ""
 
@@ -396,9 +395,9 @@ msgstr ""
 #, elixir-format
 #: lib/trip_web/live/challenges/edit.ex:2
 #: lib/trip_web/live/challenges/index.ex:2 lib/trip_web/live/challenges/player_index.ex:2
-#: lib/trip_web/live/challenges/show.ex:2 lib/trip_web/live/challenges/submissions/index.ex:2
-#: lib/trip_web/live/game_live.ex:2 lib/trip_web/live/groups/edit.ex:2 lib/trip_web/live/groups/index.ex:2
-#: lib/trip_web/live/index_live.ex:2 lib/trip_web/live/leaderboards/index.ex:2
+#: lib/trip_web/live/challenges/publish.ex:2 lib/trip_web/live/challenges/show.ex:2
+#: lib/trip_web/live/challenges/submissions/index.ex:2 lib/trip_web/live/game_live.ex:2 lib/trip_web/live/groups/edit.ex:2
+#: lib/trip_web/live/groups/index.ex:2 lib/trip_web/live/index_live.ex:2 lib/trip_web/live/leaderboards/index.ex:2
 #: lib/trip_web/live/locations/edit.ex:2 lib/trip_web/live/locations/index.ex:2
 #: lib/trip_web/live/notifications/index.ex:2 lib/trip_web/live/page_live.ex:2 lib/trip_web/live/posts/claims/index.ex:2
 #: lib/trip_web/live/posts/edit.ex:2 lib/trip_web/live/posts/index.ex:2 lib/trip_web/live/posts/results/index.ex:2
@@ -422,7 +421,7 @@ msgstr ""
 
 #, elixir-format
 #: lib/trip_web/live/posts/results/index.html.leex:3
-#: lib/trip_web/templates/layout/live.html.leex:95
+#: lib/trip_web/templates/layout/live.html.leex:101
 msgid "Post results"
 msgstr ""
 
@@ -452,9 +451,9 @@ msgstr ""
 #, elixir-format
 #: lib/trip_web/live/challenges/edit.ex:2
 #: lib/trip_web/live/challenges/index.ex:2 lib/trip_web/live/challenges/player_index.ex:2
-#: lib/trip_web/live/challenges/show.ex:2 lib/trip_web/live/challenges/submissions/index.ex:2
-#: lib/trip_web/live/game_live.ex:2 lib/trip_web/live/groups/edit.ex:2 lib/trip_web/live/groups/index.ex:2
-#: lib/trip_web/live/index_live.ex:2 lib/trip_web/live/leaderboards/index.ex:2
+#: lib/trip_web/live/challenges/publish.ex:2 lib/trip_web/live/challenges/show.ex:2
+#: lib/trip_web/live/challenges/submissions/index.ex:2 lib/trip_web/live/game_live.ex:2 lib/trip_web/live/groups/edit.ex:2
+#: lib/trip_web/live/groups/index.ex:2 lib/trip_web/live/index_live.ex:2 lib/trip_web/live/leaderboards/index.ex:2
 #: lib/trip_web/live/locations/edit.ex:2 lib/trip_web/live/locations/index.ex:2
 #: lib/trip_web/live/notifications/index.ex:2 lib/trip_web/live/page_live.ex:2 lib/trip_web/live/posts/claims/index.ex:2
 #: lib/trip_web/live/posts/edit.ex:2 lib/trip_web/live/posts/index.ex:2 lib/trip_web/live/posts/results/index.ex:2
@@ -480,9 +479,9 @@ msgstr ""
 #, elixir-format
 #: lib/trip_web/live/challenges/edit.ex:2
 #: lib/trip_web/live/challenges/index.ex:2 lib/trip_web/live/challenges/player_index.ex:2
-#: lib/trip_web/live/challenges/show.ex:2 lib/trip_web/live/challenges/submissions/index.ex:2
-#: lib/trip_web/live/game_live.ex:2 lib/trip_web/live/groups/edit.ex:2 lib/trip_web/live/groups/index.ex:2
-#: lib/trip_web/live/index_live.ex:2 lib/trip_web/live/leaderboards/index.ex:2
+#: lib/trip_web/live/challenges/publish.ex:2 lib/trip_web/live/challenges/show.ex:2
+#: lib/trip_web/live/challenges/submissions/index.ex:2 lib/trip_web/live/game_live.ex:2 lib/trip_web/live/groups/edit.ex:2
+#: lib/trip_web/live/groups/index.ex:2 lib/trip_web/live/index_live.ex:2 lib/trip_web/live/leaderboards/index.ex:2
 #: lib/trip_web/live/locations/edit.ex:2 lib/trip_web/live/locations/index.ex:2
 #: lib/trip_web/live/notifications/index.ex:2 lib/trip_web/live/page_live.ex:2 lib/trip_web/live/posts/claims/index.ex:2
 #: lib/trip_web/live/posts/edit.ex:2 lib/trip_web/live/posts/index.ex:2 lib/trip_web/live/posts/results/index.ex:2
@@ -507,9 +506,9 @@ msgstr ""
 #, elixir-format
 #: lib/trip_web/live/challenges/edit.ex:2
 #: lib/trip_web/live/challenges/index.ex:2 lib/trip_web/live/challenges/player_index.ex:2
-#: lib/trip_web/live/challenges/show.ex:2 lib/trip_web/live/challenges/submissions/index.ex:2
-#: lib/trip_web/live/game_live.ex:2 lib/trip_web/live/groups/edit.ex:2 lib/trip_web/live/groups/index.ex:2
-#: lib/trip_web/live/index_live.ex:2 lib/trip_web/live/leaderboards/index.ex:2
+#: lib/trip_web/live/challenges/publish.ex:2 lib/trip_web/live/challenges/show.ex:2
+#: lib/trip_web/live/challenges/submissions/index.ex:2 lib/trip_web/live/game_live.ex:2 lib/trip_web/live/groups/edit.ex:2
+#: lib/trip_web/live/groups/index.ex:2 lib/trip_web/live/index_live.ex:2 lib/trip_web/live/leaderboards/index.ex:2
 #: lib/trip_web/live/locations/edit.ex:2 lib/trip_web/live/locations/index.ex:2
 #: lib/trip_web/live/notifications/index.ex:2 lib/trip_web/live/page_live.ex:2 lib/trip_web/live/posts/claims/index.ex:2
 #: lib/trip_web/live/posts/edit.ex:2 lib/trip_web/live/posts/index.ex:2 lib/trip_web/live/posts/results/index.ex:2
@@ -544,9 +543,9 @@ msgstr ""
 #, elixir-format
 #: lib/trip_web/live/challenges/edit.ex:2
 #: lib/trip_web/live/challenges/index.ex:2 lib/trip_web/live/challenges/player_index.ex:2
-#: lib/trip_web/live/challenges/show.ex:2 lib/trip_web/live/challenges/submissions/index.ex:2
-#: lib/trip_web/live/game_live.ex:2 lib/trip_web/live/groups/edit.ex:2 lib/trip_web/live/groups/index.ex:2
-#: lib/trip_web/live/index_live.ex:2 lib/trip_web/live/leaderboards/index.ex:2
+#: lib/trip_web/live/challenges/publish.ex:2 lib/trip_web/live/challenges/show.ex:2
+#: lib/trip_web/live/challenges/submissions/index.ex:2 lib/trip_web/live/game_live.ex:2 lib/trip_web/live/groups/edit.ex:2
+#: lib/trip_web/live/groups/index.ex:2 lib/trip_web/live/index_live.ex:2 lib/trip_web/live/leaderboards/index.ex:2
 #: lib/trip_web/live/locations/edit.ex:2 lib/trip_web/live/locations/index.ex:2
 #: lib/trip_web/live/notifications/index.ex:2 lib/trip_web/live/page_live.ex:2 lib/trip_web/live/posts/claims/index.ex:2
 #: lib/trip_web/live/posts/edit.ex:2 lib/trip_web/live/posts/index.ex:2 lib/trip_web/live/posts/results/index.ex:2
@@ -571,9 +570,9 @@ msgstr ""
 #, elixir-format
 #: lib/trip_web/live/challenges/edit.ex:2
 #: lib/trip_web/live/challenges/index.ex:2 lib/trip_web/live/challenges/player_index.ex:2
-#: lib/trip_web/live/challenges/show.ex:2 lib/trip_web/live/challenges/submissions/index.ex:2
-#: lib/trip_web/live/game_live.ex:2 lib/trip_web/live/groups/edit.ex:2 lib/trip_web/live/groups/index.ex:2
-#: lib/trip_web/live/index_live.ex:2 lib/trip_web/live/leaderboards/index.ex:2
+#: lib/trip_web/live/challenges/publish.ex:2 lib/trip_web/live/challenges/show.ex:2
+#: lib/trip_web/live/challenges/submissions/index.ex:2 lib/trip_web/live/game_live.ex:2 lib/trip_web/live/groups/edit.ex:2
+#: lib/trip_web/live/groups/index.ex:2 lib/trip_web/live/index_live.ex:2 lib/trip_web/live/leaderboards/index.ex:2
 #: lib/trip_web/live/locations/edit.ex:2 lib/trip_web/live/locations/index.ex:2
 #: lib/trip_web/live/notifications/index.ex:2 lib/trip_web/live/page_live.ex:2 lib/trip_web/live/posts/claims/index.ex:2
 #: lib/trip_web/live/posts/edit.ex:2 lib/trip_web/live/posts/index.ex:2 lib/trip_web/live/posts/results/index.ex:2
@@ -588,9 +587,9 @@ msgstr ""
 #, elixir-format
 #: lib/trip_web/live/challenges/edit.ex:2
 #: lib/trip_web/live/challenges/index.ex:2 lib/trip_web/live/challenges/player_index.ex:2
-#: lib/trip_web/live/challenges/show.ex:2 lib/trip_web/live/challenges/submissions/index.ex:2
-#: lib/trip_web/live/game_live.ex:2 lib/trip_web/live/groups/edit.ex:2 lib/trip_web/live/groups/index.ex:2
-#: lib/trip_web/live/index_live.ex:2 lib/trip_web/live/leaderboards/index.ex:2
+#: lib/trip_web/live/challenges/publish.ex:2 lib/trip_web/live/challenges/show.ex:2
+#: lib/trip_web/live/challenges/submissions/index.ex:2 lib/trip_web/live/game_live.ex:2 lib/trip_web/live/groups/edit.ex:2
+#: lib/trip_web/live/groups/index.ex:2 lib/trip_web/live/index_live.ex:2 lib/trip_web/live/leaderboards/index.ex:2
 #: lib/trip_web/live/locations/edit.ex:2 lib/trip_web/live/locations/index.ex:2
 #: lib/trip_web/live/notifications/index.ex:2 lib/trip_web/live/page_live.ex:2 lib/trip_web/live/posts/claims/index.ex:2
 #: lib/trip_web/live/posts/edit.ex:2 lib/trip_web/live/posts/index.ex:2 lib/trip_web/live/posts/results/index.ex:2
@@ -642,9 +641,9 @@ msgstr ""
 #, elixir-format
 #: lib/trip_web/live/challenges/edit.ex:2
 #: lib/trip_web/live/challenges/index.ex:2 lib/trip_web/live/challenges/player_index.ex:2
-#: lib/trip_web/live/challenges/show.ex:2 lib/trip_web/live/challenges/submissions/index.ex:2
-#: lib/trip_web/live/game_live.ex:2 lib/trip_web/live/groups/edit.ex:2 lib/trip_web/live/groups/index.ex:2
-#: lib/trip_web/live/index_live.ex:2 lib/trip_web/live/leaderboards/index.ex:2
+#: lib/trip_web/live/challenges/publish.ex:2 lib/trip_web/live/challenges/show.ex:2
+#: lib/trip_web/live/challenges/submissions/index.ex:2 lib/trip_web/live/game_live.ex:2 lib/trip_web/live/groups/edit.ex:2
+#: lib/trip_web/live/groups/index.ex:2 lib/trip_web/live/index_live.ex:2 lib/trip_web/live/leaderboards/index.ex:2
 #: lib/trip_web/live/locations/edit.ex:2 lib/trip_web/live/locations/index.ex:2
 #: lib/trip_web/live/notifications/index.ex:2 lib/trip_web/live/page_live.ex:2 lib/trip_web/live/posts/claims/index.ex:2
 #: lib/trip_web/live/posts/edit.ex:2 lib/trip_web/live/posts/index.ex:2 lib/trip_web/live/posts/results/index.ex:2
@@ -696,13 +695,13 @@ msgstr ""
 
 #, elixir-format
 #: lib/trip_web/live/posts/claims/index.html.leex:3
-#: lib/trip_web/templates/layout/live.html.leex:121
+#: lib/trip_web/templates/layout/live.html.leex:127
 msgid "Post claims"
 msgstr ""
 
 #, elixir-format
 #: lib/trip_web/live/game_live.html.leex:3
-#: lib/trip_web/templates/layout/live.html.leex:127
+#: lib/trip_web/templates/layout/live.html.leex:133
 msgid "Manage game"
 msgstr ""
 
@@ -728,39 +727,21 @@ msgid "Clear"
 msgstr ""
 
 #, elixir-format
-#: lib/trip_web/live/challenges/edit.ex:2
-#: lib/trip_web/live/challenges/index.ex:2 lib/trip_web/live/challenges/player_index.ex:2
-#: lib/trip_web/live/challenges/show.ex:2 lib/trip_web/live/challenges/submissions/index.ex:2
-#: lib/trip_web/live/game_live.ex:2 lib/trip_web/live/groups/edit.ex:2 lib/trip_web/live/groups/index.ex:2
-#: lib/trip_web/live/index_live.ex:2 lib/trip_web/live/leaderboards/index.ex:2
-#: lib/trip_web/live/locations/edit.ex:2 lib/trip_web/live/locations/index.ex:2
-#: lib/trip_web/live/notifications/index.ex:2 lib/trip_web/live/page_live.ex:2 lib/trip_web/live/posts/claims/index.ex:2
-#: lib/trip_web/live/posts/edit.ex:2 lib/trip_web/live/posts/index.ex:2 lib/trip_web/live/posts/results/index.ex:2
-#: lib/trip_web/live/posts/results/new.ex:2 lib/trip_web/live/posts/show.ex:2 lib/trip_web/live/users/edit.ex:2
-#: lib/trip_web/live/users/index.ex:2
+#: lib/trip/games/handler.ex:89
 msgid "New round has begun: "
 msgstr ""
 
 #, elixir-format
-#: lib/trip_web/live/challenges/edit.ex:2
-#: lib/trip_web/live/challenges/index.ex:2 lib/trip_web/live/challenges/player_index.ex:2
-#: lib/trip_web/live/challenges/show.ex:2 lib/trip_web/live/challenges/submissions/index.ex:2
-#: lib/trip_web/live/game_live.ex:2 lib/trip_web/live/groups/edit.ex:2 lib/trip_web/live/groups/index.ex:2
-#: lib/trip_web/live/index_live.ex:2 lib/trip_web/live/leaderboards/index.ex:2
-#: lib/trip_web/live/locations/edit.ex:2 lib/trip_web/live/locations/index.ex:2
-#: lib/trip_web/live/notifications/index.ex:2 lib/trip_web/live/page_live.ex:2 lib/trip_web/live/posts/claims/index.ex:2
-#: lib/trip_web/live/posts/edit.ex:2 lib/trip_web/live/posts/index.ex:2 lib/trip_web/live/posts/results/index.ex:2
-#: lib/trip_web/live/posts/results/new.ex:2 lib/trip_web/live/posts/show.ex:2 lib/trip_web/live/users/edit.ex:2
-#: lib/trip_web/live/users/index.ex:2
+#: lib/trip/games/handler.ex:51
 msgid "The game has begun!"
 msgstr ""
 
 #, elixir-format
 #: lib/trip_web/live/challenges/edit.ex:2
 #: lib/trip_web/live/challenges/index.ex:2 lib/trip_web/live/challenges/player_index.ex:2
-#: lib/trip_web/live/challenges/show.ex:2 lib/trip_web/live/challenges/submissions/index.ex:2
-#: lib/trip_web/live/game_live.ex:2 lib/trip_web/live/groups/edit.ex:2 lib/trip_web/live/groups/index.ex:2
-#: lib/trip_web/live/index_live.ex:2 lib/trip_web/live/leaderboards/index.ex:2
+#: lib/trip_web/live/challenges/publish.ex:2 lib/trip_web/live/challenges/show.ex:2
+#: lib/trip_web/live/challenges/submissions/index.ex:2 lib/trip_web/live/game_live.ex:2 lib/trip_web/live/groups/edit.ex:2
+#: lib/trip_web/live/groups/index.ex:2 lib/trip_web/live/index_live.ex:2 lib/trip_web/live/leaderboards/index.ex:2
 #: lib/trip_web/live/locations/edit.ex:2 lib/trip_web/live/locations/index.ex:2
 #: lib/trip_web/live/notifications/index.ex:2 lib/trip_web/live/page_live.ex:2 lib/trip_web/live/posts/claims/index.ex:2
 #: lib/trip_web/live/posts/edit.ex:2 lib/trip_web/live/posts/index.ex:2 lib/trip_web/live/posts/results/index.ex:2
@@ -782,7 +763,7 @@ msgstr ""
 msgid "Add image"
 msgstr ""
 
-#, elixir-format, fuzzy
+#, elixir-format
 #: lib/trip_web/live/challenges/show.html.leex:25
 msgid "Image:"
 msgstr ""
@@ -792,7 +773,7 @@ msgstr ""
 msgid "Remove"
 msgstr ""
 
-#, elixir-format, fuzzy
+#, elixir-format
 #: lib/trip_web/live/challenges/show.html.leex:69
 msgid "Upload video"
 msgstr ""
@@ -800,9 +781,9 @@ msgstr ""
 #, elixir-format
 #: lib/trip_web/live/challenges/edit.ex:2
 #: lib/trip_web/live/challenges/index.ex:2 lib/trip_web/live/challenges/player_index.ex:2
-#: lib/trip_web/live/challenges/show.ex:2 lib/trip_web/live/challenges/submissions/index.ex:2
-#: lib/trip_web/live/game_live.ex:2 lib/trip_web/live/groups/edit.ex:2 lib/trip_web/live/groups/index.ex:2
-#: lib/trip_web/live/index_live.ex:2 lib/trip_web/live/leaderboards/index.ex:2
+#: lib/trip_web/live/challenges/publish.ex:2 lib/trip_web/live/challenges/show.ex:2
+#: lib/trip_web/live/challenges/submissions/index.ex:2 lib/trip_web/live/game_live.ex:2 lib/trip_web/live/groups/edit.ex:2
+#: lib/trip_web/live/groups/index.ex:2 lib/trip_web/live/index_live.ex:2 lib/trip_web/live/leaderboards/index.ex:2
 #: lib/trip_web/live/locations/edit.ex:2 lib/trip_web/live/locations/index.ex:2
 #: lib/trip_web/live/notifications/index.ex:2 lib/trip_web/live/page_live.ex:2 lib/trip_web/live/posts/claims/index.ex:2
 #: lib/trip_web/live/posts/edit.ex:2 lib/trip_web/live/posts/index.ex:2 lib/trip_web/live/posts/results/index.ex:2
@@ -812,4 +793,49 @@ msgstr ""
 #: lib/trip_web/views/user_reset_password_view.ex:2 lib/trip_web/views/user_session_view.ex:2
 #: lib/trip_web/views/user_settings_view.ex:2
 msgid "Video"
+msgstr ""
+
+#, elixir-format
+#: lib/trip_web/live/challenges/publish.html.leex:23
+msgid "Publish"
+msgstr ""
+
+#, elixir-format
+#: lib/trip_web/live/challenges/publish.html.leex:3
+msgid "Publish challenge"
+msgstr ""
+
+#, elixir-format
+#: lib/trip_web/templates/layout/live.html.leex:93
+msgid "Publish challenges"
+msgstr ""
+
+#, elixir-format
+#: lib/trip_web/live/challenges/publish.html.leex:15
+msgid "Published"
+msgstr ""
+
+#, elixir-format
+#: lib/trip_web/templates/layout/live.html.leex:16
+msgid "Road to Brunstad"
+msgstr ""
+
+#, elixir-format
+#: lib/trip_web/live/challenges/publish.html.leex:12
+msgid "Status:"
+msgstr ""
+
+#, elixir-format
+#: lib/trip_web/live/challenges/publish.html.leex:29
+msgid "Unpublish"
+msgstr ""
+
+#, elixir-format
+#: lib/trip_web/live/challenges/publish.html.leex:17
+msgid "Unpublished"
+msgstr ""
+
+#, elixir-format
+#: lib/trip/challenges.ex:119
+msgid "A new challenge is temporarily available!"
 msgstr ""
