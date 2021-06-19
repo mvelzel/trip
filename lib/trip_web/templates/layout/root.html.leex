@@ -35,8 +35,10 @@ navigator.serviceWorker.getRegistrations().then(function(registrations) {
 
     });
              
-				navigator.serviceWorker.register('/sw.js')
-				 .then(function() { console.log("Service Worker Registered"); });
+				navigator.serviceWorker.register('/sw_new.js')
+				 .then(function(reg) {
+reg.update();
+ console.log("Service Worker Registered"); });
 			}
 		</script>
   </body>

@@ -30,7 +30,7 @@ defmodule TripWeb.Endpoint do
     at: "/",
     from: :trip,
     gzip: false,
-    only: ~w(css fonts images uploads js favicon.ico robots.txt manifest.json sw.js)
+    only: ~w(css fonts images uploads js favicon.ico robots.txt manifest.json sw_new.js)
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.
