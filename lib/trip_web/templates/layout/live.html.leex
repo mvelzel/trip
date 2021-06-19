@@ -143,4 +143,8 @@
   <div class="flex w-full overflow-y-scroll flex-1">
     <%= @inner_content %>
   </div>
+  <%= link to: Routes.user_session_path(@socket, :delete), method: :delete,
+    class: "py-2 font-sans text-t-red text-red-3d text-lg ml-4" do %>
+    <span><%= gettext "Log out" %></span>
+  <% end %>
 </main>
