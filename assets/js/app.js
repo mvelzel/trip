@@ -29,23 +29,23 @@ let Hooks = { LiveReact };
 
 Hooks.Notifications = {
   mounted() {
-    if (Notification) {
-    Notification.requestPermission().then((result) => {
-      if (result === "granted") {
-      }
-    });
-    this.handleEvent("service-notification", ({ text }) => {
-      navigator.serviceWorker.getRegistration().then(function (reg) {
-        reg.showNotification(text, {
-          body: text,
-          icon: "/images/icon-192x192.png",
-          badge: "/images/icon-96x96.png",
-          image: "/images/icon-512x512.png",
-          vibrate: [300, 100, 300],
-        });
-      });
-    });
-    }
+    //if (Notification) {
+    //Notification.requestPermission().then((result) => {
+    //  if (result === "granted") {
+    //  }
+    //});
+    //this.handleEvent("service-notification", ({ text }) => {
+    //  navigator.serviceWorker.getRegistration().then(function (reg) {
+    //    reg.showNotification(text, {
+    //      body: text,
+    //      icon: "/images/icon-192x192.png",
+    //      badge: "/images/icon-96x96.png",
+    //      image: "/images/icon-512x512.png",
+    //      vibrate: [300, 100, 300],
+    //    });
+    //  });
+    //});
+    //}
   },
 };
 
