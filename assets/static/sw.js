@@ -1,5 +1,5 @@
 var CACHE_NAME = "my-site-cache-v1";
-var urlsToCache = ["/", "/css/app.css", "/js/app.js"];
+var urlsToCache = [];
 
 self.addEventListener("install", function (event) {
   // Perform install steps
@@ -7,6 +7,22 @@ self.addEventListener("install", function (event) {
     caches.open(CACHE_NAME).then(function (cache) {
       console.log("Opened cache");
       return cache.addAll(urlsToCache);
+    })
+  );
+});
+
+self.addEventListener('activate', function(event) {
+  event.waitUntil(
+    caches.keys().then(function(cacheNames) {
+      return Promise.all(
+        cacheNames.filter(function(cacheName) {
+          // Return true if you want to remove this cache,
+          // but remember that caches are shared across
+          // the whole origin
+        }).map(function(cacheName) {
+          return caches.delete(cacheName);
+        })
+      );
     })
   );
 });
