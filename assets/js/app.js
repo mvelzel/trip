@@ -29,6 +29,7 @@ let Hooks = { LiveReact };
 
 Hooks.Notifications = {
   mounted() {
+    if (Notification) {
     Notification.requestPermission().then((result) => {
       if (result === "granted") {
       }
@@ -44,6 +45,7 @@ Hooks.Notifications = {
         });
       });
     });
+    }
   },
 };
 
